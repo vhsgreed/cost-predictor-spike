@@ -154,6 +154,28 @@ def evaluate(test, predict, target, group=None, boot=500, seed=0):
     return out
 
 
+def refit_width_ci(fit, cal, test, feat, target, group_key, boot=100, seed=0):
+    """Width CI that reflects estimation uncertainty: resample training repos (fit and
+    cal separately, by group), refit, re-measure median width and coverage on the fixed
+    test set. Fixes the degenerate CI when the interval width is constant across rows."""
+    rng = random.Random(seed)
+
+    def resample(rows):
+        g = defaultdict(list)
+        for r in rows: g[group_key(r)].append(r)
+        keys = list(g)
+        return [r for _ in keys for r in g[keys[rng.randrange(len(keys))]]]
+    widths, covs = [], []
+    for _ in range(boot):
+        pred = fit_interval(resample(fit), resample(cal), feat, target)
+        iv = [pred(r) for r in test]
+        widths.append(st.median(hi / lo for lo, hi in iv))
+        covs.append(sum(lo <= target(r) <= hi for r, (lo, hi) in zip(test, iv)) / len(test))
+    widths.sort(); covs.sort()
+    return {"width": (widths[int(.05 * boot)], widths[int(.95 * boot)]),
+            "coverage": (covs[int(.05 * boot)], covs[int(.95 * boot)])}
+
+
 def fmt(res):
     c, w, p = res["coverage"], res["width"], res["pinball"]
     return (f"n={res['n']:5} cov {c[0]:.0%} [{c[1]:.0%},{c[2]:.0%}] | p10-p90 width {w[0]:.1f}x "

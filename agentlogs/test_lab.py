@@ -84,6 +84,16 @@ def test_interval_calibrated_on_known_noise():
     assert 3.0 <= res["width"][0] <= 4.0               # exp(2*1.2816*0.5) = 3.6
 
 
+def test_refit_width_ci_not_degenerate():
+    rng = random.Random(3)
+    rows = [{"x": rng.uniform(1, 5), "g": i % 200} for i in range(2000)]
+    for r in rows: r["y"] = math.exp(r["x"] + rng.gauss(0, 0.5))
+    fit, cal, te = lab.split_by_group(rows, lambda r: r["g"])
+    ci = lab.refit_width_ci(fit, cal, te, lambda r: [1.0, r["x"]], lambda r: r["y"], lambda r: r["g"], boot=40)
+    lo, hi = ci["width"]
+    assert lo < hi and lo <= 3.6 * 1.15 and hi >= 3.6 * 0.85
+
+
 def test_negative_control_shuffled_target():
     rng = random.Random(2)
     rows = [{"x": rng.uniform(1, 5)} for _ in range(3000)]

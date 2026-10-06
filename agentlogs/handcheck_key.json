@@ -1,0 +1,362 @@
+{
+ "C01": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "048db505-f171-4d08-a9ad-68222f1d9b22"
+ },
+ "C02": {
+  "flagged": true,
+  "R": true,
+  "S": true,
+  "session": "00b69c62-6cd4-45b1-abc4-388c0ca9e83b"
+ },
+ "C03": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "04511c8e-4015-4dc0-867d-1ffb290031bc"
+ },
+ "C04": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "03b02cd6-8220-452e-b09c-f5dd6fc18ceb"
+ },
+ "C05": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "021eff31-2784-4f5c-b4d4-a4d583baacfd"
+ },
+ "C06": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "008c5ece-f1f4-4de5-bd02-fb12ef5b89f1"
+ },
+ "C07": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "00e243cc-fb9f-4a17-86ea-8c83ac6ace72"
+ },
+ "C08": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "00adb231-53e8-46a7-b532-1a485e640a80"
+ },
+ "C09": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "04585a94-2aa5-4d3e-8859-8a15d5ae435a"
+ },
+ "C10": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "001ddb7c-1aa3-450f-8f17-ecd1c7fb6ebc"
+ },
+ "C11": {
+  "flagged": true,
+  "R": true,
+  "S": true,
+  "session": "01cf059b-ef25-4f6d-8113-e88391c88234"
+ },
+ "C12": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "03f42866-41e7-41e4-b376-0f21699b67d3"
+ },
+ "C13": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "00facd9f-546d-487b-a033-f965e8f4167f"
+ },
+ "C14": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "046f76b6-9ca6-46db-bb7e-563712060984"
+ },
+ "C15": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "0383fe39-884d-4e1b-8d0a-67d10afae64e"
+ },
+ "C16": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "01c69810-866a-4fb8-87c8-4916cfcc2f51"
+ },
+ "C17": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "00abbdd7-1583-4235-b1b5-861b5eac2bd1"
+ },
+ "C18": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "01248762-cca0-45aa-b6bb-05320304ac44"
+ },
+ "C19": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "020e38c2-0d39-4415-918b-5802d16accec"
+ },
+ "C20": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "027700d2-093f-4d8a-9b72-83df69371e3d"
+ },
+ "C21": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "005d6fb8-d09f-421c-8e5e-05308f49e157"
+ },
+ "C22": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "01a8fac8-4830-4138-b37a-2bfacf7e35ba"
+ },
+ "C23": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "03fa125d-14de-4cb8-9e00-468bca6ca5f6"
+ },
+ "C24": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "025ffb60-e461-4cc3-9bb6-770b48a52aaa"
+ },
+ "C25": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "016e20dd-c284-4cbb-b2f8-4fd7f9f82973"
+ },
+ "C26": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "02339a2f-1113-4a74-a158-bdb26c10a92b"
+ },
+ "C27": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "01879329-2814-43ef-a760-0e0fa72690be"
+ },
+ "C28": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "000fc77a-4d9c-4638-9a41-d8dff2f5f01b"
+ },
+ "C29": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "00d779ed-c155-4c0c-b941-41aa924d7026"
+ },
+ "C30": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "03766104-fd3d-4d7c-bcc8-ebd0a44d2e72"
+ },
+ "C31": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "0115ed8d-2f0f-4140-8a37-1ab531c15eea"
+ },
+ "C32": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "040b992f-96ad-412a-9c6b-cfa787b7bf5a"
+ },
+ "C33": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "020b66d3-8929-4cb2-b8f4-e8b6c1be44c2"
+ },
+ "C34": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "01e2c09a-7a11-42d6-b9ff-6c48a166d2e1"
+ },
+ "C35": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "00000fe2-eecb-47a9-a34f-352ba5068acc"
+ },
+ "C36": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "01eb4713-a786-4250-9285-add476b4733d"
+ },
+ "C37": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "0059007e-9c29-48e7-9bac-4b37a4167529"
+ },
+ "C38": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "0469b173-4c1e-4cc3-a376-710f53511e0f"
+ },
+ "C39": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "005e0b80-188c-44ca-ae81-a7d588f37d62"
+ },
+ "C40": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "0324f91e-7099-4ef3-9030-fe2a2fa46dca"
+ },
+ "C41": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "011c2bad-d939-426a-a72b-346d1dc58100"
+ },
+ "C42": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "03d7de85-a7d5-4af0-8d11-044fd1b85e04"
+ },
+ "C43": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "041f6638-6397-45fc-874f-4cd87dbfe9a3"
+ },
+ "C44": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "046fb49d-df08-448f-b9d4-ced65166aa78"
+ },
+ "C45": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "03f03fa1-2e68-44c4-80f1-3d3346d58bc3"
+ },
+ "C46": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "04209b3b-9f0a-45b2-89a9-2fed1f89b8fc"
+ },
+ "C47": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "041c21b8-9fa9-4c50-ba94-83c4601484ef"
+ },
+ "C48": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "0091765e-3c3a-48f8-ac66-182e302c506f"
+ },
+ "C49": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "004402fa-28b9-4e34-b67c-e93fbc8f7679"
+ },
+ "C50": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "017bf85c-2198-4dbc-b6c8-e8ed6311ac45"
+ },
+ "C51": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "03b9e696-879b-4f6f-835d-a49f3d1052c9"
+ },
+ "C52": {
+  "flagged": true,
+  "R": false,
+  "S": true,
+  "session": "048563ac-d9ca-4bdb-b8f4-ffb8d82e709f"
+ },
+ "C53": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "025c6e12-bdd8-49fe-a4eb-4cf0278cb37a"
+ },
+ "C54": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "01a53b20-2e31-4900-aaa1-dee410671912"
+ },
+ "C55": {
+  "flagged": true,
+  "R": true,
+  "S": true,
+  "session": "030a6921-01c5-4b91-9b76-84aa0b67916d"
+ },
+ "C56": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "00d78bea-6b14-4f9a-a93d-7f7ab312592e"
+ },
+ "C57": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "0332b397-91d7-4b18-9bbc-14a6cf1950cf"
+ },
+ "C58": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "00430a62-fa82-4317-88dd-0b88e3386e8a"
+ },
+ "C59": {
+  "flagged": true,
+  "R": true,
+  "S": false,
+  "session": "01e72cd8-8748-4247-9c0c-5c482d72acf7"
+ },
+ "C60": {
+  "flagged": false,
+  "R": false,
+  "S": false,
+  "session": "016b945f-57a5-4543-acd4-ab1ce2f3b153"
+ }
+}
