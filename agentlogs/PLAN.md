@@ -58,3 +58,9 @@ separately). Unpriced models excluded from dollar results and counted.
   only). 15,349 priced sessions, 6,509 repos. H1: 5/15 groups pass -> PASS (need 3).
   H4: floor overall 90% [90,90]; 10/15 groups ok -> PASS. Output: locked_test.out.
   This confirms H1+H4 on unseen data. No further group selection or bar changes permitted.
+- 2026-10-06: ADD H5 (exploratory, dev shards only, repo-split): prompt-text clusters
+  (nomic-embed-text, k-means, k=10, L2-normalized) separate cost. Bar: >= 2 clusters with
+  >= 30 held-out sessions whose p10-p90 dollar width is <= 0.8 x the model-only width,
+  with 90% CI (bootstrap over training repos) of the width ratio entirely below 0.8, and
+  coverage 90% CI containing 80%. Also report whether clusters beat model x event groups
+  (informational, no bar). Bar set before running.
