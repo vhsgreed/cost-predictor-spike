@@ -1,0 +1,17 @@
+dev 7722 sessions, val 7687 sessions, 15 pre-registered groups (>=100 dev sessions)
+  ('claude-sonnet-4.5', 'pull_request_comment', 0)             val n=1037 | group  6.3x (CI hi  7.0) cov 78% [75%,80%] | model 12.8x cov 84% | fail
+  ('claude-sonnet-4.5', 'issues_agent_assignment', 0)          val n= 614 | group  5.8x (CI hi  6.5) cov 80% [77%,82%] | model 12.8x cov 87% | PASS
+  ('claude-sonnet-4.5', 'review-request', 0)                   val n= 605 | group  8.2x (CI hi  9.4) cov 80% [77%,83%] | model 12.8x cov 54% | PASS
+  ('claude-sonnet-4', 'pull_request_comment', 0)               val n= 377 | group 11.8x (CI hi 14.0) cov 80% [77%,83%] | model  9.2x cov 73% | fail
+  ('claude-sonnet-4.6', 'pull_request_comment', 0)             val n= 336 | group 12.7x (CI hi 15.8) cov 80% [76%,84%] | model 16.8x cov 84% | PASS
+  ('claude-sonnet-4.5', 'pull_request_review', 0)              val n= 398 | group  5.4x (CI hi  6.4) cov 76% [73%,80%] | model 12.8x cov 90% | fail
+  ('claude-sonnet-4.6', 'issues_agent_assignment', 0)          val n= 300 | group 13.0x (CI hi 16.9) cov 77% [73%,81%] | model 16.8x cov 79% | fail
+  ('claude-sonnet-4', 'issue_assignment', 0)                   val n= 306 | group  5.1x (CI hi  5.6) cov 83% [79%,86%] | model  9.2x cov 83% | PASS
+  ('claude-sonnet-4', 'pull_request_review', 0)                val n= 212 | group  7.2x (CI hi  9.5) cov 71% [66%,76%] | model  9.2x cov 72% | fail
+  ('claude-sonnet-4.6', 'api_call_received', 0)                val n= 170 | group 24.9x (CI hi 30.8) cov 81% [75%,86%] | model 16.8x cov 73% | fail
+  ('claude-sonnet-4.6', 'pull_request_review', 0)              val n= 171 | group 16.6x (CI hi 24.0) cov 82% [78%,88%] | model 16.8x cov 82% | fail
+  ('claude-sonnet-4.6', 'pull_request_comment_non_copilot_pull val n= 131 | group  9.0x (CI hi 13.3) cov 79% [73%,85%] | model 16.8x cov 84% | PASS
+  ('claude-sonnet-4.5', 'pull_request_review_non_copilot_pull_ val n= 104 | group  6.4x (CI hi  7.4) cov 79% [72%,86%] | model 12.8x cov 83% | PASS
+  ('claude-opus-4.5', 'pull_request_comment', 0)               val n= 116 | group 19.1x (CI hi 69.9) cov 74% [68%,80%] | model 12.2x cov 71% | fail
+  ('claude-sonnet-4.6', 'repo_agents', 0)                      val n=  90 | group 38.3x (CI hi 64.1) cov 82% [76%,89%] | model 16.8x cov 76% | fail
+H1: 6 groups pass -> PASS (need >= 3)

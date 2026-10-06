@@ -44,3 +44,8 @@ separately). Unpriced models excluded from dollar results and counted.
   Rater answers drift strongly with case order (cases 1-30: 3 yes; 31-60: 16 yes) while
   flags are spread evenly, so the reference itself is unreliable. H2 NOT carried to
   validation. Signal renamed "repeat/no-edit stretch" (cost signal, not a verified loop).
+- 2026-10-06: correction to the H2 entry above: flagged cases were 18 in positions 1-30 and
+  12 in 31-60, not evenly spread. Conclusion (H2 fails) unchanged.
+- 2026-10-06: H1 validation run once (validate_h1.py, val shards 00100-00104, 7,687 priced
+  sessions, all 15 groups with >= 100 dev sessions pre-selected by size, not by dev result).
+  6 of 15 groups pass -> H1 PASS. Output in validate_h1.out.
