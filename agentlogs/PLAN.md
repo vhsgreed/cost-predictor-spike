@@ -39,3 +39,8 @@ separately). Unpriced models excluded from dollar results and counted.
 
 ## Change log
 - 2026-10-06: initial version.
+- 2026-10-06: H2 hand-check run (blind, 1 rater, 58/60 answered). Flagged: 9 yes / 20 no /
+  1 unsure -> false-positive rate 67%, fails the <= 30% bar. Unflagged: 10/28 judged loops.
+  Rater answers drift strongly with case order (cases 1-30: 3 yes; 31-60: 16 yes) while
+  flags are spread evenly, so the reference itself is unreliable. H2 NOT carried to
+  validation. Signal renamed "repeat/no-edit stretch" (cost signal, not a verified loop).
