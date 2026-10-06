@@ -7,3 +7,4 @@ agentlogs/full_rows/
 agentlogs/h5_embeddings.npz
 agentlogs/repos/
 external/
+agentlogs/handcheck_runs/
