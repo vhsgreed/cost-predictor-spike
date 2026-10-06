@@ -49,3 +49,8 @@ separately). Unpriced models excluded from dollar results and counted.
 - 2026-10-06: H1 validation run once (validate_h1.py, val shards 00100-00104, 7,687 priced
   sessions, all 15 groups with >= 100 dev sessions pre-selected by size, not by dev result).
   6 of 15 groups pass -> H1 PASS. Output in validate_h1.out.
+- 2026-10-06 (before locked test): ADD H4 floor. "At least" bound = p10 of the training
+  group's dollar cost (90% one-sided). Pass: overall floor coverage 90% CI contains 90%, AND
+  floor coverage CI contains 90% in >= 2/3 of the 15 H1 groups with >= 30 test sessions.
+  Locked test = shards in test_shards.txt, training = dev only (identical to validation),
+  same 15 groups, run once.
