@@ -159,3 +159,19 @@ Bars (same as the originals):
 - PRIMARY (>= 100 fit / 30 test): E1 2 eligible groups, E3 0 -> both not evaluable -> R-H1 and R-H4 NOT EVALUABLE.
 - SECONDARY (>= 50 / 20): E1 R-H4 PASS (pooled floor held 90.1% [89.1, 91.4], 48/60 groups); E1 R-H1 PASS (29/60 groups, need 12). E3 1 eligible group -> not evaluable. Claim needs >= 2 evaluable datasets -> NOT EVALUABLE.
 - Caveat on E1 R-H1 (stated in advance): model-only baselines mix 6 benchmarks and are very wide (Kimi 232x, DeepSeek 122x, Opus 29x, GPT-5.2 6x); most passing groups come from that mixing. For GPT-5.2, whose baseline is narrow (6.2x), 1/11 groups pass and 4 are wider than baseline. Read R-H1 on E1 as "task source matters", not as support for model x trigger ranges in general.
+
+## Round 5 pre-registration: do expensive runs fail more? (2026-10-06, before any outcome or token data is loaded)
+
+Question: within a comparable group, are runs in the cost tail less likely to succeed? This is gate 1 of the shortlisted tail-alarm / stopping-policy line.
+
+Data (HF, revisions pinned at download and logged in the freeze commit): `SWE-bench/SWE-smith-trajectories` (resolved), `nebius/SWE-rebench-openhands-trajectories` (resolved), `nebius/SWE-agent-trajectories` (target = resolved label). Datasets without an outcome label are not used.
+
+Cost proxy (no billed cost exists): estimated input+output volume = sum over assistant turns of (characters of the full conversation up to and including that turn) / 4. Labelled "estimated tokens" everywhere; never converted to dollars. Secondary proxy: number of assistant turns.
+
+Group = dataset x model (x repo where present). Tail = run above its group's p90 of estimated tokens; body = at or below group p50. Groups need >= 200 runs.
+
+O1 (primary): per dataset, pooled tail resolve rate / body resolve rate (risk ratio). Pass in a dataset if RR <= 0.8 AND 90% CI upper (1,000 bootstrap resamples over task instances) < 0.8. O1 holds if it passes in >= 2 of the evaluable datasets (evaluable = >= 3 groups).
+Exploratory, no bar: (a) the same for the turns proxy; (b) stopping backtest: stop each run at its group p90/p95/p99 -> share of estimated tokens saved vs share of resolved runs lost (a resolved run that exceeds the threshold counts as lost); (c) resolve rate by group decile.
+Stated caveat: task difficulty drives both cost and failure, so O1 cannot say stopping CAUSES nothing to be lost beyond what the backtest shows; it only says whether the tail is mostly failing runs.
+
+Procedure: schema-only inspection first (column names, types, outcome label counts; no token sums by outcome). Column choices frozen in a separate commit. Then one run.
