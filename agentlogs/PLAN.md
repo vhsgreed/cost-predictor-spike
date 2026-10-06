@@ -175,3 +175,11 @@ Exploratory, no bar: (a) the same for the turns proxy; (b) stopping backtest: st
 Stated caveat: task difficulty drives both cost and failure, so O1 cannot say stopping CAUSES nothing to be lost beyond what the backtest shows; it only says whether the tail is mostly failing runs.
 
 Procedure: schema-only inspection first (column names, types, outcome label counts; no token sums by outcome). Column choices frozen in a separate commit. Then one run.
+
+### Round 5 frozen choices (schema + label counts only; no token volume by outcome computed)
+Revisions: SWE-smith @ 08e109b4a59eaeebf80e4675cd125d42e7ac99a4 (MIT), SWE-rebench-openhands @ 35455389ab51bf5e2306bfd436ef72d0f98bf882 (CC-BY-4.0), SWE-agent @ 68195a1450865274106246d0d0296a1d6807b88e (CC-BY-4.0).
+- D1 SWE-smith: `train` files only (23,821 trajectories; `xml` is an identical copy, `tool`/`ticks` are other scaffold formats of overlapping or separate runs, excluded to avoid duplicates). Outcome = `resolved`. Group = `model` (3 models). Messages: list of {role, content}; assistant role = "assistant".
+- D2 SWE-rebench-openhands: 67,074 runs, single agent setup, no model column. Outcome = `resolved` (0/1). Group = `repo`, groups >= 200 runs (43 repos, 18,781 runs). Assistant role = "assistant".
+- D3 SWE-agent: 80,036 runs. Outcome = `target`. Group = `model_name` (3 models). Assistant role = "ai"; text field = `text`.
+- Estimated tokens = sum over assistant turns of (cumulative characters of all messages up to and including that turn) / 4. Turns proxy = number of assistant turns.
+- Bootstrap unit = instance_id. All else as registered.
