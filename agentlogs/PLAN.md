@@ -54,3 +54,7 @@ separately). Unpriced models excluded from dollar results and counted.
   floor coverage CI contains 90% in >= 2/3 of the 15 H1 groups with >= 30 test sessions.
   Locked test = shards in test_shards.txt, training = dev only (identical to validation),
   same 15 groups, run once.
+- 2026-10-06: LOCKED TEST run once (locked_test.py; shards in test_shards.txt; train = dev
+  only). 15,349 priced sessions, 6,509 repos. H1: 5/15 groups pass -> PASS (need 3).
+  H4: floor overall 90% [90,90]; 10/15 groups ok -> PASS. Output: locked_test.out.
+  This confirms H1+H4 on unseen data. No further group selection or bar changes permitted.

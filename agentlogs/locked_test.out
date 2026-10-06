@@ -1,0 +1,35 @@
+dev 7722 sessions, val 15349 sessions, 15 pre-registered groups (>=100 dev sessions)
+  ('claude-sonnet-4.5', 'pull_request_comment', 0)             val n=1983 | group  6.3x (CI hi  7.0) cov 78% [77%,80%] | model 12.8x cov 84% | fail
+  ('claude-sonnet-4.5', 'issues_agent_assignment', 0)          val n=1264 | group  5.8x (CI hi  6.5) cov 81% [79%,83%] | model 12.8x cov 88% | PASS
+  ('claude-sonnet-4.5', 'review-request', 0)                   val n=1156 | group  8.2x (CI hi  9.4) cov 78% [76%,80%] | model 12.8x cov 54% | PASS
+  ('claude-sonnet-4', 'pull_request_comment', 0)               val n= 768 | group 11.8x (CI hi 14.0) cov 83% [81%,85%] | model  9.2x cov 79% | fail
+  ('claude-sonnet-4.6', 'pull_request_comment', 0)             val n= 690 | group 12.7x (CI hi 15.8) cov 78% [76%,81%] | model 16.8x cov 83% | PASS
+  ('claude-sonnet-4.5', 'pull_request_review', 0)              val n= 725 | group  5.4x (CI hi  6.4) cov 78% [75%,80%] | model 12.8x cov 89% | PASS
+  ('claude-sonnet-4.6', 'issues_agent_assignment', 0)          val n= 646 | group 13.0x (CI hi 16.9) cov 82% [79%,84%] | model 16.8x cov 85% | fail
+  ('claude-sonnet-4', 'issue_assignment', 0)                   val n= 614 | group  5.1x (CI hi  5.6) cov 83% [81%,86%] | model  9.2x cov 84% | fail
+  ('claude-sonnet-4', 'pull_request_review', 0)                val n= 429 | group  7.2x (CI hi  9.5) cov 76% [72%,79%] | model  9.2x cov 73% | fail
+  ('claude-sonnet-4.6', 'api_call_received', 0)                val n= 316 | group 24.9x (CI hi 30.8) cov 80% [76%,84%] | model 16.8x cov 74% | fail
+  ('claude-sonnet-4.6', 'pull_request_review', 0)              val n= 359 | group 16.6x (CI hi 24.0) cov 82% [79%,85%] | model 16.8x cov 83% | fail
+  ('claude-sonnet-4.6', 'pull_request_comment_non_copilot_pull val n= 260 | group  9.0x (CI hi 13.3) cov 83% [79%,87%] | model 16.8x cov 89% | PASS
+  ('claude-sonnet-4.5', 'pull_request_review_non_copilot_pull_ val n= 216 | group  6.4x (CI hi  7.4) cov 88% [84%,92%] | model 12.8x cov 87% | fail
+  ('claude-opus-4.5', 'pull_request_comment', 0)               val n= 247 | group 19.1x (CI hi 69.9) cov 79% [75%,84%] | model 12.2x cov 76% | fail
+  ('claude-sonnet-4.6', 'repo_agents', 0)                      val n= 204 | group 38.3x (CI hi 64.1) cov 81% [76%,85%] | model 16.8x cov 73% | fail
+H1: 5 groups pass -> PASS (need >= 3)
+
+H4 floor overall: >= $0.23 held 90% [90%,90%] ok
+  floor ('claude-sonnet-4', 'pull_request_comment', 0)             >= $0.20 held 92% [90%,93%] fail
+  floor ('claude-sonnet-4.5', 'pull_request_comment', 0)           >= $0.57 held 88% [87%,89%] fail
+  floor ('claude-sonnet-4.5', 'issues_agent_assignment', 0)        >= $0.52 held 90% [88%,91%] ok
+  floor ('claude-sonnet-4.5', 'pull_request_review', 0)            >= $0.48 held 89% [88%,91%] ok
+  floor ('claude-sonnet-4.6', 'issues_agent_assignment', 0)        >= $0.29 held 91% [90%,93%] ok
+  floor ('claude-sonnet-4.5', 'review-request', 0)                 >= $0.07 held 91% [89%,92%] ok
+  floor ('claude-sonnet-4.6', 'pull_request_review', 0)            >= $0.20 held 90% [87%,92%] ok
+  floor ('claude-sonnet-4.6', 'api_call_received', 0)              >= $0.19 held 89% [86%,92%] ok
+  floor ('claude-sonnet-4.6', 'pull_request_comment_non_copilot_pu >= $0.23 held 92% [89%,95%] ok
+  floor ('claude-sonnet-4.6', 'pull_request_comment', 0)           >= $0.29 held 89% [87%,91%] ok
+  floor ('claude-sonnet-4', 'pull_request_review', 0)              >= $0.22 held 83% [80%,86%] fail
+  floor ('claude-sonnet-4', 'issue_assignment', 0)                 >= $0.58 held 91% [89%,93%] ok
+  floor ('claude-sonnet-4.6', 'repo_agents', 0)                    >= $0.21 held 85% [80%,89%] fail
+  floor ('claude-opus-4.5', 'pull_request_comment', 0)             >= $1.02 held 88% [85%,92%] ok
+  floor ('claude-sonnet-4.5', 'pull_request_review_non_copilot_pul >= $0.17 held 94% [92%,97%] fail
+H4: overall ok, groups 10/15 -> PASS
