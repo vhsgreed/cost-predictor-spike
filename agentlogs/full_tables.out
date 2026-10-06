@@ -1,0 +1,34 @@
+priced sessions with >= 4 calls: 424108
+
+models (12):
+  claude-sonnet-4.5          n= 190795 | at least $  0.22 | typical $  1.02 | p90 $   2.76 | mean $   1.48 | width  12.7x
+  claude-sonnet-4.6          n= 103270 | at least $  0.21 | typical $  0.74 | p90 $   3.65 | mean $   1.54 | width  17.7x
+  claude-sonnet-4            n=  58581 | at least $  0.27 | typical $  0.94 | p90 $   2.52 | mean $   1.28 | width   9.5x
+  claude-opus-4.6            n=  28099 | at least $  0.60 | typical $  2.05 | p90 $   7.54 | mean $   3.27 | width  12.4x
+  gpt-5.3-codex              n=  21490 | at least $  0.16 | typical $  0.44 | p90 $   1.27 | mean $   0.63 | width   8.0x
+  claude-opus-4.5            n=  18951 | at least $  0.68 | typical $  2.52 | p90 $   9.64 | mean $   6.18 | width  14.2x
+  gpt-5.1-codex-max          n=   1524 | at least $  0.14 | typical $  0.53 | p90 $   1.96 | mean $   0.87 | width  13.9x
+  gpt-5.2-codex              n=   1382 | at least $  0.24 | typical $  1.24 | p90 $   5.04 | mean $   2.21 | width  21.1x
+  candidate                  n=      6 | at least $  2.31 | typical $  4.14 | p90 $   4.47 | mean $   3.65 | width   1.9x
+  claude-opus-4.7            n=      4 | at least $  1.45 | typical $  2.52 | p90 $   2.61 | mean $   2.22 | width   1.8x
+  claude-haiku-4.5           n=      4 | at least $  0.24 | typical $  0.33 | p90 $   0.46 | mean $   0.33 | width   1.9x
+  auto                       n=      2 | at least $  0.60 | typical $  0.79 | p90 $   0.79 | mean $   0.70 | width   1.3x
+
+groups with >= 100 sessions (175); top 15 by n:
+  claude-sonnet-4.5  pull_request_c b0 n= 53462 | at least $  0.54 (42% of median) | p50 $  1.29 | p90 $   3.47 | width   6.4x
+  claude-sonnet-4.5  issues_agent_a b0 n= 34219 | at least $  0.49 (36% of median) | p50 $  1.37 | p90 $   2.84 | width   5.8x
+  claude-sonnet-4.5  review-request b0 n= 32067 | at least $  0.07 (32% of median) | p50 $  0.23 | p90 $   0.58 | width   7.9x
+  claude-sonnet-4    pull_request_c b0 n= 20478 | at least $  0.22 (31% of median) | p50 $  0.71 | p90 $   2.35 | width  10.5x
+  claude-sonnet-4.5  pull_request_r b0 n= 20342 | at least $  0.46 (41% of median) | p50 $  1.12 | p90 $   2.83 | width   6.1x
+  claude-sonnet-4.6  pull_request_c b0 n= 19035 | at least $  0.27 (32% of median) | p50 $  0.86 | p90 $   3.55 | width  13.0x
+  claude-sonnet-4.6  issues_agent_a b0 n= 18145 | at least $  0.26 (27% of median) | p50 $  0.96 | p90 $   3.97 | width  15.1x
+  claude-sonnet-4    issue_assignme b0 n= 16612 | at least $  0.59 (44% of median) | p50 $  1.33 | p90 $   2.76 | width   4.7x
+  claude-sonnet-4    pull_request_r b0 n= 11390 | at least $  0.18 (36% of median) | p50 $  0.49 | p90 $   1.65 | width   9.3x
+  claude-sonnet-4.6  pull_request_r b0 n= 10632 | at least $  0.21 (34% of median) | p50 $  0.61 | p90 $   2.78 | width  13.2x
+  claude-sonnet-4.6  api_call_recei b0 n=  9021 | at least $  0.18 (27% of median) | p50 $  0.69 | p90 $   4.20 | width  22.9x
+  claude-sonnet-4.6  pull_request_c b0 n=  7498 | at least $  0.20 (35% of median) | p50 $  0.58 | p90 $   2.06 | width  10.1x
+  claude-opus-4.5    pull_request_c b0 n=  6503 | at least $  0.93 (32% of median) | p50 $  2.92 | p90 $  15.14 | width  16.2x
+  claude-sonnet-4.5  pull_request_r b0 n=  6355 | at least $  0.19 (43% of median) | p50 $  0.44 | p90 $   1.03 | width   5.4x
+  claude-opus-4.6    pull_request_c b0 n=  5960 | at least $  0.70 (33% of median) | p50 $  2.10 | p90 $   7.37 | width  10.6x
+
+wrote tables_full.json

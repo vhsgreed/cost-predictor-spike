@@ -1,0 +1,181 @@
+sessions with prompt + cost: 92429
+embedding cache: 670 known
+  embedded 734/92429
+  embedded 1374/92429
+  embedded 2014/92429
+  embedded 2654/92429
+  embedded 3294/92429
+  embedded 3934/92429
+  embedded 4574/92429
+  embedded 5214/92429
+  embedded 5854/92429
+  embedded 6494/92429
+  embedded 7134/92429
+  embedded 7774/92429
+  embedded 8414/92429
+  embedded 9054/92429
+  embedded 9694/92429
+  embedded 10334/92429
+  embedded 10974/92429
+  embedded 11614/92429
+  embedded 12254/92429
+  embedded 12894/92429
+  embedded 13534/92429
+  embedded 14174/92429
+  embedded 14814/92429
+  embedded 15454/92429
+  embedded 16094/92429
+  embedded 16734/92429
+  embedded 17374/92429
+  embedded 18014/92429
+  embedded 18654/92429
+  embedded 19294/92429
+  embedded 19934/92429
+  embedded 20574/92429
+  embedded 21214/92429
+  embedded 21854/92429
+  embedded 22494/92429
+  embedded 23134/92429
+  embedded 23774/92429
+  embedded 24414/92429
+  embedded 25054/92429
+  embedded 25694/92429
+  embedded 26334/92429
+  embedded 26974/92429
+  embedded 27614/92429
+  embedded 28254/92429
+  embedded 28894/92429
+  embedded 29534/92429
+  embedded 30174/92429
+  embedded 30814/92429
+  embedded 31454/92429
+  embedded 32094/92429
+  embedded 32734/92429
+  embedded 33374/92429
+  embedded 34014/92429
+  embedded 34654/92429
+  embedded 35294/92429
+  embedded 35934/92429
+  embedded 36574/92429
+  embedded 37214/92429
+  embedded 37854/92429
+  embedded 38494/92429
+  embedded 39134/92429
+  embedded 39774/92429
+  embedded 40414/92429
+  embedded 41054/92429
+  embedded 41694/92429
+  embedded 42334/92429
+  embedded 42974/92429
+  embedded 43614/92429
+  embedded 44254/92429
+  embedded 44894/92429
+  embedded 45534/92429
+  embedded 46174/92429
+  embedded 46814/92429
+  embedded 47454/92429
+  embedded 48094/92429
+  embedded 48734/92429
+  embedded 49374/92429
+  embedded 50014/92429
+  embedded 50654/92429
+  embedded 51294/92429
+  embedded 51934/92429
+  embedded 52574/92429
+  embedded 53214/92429
+  embedded 53854/92429
+  embedded 54494/92429
+  embedded 55134/92429
+  embedded 55774/92429
+  embedded 56414/92429
+  embedded 57054/92429
+  embedded 57694/92429
+  embedded 58334/92429
+  embedded 58974/92429
+  embedded 59614/92429
+  embedded 60254/92429
+  embedded 60894/92429
+  embedded 61534/92429
+  embedded 62174/92429
+  embedded 62814/92429
+  embedded 63454/92429
+  embedded 64094/92429
+  embedded 64734/92429
+  embedded 65374/92429
+  embedded 66014/92429
+  embedded 66654/92429
+  embedded 67294/92429
+  embedded 67934/92429
+  embedded 68574/92429
+  embedded 69214/92429
+  embedded 69854/92429
+  embedded 70494/92429
+  embedded 71134/92429
+  embedded 71774/92429
+  embedded 72414/92429
+  embedded 73054/92429
+  embedded 73694/92429
+  embedded 74334/92429
+  embedded 74974/92429
+  embedded 75614/92429
+  embedded 76254/92429
+  embedded 76894/92429
+  embedded 77534/92429
+  embedded 78174/92429
+  embedded 78814/92429
+  embedded 79454/92429
+  embedded 80094/92429
+  embedded 80734/92429
+  embedded 81374/92429
+  embedded 82014/92429
+  embedded 82654/92429
+  embedded 83294/92429
+  embedded 83934/92429
+  embedded 84574/92429
+  embedded 85214/92429
+  embedded 85854/92429
+  embedded 86494/92429
+  embedded 87134/92429
+  embedded 87774/92429
+  embedded 88414/92429
+  embedded 89054/92429
+  embedded 89694/92429
+  embedded 90334/92429
+  embedded 90974/92429
+  embedded 91614/92429
+  embedded 92254/92429
+embeddings ready: (92429, 768)
+repos 13535: train 66535 / test 25894
+
+clusters (n, train median, shortest example):
+  k0: n=  1991 median $ 1.02 | can fix the CI
+  k1: n= 14316 median $ 1.04 | Do not use -
+  k2: n= 10646 median $ 0.75 | Phase 3 - go
+  k3: n=  7859 median $ 1.56 | This is a test
+  k4: n=  5007 median $ 0.79 | Work on PR #60
+  k5: n=  7904 median $ 1.43 | how is it going?
+  k6: n=  6036 median $ 1.21 | bsr 코드 전반 분석
+  k7: n=  8771 median $ 0.66 | @copilot run pnpm i
+  k8: n= 14809 median $ 1.22 | did you do it?
+  k9: n= 15090 median $ 1.28 | How to do 3?
+
+H5 final (repo-held-out; bar: width <= 0.8x model, ratio CI hi < 0.8, cov CI has 80%)
+  bootstrap 40/200
+  bootstrap 80/200
+  bootstrap 120/200
+  bootstrap 160/200
+  bootstrap 200/200
+  k0: n_train= 1450 n_test= 541 | cluster  13.2x (ratio 0.62, CI hi 0.76) cov 75% [72%,78%] | model claude-sonnet-  21.5x | fail
+  k1: n_train=10574 n_test=3742 | cluster  16.4x (ratio 0.76, CI hi 0.91) cov 80% [79%,81%] | model claude-sonnet-  21.5x | fail
+  k2: n_train= 7691 n_test=2955 | cluster  14.8x (ratio 0.68, CI hi 0.76) cov 77% [76%,78%] | model claude-sonnet-  21.5x | fail
+  k3: n_train= 5679 n_test=2180 | cluster  16.8x (ratio 0.78, CI hi 0.90) cov 81% [80%,83%] | model claude-sonnet-  21.5x | fail
+  k4: n_train= 3707 n_test=1300 | cluster  16.9x (ratio 0.78, CI hi 0.88) cov 78% [76%,80%] | model claude-sonnet-  21.5x | fail
+  k5: n_train= 5792 n_test=2112 | cluster  14.7x (ratio 1.83, CI hi 2.06) cov 70% [68%,71%] | model claude-sonnet-   8.0x | fail
+  k6: n_train= 4412 n_test=1624 | cluster  22.4x (ratio 1.04, CI hi 1.22) cov 79% [78%,81%] | model claude-sonnet-  21.5x | fail
+  k7: n_train= 6324 n_test=2447 | cluster  12.1x (ratio 1.51, CI hi 2.10) cov 82% [81%,84%] | model claude-sonnet-   8.0x | fail
+  k8: n_train=10378 n_test=4431 | cluster  16.4x (ratio 0.76, CI hi 0.85) cov 77% [76%,79%] | model claude-sonnet-  21.5x | fail
+  k9: n_train=10528 n_test=4562 | cluster  16.3x (ratio 0.75, CI hi 0.86) cov 80% [79%,80%] | model claude-sonnet-  21.5x | fail
+
+H5 FINAL: 0 clusters pass -> FAIL (need >= 2)
+informational: model x event width median 11.3x (n=90); cluster width median 16.4x (n=10)
+wrote h5_final.json

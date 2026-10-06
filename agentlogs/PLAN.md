@@ -91,3 +91,10 @@ separately). Unpriced models excluded from dollar results and counted.
     entirely below 0.8, AND test coverage 90% CI (500 membership resamples) contains 80%.
     H5 passes if >= 2 clusters pass. ONE LOOK at the verdict; no re-tuning after.
   H1/H4 locked test untouched: no re-selection of test shards, no re-scoring.
+
+## Full-run results (2026-10-06, one look)
+
+- Data: 276/276 shards (2 parsed in a pre-launch smoke test, 274 in the main run, 61 min), 471,067 sessions, 424,108 priced with >= 4 calls. Shards deleted after parsing.
+- Production tables (descriptive): `tables_full.json`, `full_tables.out`. 175 model x event x prompt-length groups with >= 100 sessions. Floor (p10) sits at 27-44% of the median in the 15 largest groups.
+- **H5 FINAL: 0/10 clusters pass -> FAIL.** 92,429 sessions with prompt text, 13,535 repos (train 66,535 / test 25,894). Clusters k0 (ratio 0.62, CI hi 0.76) and k2 (0.68, CI hi 0.76) clear both width criteria but fail coverage on held-out repos (CI [72%,78%] and [76%,78%], must contain 80%). Bar not moved. Model x event median width 11.3x (n=90) vs cluster median 16.4x (n=10).
+- Disclosure: a smoke test of `h5_final.py` on shards 00005-00006 (about 1,100 prompt sessions) was run before launch to verify the code; it printed a verdict (0 pass). No code, parameter or bar was changed after it except an unrelated print fix in `run_full.py`.
