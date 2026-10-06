@@ -6,3 +6,4 @@ __pycache__/
 agentlogs/full_rows/
 agentlogs/h5_embeddings.npz
 agentlogs/repos/
+external/
