@@ -1,0 +1,1200 @@
+{
+ "H6": {
+  "passed": 0,
+  "eligible": 37,
+  "verdict": "FAIL",
+  "groups": [
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 9079,
+    "ratio": 1.02,
+    "ratio_ci_hi": 1.075,
+    "coverage": 0.83,
+    "cov_ci": [
+     0.8224474061019936,
+     0.8357748650732459
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 5465,
+    "ratio": 1.0,
+    "ratio_ci_hi": 1.019,
+    "coverage": 0.809,
+    "cov_ci": [
+     0.8001829826166514,
+     0.8172003659652333
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 4064,
+    "ratio": 0.956,
+    "ratio_ci_hi": 1.109,
+    "coverage": 0.828,
+    "cov_ci": [
+     0.8201279527559056,
+     0.8383366141732284
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "review-request",
+     "0"
+    ],
+    "n_test": 3888,
+    "ratio": 0.999,
+    "ratio_ci_hi": 1.016,
+    "coverage": 0.799,
+    "cov_ci": [
+     0.7893518518518519,
+     0.809156378600823
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 3598,
+    "ratio": 0.86,
+    "ratio_ci_hi": 1.017,
+    "coverage": 0.783,
+    "cov_ci": [
+     0.7732073374096721,
+     0.7946081156197887
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 2492,
+    "ratio": 0.968,
+    "ratio_ci_hi": 1.017,
+    "coverage": 0.795,
+    "cov_ci": [
+     0.7808988764044944,
+     0.8073836276083467
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "pull_request_review",
+     "0"
+    ],
+    "n_test": 2445,
+    "ratio": 0.989,
+    "ratio_ci_hi": 1.021,
+    "coverage": 0.82,
+    "cov_ci": [
+     0.807361963190184,
+     0.8314928425357874
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4",
+     "issue_assignment",
+     "0"
+    ],
+    "n_test": 1900,
+    "ratio": 1.01,
+    "ratio_ci_hi": 1.055,
+    "coverage": 0.793,
+    "cov_ci": [
+     0.7784210526315789,
+     0.8094736842105263
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "pull_request_review",
+     "0"
+    ],
+    "n_test": 1775,
+    "ratio": 0.902,
+    "ratio_ci_hi": 1.057,
+    "coverage": 0.805,
+    "cov_ci": [
+     0.7898591549295775,
+     0.8214084507042253
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "copilot-chat-spec-task",
+     "0"
+    ],
+    "n_test": 1517,
+    "ratio": 1.013,
+    "ratio_ci_hi": 1.107,
+    "coverage": 0.831,
+    "cov_ci": [
+     0.8154251812788398,
+     0.8464073829927489
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "api_call_received",
+     "0"
+    ],
+    "n_test": 1404,
+    "ratio": 0.992,
+    "ratio_ci_hi": 1.047,
+    "coverage": 0.812,
+    "cov_ci": [
+     0.7934472934472935,
+     0.8290598290598291
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.5",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 1068,
+    "ratio": 1.232,
+    "ratio_ci_hi": 2.152,
+    "coverage": 0.785,
+    "cov_ci": [
+     0.7621722846441947,
+     0.8043071161048689
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "agents_panel",
+     "0"
+    ],
+    "n_test": 1057,
+    "ratio": 0.95,
+    "ratio_ci_hi": 1.104,
+    "coverage": 0.798,
+    "cov_ci": [
+     0.7776726584673604,
+     0.8174077578051088
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4",
+     "pull_request_review",
+     "0"
+    ],
+    "n_test": 1010,
+    "ratio": 0.982,
+    "ratio_ci_hi": 1.045,
+    "coverage": 0.793,
+    "cov_ci": [
+     0.7732673267326733,
+     0.8138613861386138
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "pull_request_review_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 954,
+    "ratio": 1.026,
+    "ratio_ci_hi": 1.069,
+    "coverage": 0.767,
+    "cov_ci": [
+     0.7410901467505241,
+     0.789308176100629
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "gpt-5.3-codex",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 919,
+    "ratio": 0.976,
+    "ratio_ci_hi": 1.073,
+    "coverage": 0.756,
+    "cov_ci": [
+     0.7334058759521219,
+     0.780195865070729
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "repo_agents",
+     "0"
+    ],
+    "n_test": 859,
+    "ratio": 1.093,
+    "ratio_ci_hi": 1.215,
+    "coverage": 0.823,
+    "cov_ci": [
+     0.7986030267753201,
+     0.8440046565774156
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "pull_request_comment_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 800,
+    "ratio": 1.006,
+    "ratio_ci_hi": 1.062,
+    "coverage": 0.771,
+    "cov_ci": [
+     0.74875,
+     0.795
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "gpt-5.3-codex",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 797,
+    "ratio": 0.95,
+    "ratio_ci_hi": 1.066,
+    "coverage": 0.767,
+    "cov_ci": [
+     0.7440401505646174,
+     0.7892095357590966
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.6",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 775,
+    "ratio": 1.07,
+    "ratio_ci_hi": 1.216,
+    "coverage": 0.823,
+    "cov_ci": [
+     0.8012903225806451,
+     0.8464516129032258
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "agents_panel",
+     "1"
+    ],
+    "n_test": 765,
+    "ratio": 1.076,
+    "ratio_ci_hi": 1.146,
+    "coverage": 0.856,
+    "cov_ci": [
+     0.8379084967320262,
+     0.8771241830065359
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "pull_request_comment_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 757,
+    "ratio": 1.009,
+    "ratio_ci_hi": 1.157,
+    "coverage": 0.785,
+    "cov_ci": [
+     0.7595772787318362,
+     0.809775429326288
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "copilot-chat-spec-task",
+     "0"
+    ],
+    "n_test": 753,
+    "ratio": 0.759,
+    "ratio_ci_hi": 0.933,
+    "coverage": 0.61,
+    "cov_ci": [
+     0.5830013280212484,
+     0.6347941567065073
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "pull_request_review_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 725,
+    "ratio": 1.022,
+    "ratio_ci_hi": 1.115,
+    "coverage": 0.772,
+    "cov_ci": [
+     0.7475862068965518,
+     0.7986206896551724
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "api_call_received",
+     "0"
+    ],
+    "n_test": 610,
+    "ratio": 1.018,
+    "ratio_ci_hi": 1.25,
+    "coverage": 0.792,
+    "cov_ci": [
+     0.7639344262295082,
+     0.8180327868852459
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.6",
+     "api_call_received",
+     "0"
+    ],
+    "n_test": 595,
+    "ratio": 0.856,
+    "ratio_ci_hi": 1.093,
+    "coverage": 0.738,
+    "cov_ci": [
+     0.7075630252100841,
+     0.7647058823529411
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "repo_agents",
+     "1"
+    ],
+    "n_test": 578,
+    "ratio": 1.028,
+    "ratio_ci_hi": 1.255,
+    "coverage": 0.829,
+    "cov_ci": [
+     0.8027681660899654,
+     0.8546712802768166
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.5",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 557,
+    "ratio": 0.968,
+    "ratio_ci_hi": 1.105,
+    "coverage": 0.797,
+    "cov_ci": [
+     0.7666068222621185,
+     0.8240574506283662
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "api_call_received",
+     "1"
+    ],
+    "n_test": 544,
+    "ratio": 0.962,
+    "ratio_ci_hi": 1.18,
+    "coverage": 0.796,
+    "cov_ci": [
+     0.7665441176470589,
+     0.8272058823529411
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.6",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 493,
+    "ratio": 0.979,
+    "ratio_ci_hi": 1.1,
+    "coverage": 0.753,
+    "cov_ci": [
+     0.7200811359026369,
+     0.7849898580121704
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4",
+     "agents_panel",
+     "0"
+    ],
+    "n_test": 490,
+    "ratio": 1.049,
+    "ratio_ci_hi": 1.132,
+    "coverage": 0.824,
+    "cov_ci": [
+     0.7959183673469388,
+     0.8530612244897959
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.6",
+     "repo_agents",
+     "0"
+    ],
+    "n_test": 400,
+    "ratio": 0.848,
+    "ratio_ci_hi": 1.011,
+    "coverage": 0.72,
+    "cov_ci": [
+     0.685,
+     0.755
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "gpt-5.3-codex",
+     "pull_request_comment_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 356,
+    "ratio": 0.988,
+    "ratio_ci_hi": 1.066,
+    "coverage": 0.739,
+    "cov_ci": [
+     0.7050561797752809,
+     0.7780898876404494
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "ios_mobile_repo_profile",
+     "0"
+    ],
+    "n_test": 342,
+    "ratio": 1.006,
+    "ratio_ci_hi": 1.027,
+    "coverage": 0.792,
+    "cov_ci": [
+     0.7602339181286549,
+     0.8304093567251462
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "gpt-5.3-codex",
+     "api_call_received",
+     "0"
+    ],
+    "n_test": 316,
+    "ratio": 1.018,
+    "ratio_ci_hi": 1.1,
+    "coverage": 0.778,
+    "cov_ci": [
+     0.740506329113924,
+     0.8164556962025317
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "agents_panel",
+     "0"
+    ],
+    "n_test": 315,
+    "ratio": 0.96,
+    "ratio_ci_hi": 1.087,
+    "coverage": 0.819,
+    "cov_ci": [
+     0.780952380952381,
+     0.8539682539682539
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "agent_task_post_session_steering",
+     "0"
+    ],
+    "n_test": 305,
+    "ratio": 0.914,
+    "ratio_ci_hi": 1.135,
+    "coverage": 0.82,
+    "cov_ci": [
+     0.780327868852459,
+     0.8557377049180328
+    ],
+    "pass": false
+   }
+  ]
+ },
+ "H7": {
+  "passed": 0,
+  "eligible": 37,
+  "verdict": "FAIL",
+  "groups": [
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 9079,
+    "ratio": 0.862,
+    "ratio_ci_hi": 0.893,
+    "coverage": 0.813,
+    "cov_ci": [
+     0.806366339905276,
+     0.8198039431655468
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 5465,
+    "ratio": 0.926,
+    "ratio_ci_hi": 0.952,
+    "coverage": 0.816,
+    "cov_ci": [
+     0.8071363220494053,
+     0.8248856358645928
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 4064,
+    "ratio": 0.777,
+    "ratio_ci_hi": 0.826,
+    "coverage": 0.821,
+    "cov_ci": [
+     0.811761811023622,
+     0.8299704724409449
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "review-request",
+     "0"
+    ],
+    "n_test": 3888,
+    "ratio": 0.95,
+    "ratio_ci_hi": 0.971,
+    "coverage": 0.796,
+    "cov_ci": [
+     0.7860082304526749,
+     0.8058127572016461
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 3598,
+    "ratio": 0.878,
+    "ratio_ci_hi": 0.93,
+    "coverage": 0.815,
+    "cov_ci": [
+     0.8043357420789328,
+     0.8251806559199555
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 2492,
+    "ratio": 0.784,
+    "ratio_ci_hi": 0.848,
+    "coverage": 0.801,
+    "cov_ci": [
+     0.7869181380417335,
+     0.8142054574638844
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "pull_request_review",
+     "0"
+    ],
+    "n_test": 2445,
+    "ratio": 0.845,
+    "ratio_ci_hi": 0.876,
+    "coverage": 0.806,
+    "cov_ci": [
+     0.7926380368098159,
+     0.8179959100204499
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4",
+     "issue_assignment",
+     "0"
+    ],
+    "n_test": 1900,
+    "ratio": 0.954,
+    "ratio_ci_hi": 0.986,
+    "coverage": 0.798,
+    "cov_ci": [
+     0.7836842105263158,
+     0.8142105263157895
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "pull_request_review",
+     "0"
+    ],
+    "n_test": 1775,
+    "ratio": 0.754,
+    "ratio_ci_hi": 0.881,
+    "coverage": 0.82,
+    "cov_ci": [
+     0.8050704225352112,
+     0.8338028169014085
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "copilot-chat-spec-task",
+     "0"
+    ],
+    "n_test": 1517,
+    "ratio": 0.843,
+    "ratio_ci_hi": 0.923,
+    "coverage": 0.833,
+    "cov_ci": [
+     0.8200395517468688,
+     0.8483849703361899
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "api_call_received",
+     "0"
+    ],
+    "n_test": 1404,
+    "ratio": 0.756,
+    "ratio_ci_hi": 0.835,
+    "coverage": 0.818,
+    "cov_ci": [
+     0.7998575498575499,
+     0.834045584045584
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.5",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 1068,
+    "ratio": 0.82,
+    "ratio_ci_hi": 0.91,
+    "coverage": 0.762,
+    "cov_ci": [
+     0.7406367041198502,
+     0.7837078651685393
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "agents_panel",
+     "0"
+    ],
+    "n_test": 1057,
+    "ratio": 0.858,
+    "ratio_ci_hi": 0.919,
+    "coverage": 0.81,
+    "cov_ci": [
+     0.7909176915799432,
+     0.8278145695364238
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4",
+     "pull_request_review",
+     "0"
+    ],
+    "n_test": 1010,
+    "ratio": 0.79,
+    "ratio_ci_hi": 0.855,
+    "coverage": 0.792,
+    "cov_ci": [
+     0.7702970297029703,
+     0.8138613861386138
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "pull_request_review_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 954,
+    "ratio": 1.002,
+    "ratio_ci_hi": 1.038,
+    "coverage": 0.771,
+    "cov_ci": [
+     0.7484276729559748,
+     0.7914046121593291
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "gpt-5.3-codex",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 919,
+    "ratio": 0.968,
+    "ratio_ci_hi": 1.024,
+    "coverage": 0.799,
+    "cov_ci": [
+     0.7769314472252449,
+     0.8215451577801959
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "repo_agents",
+     "0"
+    ],
+    "n_test": 859,
+    "ratio": 0.902,
+    "ratio_ci_hi": 1.005,
+    "coverage": 0.832,
+    "cov_ci": [
+     0.8114086146682189,
+     0.8533178114086146
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "pull_request_comment_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 800,
+    "ratio": 0.969,
+    "ratio_ci_hi": 1.051,
+    "coverage": 0.766,
+    "cov_ci": [
+     0.7425,
+     0.79
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "gpt-5.3-codex",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 797,
+    "ratio": 0.937,
+    "ratio_ci_hi": 1.078,
+    "coverage": 0.778,
+    "cov_ci": [
+     0.7553324968632371,
+     0.7992471769134254
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.6",
+     "pull_request_comment",
+     "0"
+    ],
+    "n_test": 775,
+    "ratio": 0.853,
+    "ratio_ci_hi": 0.944,
+    "coverage": 0.819,
+    "cov_ci": [
+     0.7974193548387096,
+     0.8438709677419355
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "agents_panel",
+     "1"
+    ],
+    "n_test": 765,
+    "ratio": 0.815,
+    "ratio_ci_hi": 0.938,
+    "coverage": 0.821,
+    "cov_ci": [
+     0.7986928104575164,
+     0.8444444444444444
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "pull_request_comment_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 757,
+    "ratio": 0.935,
+    "ratio_ci_hi": 0.998,
+    "coverage": 0.781,
+    "cov_ci": [
+     0.7542932628797886,
+     0.8071334214002642
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "copilot-chat-spec-task",
+     "0"
+    ],
+    "n_test": 753,
+    "ratio": 0.905,
+    "ratio_ci_hi": 1.049,
+    "coverage": 0.692,
+    "cov_ci": [
+     0.6653386454183267,
+     0.7158034528552457
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "pull_request_review_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 725,
+    "ratio": 0.952,
+    "ratio_ci_hi": 1.023,
+    "coverage": 0.748,
+    "cov_ci": [
+     0.7227586206896551,
+     0.776551724137931
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.5",
+     "api_call_received",
+     "0"
+    ],
+    "n_test": 610,
+    "ratio": 0.915,
+    "ratio_ci_hi": 0.989,
+    "coverage": 0.813,
+    "cov_ci": [
+     0.7868852459016393,
+     0.8377049180327869
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.6",
+     "api_call_received",
+     "0"
+    ],
+    "n_test": 595,
+    "ratio": 0.728,
+    "ratio_ci_hi": 0.887,
+    "coverage": 0.788,
+    "cov_ci": [
+     0.761344537815126,
+     0.8151260504201681
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "repo_agents",
+     "1"
+    ],
+    "n_test": 578,
+    "ratio": 0.822,
+    "ratio_ci_hi": 0.949,
+    "coverage": 0.824,
+    "cov_ci": [
+     0.7993079584775087,
+     0.8494809688581315
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.5",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 557,
+    "ratio": 0.964,
+    "ratio_ci_hi": 1.039,
+    "coverage": 0.795,
+    "cov_ci": [
+     0.7666068222621185,
+     0.8240574506283662
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "api_call_received",
+     "1"
+    ],
+    "n_test": 544,
+    "ratio": 0.76,
+    "ratio_ci_hi": 0.925,
+    "coverage": 0.798,
+    "cov_ci": [
+     0.7702205882352942,
+     0.8272058823529411
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.6",
+     "issues_agent_assignment",
+     "0"
+    ],
+    "n_test": 493,
+    "ratio": 1.003,
+    "ratio_ci_hi": 1.1,
+    "coverage": 0.807,
+    "cov_ci": [
+     0.7809330628803245,
+     0.8377281947261663
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4",
+     "agents_panel",
+     "0"
+    ],
+    "n_test": 490,
+    "ratio": 0.955,
+    "ratio_ci_hi": 1.034,
+    "coverage": 0.839,
+    "cov_ci": [
+     0.8122448979591836,
+     0.8653061224489796
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-opus-4.6",
+     "repo_agents",
+     "0"
+    ],
+    "n_test": 400,
+    "ratio": 0.816,
+    "ratio_ci_hi": 0.997,
+    "coverage": 0.748,
+    "cov_ci": [
+     0.7125,
+     0.78
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "gpt-5.3-codex",
+     "pull_request_comment_non_copilot_pull_request",
+     "0"
+    ],
+    "n_test": 356,
+    "ratio": 0.907,
+    "ratio_ci_hi": 1.03,
+    "coverage": 0.764,
+    "cov_ci": [
+     0.7275280898876404,
+     0.800561797752809
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "ios_mobile_repo_profile",
+     "0"
+    ],
+    "n_test": 342,
+    "ratio": 0.85,
+    "ratio_ci_hi": 1.1,
+    "coverage": 0.751,
+    "cov_ci": [
+     0.7134502923976608,
+     0.7894736842105263
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "gpt-5.3-codex",
+     "api_call_received",
+     "0"
+    ],
+    "n_test": 316,
+    "ratio": 0.913,
+    "ratio_ci_hi": 1.06,
+    "coverage": 0.769,
+    "cov_ci": [
+     0.7310126582278481,
+     0.8069620253164557
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "agents_panel",
+     "0"
+    ],
+    "n_test": 315,
+    "ratio": 0.957,
+    "ratio_ci_hi": 1.155,
+    "coverage": 0.848,
+    "cov_ci": [
+     0.8126984126984127,
+     0.8793650793650793
+    ],
+    "pass": false
+   },
+   {
+    "group": [
+     "claude-sonnet-4.6",
+     "agent_task_post_session_steering",
+     "0"
+    ],
+    "n_test": 305,
+    "ratio": 0.589,
+    "ratio_ci_hi": 0.863,
+    "coverage": 0.803,
+    "cov_ci": [
+     0.7639344262295082,
+     0.8360655737704918
+    ],
+    "pass": false
+   }
+  ]
+ }
+}

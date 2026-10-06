@@ -122,3 +122,6 @@ Selection rule applied to explore output: most groups with ratio <= 0.8, tiebrea
 - H7 user bucket = median cost of the user's last 10 strictly-earlier priced sessions, requiring >= 3 such sessions (else "none"); buckets cut at $0.25 / $0.60 / $1.20 / $3.00 (5 buckets). Explore: 9/54 groups <= 0.8, median ratio 0.91.
 - Refined cell with < 50 fit sessions falls back to the baseline group interval.
 - Stated expectation before CONFIRM: both likely FAIL the >= 1/3 bar (explore best H6 3/54, H7 9/54 = 17%, before CIs).
+
+### Round 3 CONFIRM results (one look, `confirm_r3.out` / `confirm_r3.json`)
+- H6 language: FAIL (see confirm_r3.json). H7 user history: 0/37 groups pass -> FAIL. Both as predicted before CONFIRM.
