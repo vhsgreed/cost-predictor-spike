@@ -145,13 +145,14 @@ for tag, loader, splitter in (("E1 Exgentic", load_e1, split_e1), ("E3 pi sessio
         res[tag][label] = evaluate(f"{tag} {label}", fit, test, mf, mt, random.Random(20261011))
 
 print("\nREPLICATION VERDICT (claim needs pass in every evaluable dataset AND >= 2 evaluable)")
+datasets = list(res)
 for label in ("primary >=100/30", "secondary >=50/20"):
     for h in ("H4", "H1"):
-        v = [res[t][label][h] for t in res]
+        v = [res[t][label][h] for t in datasets]
         ev = [x for x in v if x != "not evaluable"]
         verdict = ("REPLICATED" if len(ev) >= 2 and all(x == "PASS" for x in ev)
                    else "NOT EVALUABLE" if len(ev) < 2 else "NOT REPLICATED")
-        print(f"  {label:18} R-{h}: {dict(zip(res, v))} -> {verdict}")
+        print(f"  {label:18} R-{h}: {dict(zip(datasets, v))} -> {verdict}")
         res.setdefault("verdict", {})[f"{label} {h}"] = verdict
 json.dump(res, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "replicate_r4.json"), "w"), indent=1, default=list)
 print("wrote replicate_r4.json")

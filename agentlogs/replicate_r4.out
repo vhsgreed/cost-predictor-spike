@@ -1,0 +1,79 @@
+
+E1 Exgentic: 10056 runs, 401 excluded (cost missing or 0), fit 7530 / test 2125
+  [primary >=100/30]
+  E1 Exgentic primary >=100/30: 2 eligible groups -> not evaluable
+  [secondary >=50/20]
+    ['gpt-5.2-2025-12-11']/tau2_telecom/telecom/smolagents_cod fit  136 test  64 | floor $0.129 held 88% [80%,94%] ok | width   3.4x vs   6.2x ratio 0.54 hi 0.70 cov 70% --
+    ['gpt-5.2-2025-12-11']/tau2_retail/retail/smolagents_code  fit  139 test  60 | floor $0.118 held 92% [85%,97%] ok | width   2.6x vs   6.2x ratio 0.42 hi 0.51 cov 75% PASS
+    ['claude-opus-4-5']/swebench/smolagents_code               fit   64 test  36 | floor $1.999 held 75% [61%,86%] -- | width   5.1x vs  28.8x ratio 0.18 hi 0.25 cov 64% --
+    ['gemini-3-pro-preview']/swebench/smolagents_code          fit   64 test  35 | floor $0.421 held 83% [71%,91%] ok | width  10.4x vs  32.4x ratio 0.32 hi 0.52 cov 71% PASS
+    ['DeepSeek-V3.2']/tau2_telecom/telecom/claude_code         fit   62 test  35 | floor $0.015 held 94% [89%,100%] ok | width   9.0x vs 122.3x ratio 0.07 hi 0.24 cov 77% PASS
+    ['DeepSeek-V3.2']/swebench/smolagents_code                 fit   66 test  34 | floor $0.196 held 97% [91%,100%] -- | width   5.0x vs 122.3x ratio 0.04 hi 0.12 cov 88% PASS
+    ['claude-opus-4-5']/tau2_retail/retail/claude_code         fit   66 test  34 | floor $0.516 held 88% [79%,97%] ok | width   5.1x vs  28.8x ratio 0.18 hi 0.39 cov 88% PASS
+    ['claude-opus-4-5']/tau2_retail/retail/smolagents_code     fit   63 test  34 | floor $0.392 held 82% [71%,91%] ok | width   2.9x vs  28.8x ratio 0.10 hi 0.17 cov 71% PASS
+    ['claude-opus-4-5']/appworld/test_normal/tool_calling      fit   67 test  33 | floor $2.349 held 94% [88%,100%] ok | width  13.7x vs  28.8x ratio 0.48 hi 0.65 cov 91% --
+    ['gemini-3-pro-preview']/appworld/test_normal/tool_calling fit   66 test  33 | floor $0.399 held 100% [100%,100%] -- | width  12.3x vs  32.4x ratio 0.38 hi 0.57 cov 85% PASS
+    ['DeepSeek-V3.2']/browsecompplus/claude_code               fit   67 test  33 | floor $0.022 held 94% [88%,100%] ok | width  13.3x vs 122.3x ratio 0.11 hi 0.34 cov 94% --
+    ['gpt-5.2-2025-12-11']/browsecompplus/tool_calling         fit   67 test  33 | floor $0.078 held 94% [88%,100%] ok | width   8.2x vs   6.2x ratio 1.32 hi 1.64 cov 91% --
+    ['gemini-3-pro-preview']/browsecompplus/tool_calling       fit   67 test  33 | floor $0.060 held 97% [91%,100%] -- | width  13.8x vs  32.4x ratio 0.43 hi 0.71 cov 88% PASS
+    ['gpt-5.2-2025-12-11']/swebench/smolagents_code            fit   66 test  33 | floor $0.084 held 97% [91%,100%] -- | width  13.1x vs   6.2x ratio 2.12 hi 3.50 cov 91% --
+    ['DeepSeek-V3.2']/tau2_retail/retail/smolagents_code       fit   65 test  33 | floor $0.013 held 94% [88%,100%] ok | width   5.9x vs 122.3x ratio 0.05 hi 0.15 cov 85% PASS
+    ['Kimi-K2.5']/tau2_retail/retail/smolagents_code           fit   65 test  33 | floor $0.033 held 88% [79%,97%] ok | width   3.4x vs 232.2x ratio 0.01 hi 0.06 cov 70% PASS
+    ['DeepSeek-V3.2']/tau2_telecom/telecom/smolagents_code     fit   67 test  33 | floor $0.033 held 88% [79%,97%] ok | width   3.7x vs 122.3x ratio 0.03 hi 0.09 cov 79% PASS
+    ['Kimi-K2.5']/tau2_telecom/telecom/smolagents_code         fit   66 test  33 | floor $0.072 held 91% [82%,97%] ok | width   4.2x vs 232.2x ratio 0.02 hi 0.07 cov 91% --
+    ['claude-opus-4-5']/browsecompplus/tool_calling            fit   67 test  32 | floor $0.273 held 94% [84%,100%] ok | width  60.6x vs  28.8x ratio 2.11 hi 3.00 cov 78% --
+    ['gpt-5.2-2025-12-11']/tau2_airline/airline/smolagents_cod fit   68 test  32 | floor $0.080 held 91% [81%,97%] ok | width   4.4x vs   6.2x ratio 0.71 hi 1.06 cov 72% --
+    ['Kimi-K2.5']/tau2_retail/retail/claude_code               fit   67 test  32 | floor $0.012 held 84% [72%,94%] ok | width   1.0x vs 232.2x ratio 0.00 hi 0.04 cov 62% --
+    ['gpt-5.2-2025-12-11']/browsecompplus/smolagents_code      fit   69 test  31 | floor $0.078 held 81% [68%,94%] ok | width   3.7x vs   6.2x ratio 0.60 hi 1.06 cov 71% --
+    ['claude-opus-4-5']/browsecompplus/smolagents_code         fit   69 test  31 | floor $0.774 held 81% [68%,90%] ok | width  18.2x vs  28.8x ratio 0.63 hi 1.27 cov 71% --
+    ['gemini-3-pro-preview']/browsecompplus/smolagents_code    fit   69 test  31 | floor $0.166 held 81% [68%,90%] ok | width  35.5x vs  32.4x ratio 1.09 hi 2.40 cov 74% --
+    ['Kimi-K2.5']/swebench/smolagents_code                     fit   61 test  31 | floor $0.230 held 94% [84%,100%] ok | width  14.8x vs 232.2x ratio 0.06 hi 0.25 cov 87% PASS
+    ['DeepSeek-V3.2']/appworld/test_normal/tool_calling        fit   69 test  30 | floor $0.178 held 100% [100%,100%] -- | width   8.3x vs 122.3x ratio 0.07 hi 0.21 cov 90% PASS
+    ['Kimi-K2.5']/appworld/test_normal/tool_calling            fit   69 test  30 | floor $0.189 held 100% [100%,100%] -- | width  10.3x vs 232.2x ratio 0.04 hi 0.18 cov 80% PASS
+    ['DeepSeek-V3.2']/appworld/test_normal/tool_calling_with_s fit   70 test  30 | floor $0.020 held 77% [63%,90%] ok | width  28.4x vs 122.3x ratio 0.23 hi 0.82 cov 73% --
+    ['DeepSeek-V3.2']/browsecompplus/smolagents_code           fit   70 test  30 | floor $0.005 held 67% [50%,80%] -- | width  87.3x vs 122.3x ratio 0.71 hi 2.19 cov 63% --
+    ['Kimi-K2.5']/browsecompplus/smolagents_code               fit   70 test  30 | floor $0.021 held 83% [73%,93%] ok | width  78.7x vs 232.2x ratio 0.34 hi 1.21 cov 73% --
+    ['gpt-5.2-2025-12-11']/swebench/openai_solo                fit   69 test  30 | floor $0.087 held 90% [80%,97%] ok | width   5.3x vs   6.2x ratio 0.85 hi 1.17 cov 77% --
+    ['DeepSeek-V3.2']/tau2_retail/retail/claude_code           fit   63 test  29 | floor $0.013 held 93% [83%,100%] ok | width   6.7x vs 122.3x ratio 0.05 hi 0.26 cov 90% PASS
+    ['Kimi-K2.5']/appworld/test_normal/tool_calling_with_short fit   68 test  28 | floor $0.115 held 93% [86%,100%] ok | width  10.9x vs 232.2x ratio 0.05 hi 0.20 cov 75% PASS
+    ['gemini-3-pro-preview']/appworld/test_normal/tool_calling fit   72 test  28 | floor $0.205 held 100% [100%,100%] -- | width  17.1x vs  32.4x ratio 0.53 hi 0.77 cov 89% PASS
+    ['Kimi-K2.5']/browsecompplus/claude_code                   fit   59 test  28 | floor $0.069 held 93% [86%,100%] ok | width  33.1x vs 232.2x ratio 0.14 hi 0.47 cov 86% PASS
+    ['Kimi-K2.5']/swebench/openai_solo                         fit   69 test  28 | floor $0.038 held 96% [89%,100%] ok | width  20.6x vs 232.2x ratio 0.09 hi 0.29 cov 82% PASS
+    ['claude-opus-4-5']/appworld/test_normal/openai_solo       fit   73 test  27 | floor $4.026 held 89% [78%,96%] ok | width  17.1x vs  28.8x ratio 0.59 hi 0.90 cov 81% --
+    ['gemini-3-pro-preview']/appworld/test_normal/openai_solo  fit   71 test  27 | floor $2.120 held 96% [89%,100%] ok | width   8.7x vs  32.4x ratio 0.27 hi 0.41 cov 81% PASS
+    ['gpt-5.2-2025-12-11']/browsecompplus/openai_solo          fit   73 test  27 | floor $0.128 held 85% [74%,96%] ok | width   6.2x vs   6.2x ratio 1.01 hi 1.29 cov 74% --
+    ['claude-opus-4-5']/browsecompplus/openai_solo             fit   73 test  27 | floor $0.620 held 93% [81%,100%] ok | width  25.5x vs  28.8x ratio 0.89 hi 1.56 cov 78% --
+    ['DeepSeek-V3.2']/browsecompplus/tool_calling              fit   72 test  27 | floor $0.011 held 96% [89%,100%] ok | width  58.1x vs 122.3x ratio 0.48 hi 2.16 cov 89% --
+    ['Kimi-K2.5']/swebench/claude_code                         fit   70 test  27 | floor $0.143 held 100% [100%,100%] -- | width  12.0x vs 232.2x ratio 0.05 hi 0.26 cov 100% --
+    ['DeepSeek-V3.2']/appworld/test_normal/claude_code         fit   74 test  26 | floor $0.134 held 92% [81%,100%] ok | width   6.4x vs 122.3x ratio 0.05 hi 0.20 cov 81% PASS
+    ['Kimi-K2.5']/appworld/test_normal/claude_code             fit   68 test  26 | floor $0.133 held 92% [85%,100%] ok | width  19.8x vs 232.2x ratio 0.09 hi 1.84 cov 77% --
+    ['gpt-5.2-2025-12-11']/browsecompplus/claude_code          fit   74 test  26 | floor $0.142 held 88% [77%,100%] ok | width   5.6x vs   6.2x ratio 0.90 hi 1.31 cov 85% --
+    ['gemini-3-pro-preview']/browsecompplus/claude_code        fit   74 test  26 | floor $0.223 held 88% [77%,100%] ok | width  35.7x vs  32.4x ratio 1.10 hi 1.66 cov 81% --
+    ['gemini-3-pro-preview']/browsecompplus/openai_solo        fit   71 test  26 | floor $0.118 held 92% [81%,100%] ok | width  12.4x vs  32.4x ratio 0.38 hi 0.96 cov 77% --
+    ['DeepSeek-V3.2']/swebench/claude_code                     fit   72 test  26 | floor $0.045 held 92% [81%,100%] ok | width   9.3x vs 122.3x ratio 0.08 hi 0.29 cov 81% PASS
+    ['Kimi-K2.5']/browsecompplus/tool_calling                  fit   73 test  25 | floor $0.027 held 88% [76%,100%] ok | width  34.4x vs 232.2x ratio 0.15 hi 0.72 cov 68% PASS
+    ['DeepSeek-V3.2']/appworld/test_normal/smolagents_code     fit   77 test  23 | floor $0.084 held 91% [83%,100%] ok | width   6.2x vs 122.3x ratio 0.05 hi 0.20 cov 91% --
+    ['Kimi-K2.5']/appworld/test_normal/smolagents_code         fit   77 test  23 | floor $0.172 held 100% [100%,100%] -- | width  11.6x vs 232.2x ratio 0.05 hi 0.17 cov 100% --
+    ['claude-opus-4-5']/swebench/claude_code                   fit   74 test  23 | floor $1.786 held 87% [74%,96%] ok | width   5.2x vs  28.8x ratio 0.18 hi 0.38 cov 74% PASS
+    ['gpt-5.2-2025-12-11']/swebench/claude_code                fit   68 test  22 | floor $0.411 held 95% [86%,100%] ok | width   4.1x vs   6.2x ratio 0.66 hi 0.77 cov 59% --
+    ['gemini-3-pro-preview']/swebench/claude_code              fit   68 test  22 | floor $1.003 held 100% [100%,100%] -- | width  11.5x vs  32.4x ratio 0.36 hi 0.52 cov 91% --
+    ['Kimi-K2.5']/swebench/tool_calling                        fit   77 test  21 | floor $0.063 held 86% [71%,95%] ok | width  27.2x vs 232.2x ratio 0.12 hi 0.50 cov 86% PASS
+    ['gpt-5.2-2025-12-11']/swebench/tool_calling               fit   79 test  21 | floor $0.064 held 90% [76%,100%] ok | width   7.9x vs   6.2x ratio 1.27 hi 2.30 cov 81% --
+    ['gemini-3-pro-preview']/swebench/tool_calling             fit   79 test  21 | floor $0.263 held 86% [71%,95%] ok | width   4.8x vs  32.4x ratio 0.15 hi 0.23 cov 71% PASS
+    ['gemini-3-pro-preview']/swebench/openai_solo              fit   74 test  20 | floor $0.365 held 85% [70%,95%] ok | width   8.4x vs  32.4x ratio 0.26 hi 0.41 cov 75% PASS
+    ['DeepSeek-V3.2']/swebench/tool_calling                    fit   76 test  20 | floor $0.176 held 75% [60%,90%] ok | width   6.2x vs 122.3x ratio 0.05 hi 0.18 cov 75% PASS
+    ['claude-opus-4-5']/swebench/tool_calling                  fit   79 test  20 | floor $0.863 held 90% [80%,100%] ok | width   8.8x vs  28.8x ratio 0.31 hi 0.49 cov 90% PASS
+  E1 Exgentic secondary >=50/20: R-H4 PASS (pooled floor held 90.1% [89.1%,91.4%], 48/60 groups) | R-H1 PASS (29/60 groups, need 12)
+
+E3 pi sessions: 1291 runs, 113 excluded (cost missing or 0), fit 813 / test 365
+  [primary >=100/30]
+  E3 pi sessions primary >=100/30: 0 eligible groups -> not evaluable
+  [secondary >=50/20]
+  E3 pi sessions secondary >=50/20: 1 eligible groups -> not evaluable
+
+REPLICATION VERDICT (claim needs pass in every evaluable dataset AND >= 2 evaluable)
+  primary >=100/30   R-H4: {'E1 Exgentic': 'not evaluable', 'E3 pi sessions': 'not evaluable'} -> NOT EVALUABLE
+  primary >=100/30   R-H1: {'E1 Exgentic': 'not evaluable', 'E3 pi sessions': 'not evaluable'} -> NOT EVALUABLE
+  secondary >=50/20  R-H4: {'E1 Exgentic': 'PASS', 'E3 pi sessions': 'not evaluable'} -> NOT EVALUABLE
+  secondary >=50/20  R-H1: {'E1 Exgentic': 'PASS', 'E3 pi sessions': 'not evaluable'} -> NOT EVALUABLE
+wrote replicate_r4.json
