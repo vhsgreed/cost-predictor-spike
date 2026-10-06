@@ -125,3 +125,25 @@ Selection rule applied to explore output: most groups with ratio <= 0.8, tiebrea
 
 ### Round 3 CONFIRM results (one look, `confirm_r3.out` / `confirm_r3.json`)
 - H6 language: FAIL (see confirm_r3.json). H7 user history: 0/37 groups pass -> FAIL. Both as predicted before CONFIRM.
+
+## Round 4 pre-registration: external replication of H1 and H4 (2026-10-06, before any cost from these sets is computed)
+
+Disclosure of prior contact: (a) `melissapan/swe-bench-lite-agent-traces-v14`: replicate cost spread already computed during the survey (median max/min across 3 identical runs 1.55x, p90 2.86x); it is therefore EXPLORATORY and used only as the noise-floor descriptive, never in the replication tests. (b) One `Exgentic/agent-llm-traces-v2` sample row was seen in the survey (agent_cost 0.89); no distribution computed.
+
+Datasets (HF revisions pinned):
+- E1 `Exgentic/agent-llm-traces-v2` @ 4b8ad4ab198438e5a170f9171c19c6a2cf7c1814 (10,056 runs; agent_cost, success, harness, benchmark, models)
+- E2 `open-agent-leaderboard/traces` @ fcb6c1a6f5b649cde515b6f787e8bdbaa11d626c (~10k session files; token usage)
+- E3 `MaxDevv/real-pi-coding-agent-traces-sessions` @ 8c593252ddad7dca08a0afc07896195fa73f2d6e (~1.3k developer sessions)
+- Noise floor (exploratory): `melissapan/swe-bench-lite-agent-traces-v14` @ 2cdf7f3c08052508330cf99dc600c6a00ea89bff
+
+Procedure:
+1. Schema-only inspection (column names, value types, category counts; no cost or token sums). Grouping columns, split unit and cost source per dataset are then frozen in a separate commit BEFORE any cost is computed.
+2. Cost = dataset-reported USD where present. Where only tokens exist, price with the same OpenRouter list prices as `lab.call_cost` (2026-10-06); unpriceable models excluded and counted. Sessions with cost <= 0 or missing excluded and counted.
+3. Group = model x task source x harness (the external analog of model x trigger; task source = benchmark/subset or, for E3, project). Baseline = model only. Caveat stated in advance: across different benchmarks this grouping may narrow ranges trivially; results are reported per benchmark as well.
+4. Split by task unit (task_id / benchmark instance; E3: project = repo prefix of file name) shuffled with `random.Random(20261010)`, 70% fit / 30% test.
+
+Bars (same as the originals):
+- R-H4 floor: floor = fit-group p10. Pass in a dataset if pooled test floor coverage 90% CI (500 bootstrap) contains 90% AND the CI contains 90% in >= 2/3 of eligible groups (>= 100 fit, >= 30 test).
+- R-H1 range: per eligible group, p10-p90 width <= 0.8x the model-only width AND 90% CI upper of the ratio < 0.8 (200 bootstraps over fit task units, upper = 95th percentile) AND test coverage 90% CI contains 80%. Pass in a dataset if >= 20% of eligible groups pass (H1 original: 3/15), minimum 1.
+- A dataset with < 3 eligible groups is reported "not evaluable", not counted.
+- Replication claim for each hypothesis: passes in every evaluable dataset AND >= 2 datasets evaluable. Otherwise "not replicated" (or "not evaluable"), reported as-is. One look.
