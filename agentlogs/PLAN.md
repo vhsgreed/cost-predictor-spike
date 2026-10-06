@@ -115,3 +115,10 @@ EXPLORE phase (free, unbounded): choose cutoffs, number of buckets, language gro
 CONFIRM bar (one look, per hypothesis): eligible = baseline groups with >= 300 CONFIRM-test sessions. Per eligible group: session-weighted mean width (p90/p10) of the refined intervals vs baseline width; pass if ratio <= 0.8 AND 90% CI upper of the ratio < 0.8 (200 bootstrap resamples over CONFIRM-fit repos, upper = 95th percentile) AND pooled test coverage 90% CI (500 resamples) contains 80%. Hypothesis passes if >= 1/3 of eligible groups pass (same fraction as H1's 5/15 standard).
 
 Prompt-category reference table (descriptive, no hypothesis): named categories (fix CI, dependency update, tests, refactor, docs, review feedback, question/chat, other) assigned by keyword rules written on EXPLORE; Karl rates a blind sample of 30 labels; agreement reported as-is. Table axes: category x repo-size bucket x model; every cell publishes n, p10/p50/p90, width. Cells with n < 100 suppressed.
+
+### Round 3 frozen choices (from EXPLORE only, `explore_r3.out`; committed before CONFIRM runs)
+Selection rule applied to explore output: most groups with ratio <= 0.8, tiebreak lowest median ratio, then fewest buckets.
+- H6 repo bucket = main_language in {TypeScript, Python, JavaScript, Go, Rust, C#, Java}, else "other" (missing = "na"). Explore: 3/54 groups <= 0.8, median ratio 0.99. Size cutoffs did no better (2-3/54, median 1.00).
+- H7 user bucket = median cost of the user's last 10 strictly-earlier priced sessions, requiring >= 3 such sessions (else "none"); buckets cut at $0.25 / $0.60 / $1.20 / $3.00 (5 buckets). Explore: 9/54 groups <= 0.8, median ratio 0.91.
+- Refined cell with < 50 fit sessions falls back to the baseline group interval.
+- Stated expectation before CONFIRM: both likely FAIL the >= 1/3 bar (explore best H6 3/54, H7 9/54 = 17%, before CIs).

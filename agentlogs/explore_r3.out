@@ -1,0 +1,25 @@
+all 424108 | EXPLORE 208458 sessions, 15071 repos
+
+H6 candidates
+baseline (no refinement)           groups  54 | median ratio 1.00 | <=0.8:   0 | coverage 80.5%
+size [10000, 100000]               groups  54 | median ratio 1.00 | <=0.8:   3 | coverage 80.5%
+size [5000, 50000, 500000]         groups  54 | median ratio 0.99 | <=0.8:   2 | coverage 80.3%
+size [2000, 20000, 200000, 1000000] groups  54 | median ratio 1.00 | <=0.8:   3 | coverage 80.2%
+language top7                      groups  54 | median ratio 0.99 | <=0.8:   3 | coverage 79.7%
+size 3 x lang7                     groups  54 | median ratio 0.99 | <=0.8:   1 | coverage 79.5%
+
+H7 candidates (history = user's own earlier sessions, median cost)
+k>=3 window 10 buckets 3           groups  54 | median ratio 0.95 | <=0.8:   4 | coverage 80.7%
+k>=3 window 10 buckets 5           groups  54 | median ratio 0.91 | <=0.8:   9 | coverage 80.7%
+k>=3 window 20 buckets 3           groups  54 | median ratio 0.96 | <=0.8:   4 | coverage 80.6%
+k>=3 window 20 buckets 5           groups  54 | median ratio 0.91 | <=0.8:   7 | coverage 80.5%
+k>=5 window 10 buckets 3           groups  54 | median ratio 0.96 | <=0.8:   4 | coverage 80.7%
+k>=5 window 10 buckets 5           groups  54 | median ratio 0.93 | <=0.8:   8 | coverage 80.7%
+k>=5 window 20 buckets 3           groups  54 | median ratio 0.96 | <=0.8:   4 | coverage 80.6%
+k>=5 window 20 buckets 5           groups  54 | median ratio 0.93 | <=0.8:   9 | coverage 80.5%
+k>=10 window 10 buckets 3          groups  54 | median ratio 0.96 | <=0.8:   4 | coverage 80.6%
+k>=10 window 10 buckets 5          groups  54 | median ratio 0.92 | <=0.8:   8 | coverage 80.7%
+k>=10 window 20 buckets 3          groups  54 | median ratio 0.96 | <=0.8:   4 | coverage 80.4%
+k>=10 window 20 buckets 5          groups  54 | median ratio 0.93 | <=0.8:   5 | coverage 80.3%
+
+prior-count distribution (explore): {0: 13858, 1: 9248, 3: 6022, 5: 4615, 10: 2973, 20: 124262}
