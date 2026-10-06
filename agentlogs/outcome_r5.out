@@ -1,0 +1,27 @@
+
+D1 SWE-smith: 26076 runs, overall resolve 44.1%
+  est.tok   groups   3 | tail resolve 21.0% (n=2603) vs body 54.7% (n=13040) | RR 0.38 [0.36,0.41] PASS
+    stop at group p90: saves 13.5% of est. tokens, loses 4.7% of resolved runs
+    stop at group p95: saves 4.1% of est. tokens, loses 1.9% of resolved runs
+    stop at group p99: saves 0.3% of est. tokens, loses 0.4% of resolved runs
+    resolve rate by decile (cheap -> expensive): 62% 60% 54% 51% 47% 42% 38% 35% 32% 21%
+  turns     groups   3 | tail resolve 20.1% (n=2556) vs body 54.0% (n=13688) | RR 0.37 [0.34,0.40] PASS
+
+D2 SWE-rebench-OH: 67074 runs, overall resolve 47.9%
+  est.tok   groups  43 | tail resolve 22.6% (n=1818) vs body 52.9% (n=9425) | RR 0.43 [0.38,0.47] PASS
+    stop at group p90: saves 2.6% of est. tokens, loses 5.2% of resolved runs
+    stop at group p95: saves 1.1% of est. tokens, loses 2.3% of resolved runs
+    stop at group p99: saves 0.1% of est. tokens, loses 0.4% of resolved runs
+    resolve rate by decile (cheap -> expensive): 60% 56% 51% 50% 47% 44% 34% 31% 26% 23%
+  turns     groups  43 | tail resolve 22.0% (n=641) vs body 52.5% (n=9606) | RR 0.42 [0.33,0.51] PASS
+
+D3 SWE-agent: 80036 runs, overall resolve 16.7%
+  est.tok   groups   3 | tail resolve 3.5% (n=8000) vs body 25.4% (n=40020) | RR 0.14 [0.12,0.16] PASS
+    stop at group p90: saves 21.8% of est. tokens, loses 2.1% of resolved runs
+    stop at group p95: saves 14.1% of est. tokens, loses 0.8% of resolved runs
+    stop at group p99: saves 3.3% of est. tokens, loses 0.1% of resolved runs
+    resolve rate by decile (cheap -> expensive): 19% 32% 30% 26% 22% 18% 11% 4% 3% 4%
+  turns     groups   3 | tail resolve 3.5% (n=7925) vs body 25.0% (n=41655) | RR 0.14 [0.12,0.16] PASS
+
+O1: passes in 3/3 evaluable datasets (['D1 SWE-smith', 'D2 SWE-rebench-OH', 'D3 SWE-agent']) -> PASS (need >= 2)
+wrote outcome_r5.json

@@ -183,3 +183,10 @@ Revisions: SWE-smith @ 08e109b4a59eaeebf80e4675cd125d42e7ac99a4 (MIT), SWE-reben
 - D3 SWE-agent: 80,036 runs. Outcome = `target`. Group = `model_name` (3 models). Assistant role = "ai"; text field = `text`.
 - Estimated tokens = sum over assistant turns of (cumulative characters of all messages up to and including that turn) / 4. Turns proxy = number of assistant turns.
 - Bootstrap unit = instance_id. All else as registered.
+
+### Round 5 results (one look; `outcome_r5.out` / `outcome_r5.json`)
+- **O1 PASS, 3/3 datasets.** Tail (above group p90, est. tokens) vs body (<= p50) resolve-rate ratio: D1 SWE-smith 0.38 [0.36, 0.41]; D2 SWE-rebench-OH 0.43 [0.38, 0.47]; D3 SWE-agent 0.14 [0.12, 0.16]. The turns proxy gives the same (0.37 / 0.42 / 0.14).
+- Data error found after the run: D1 `train` files contain 2,255 duplicate rows (26,076 rows, 23,821 distinct traj_id); the freeze said 23,821. Deduplicated re-run of D1 only: RR 0.40 [0.37, 0.43], PASS; backtest p90 saves 13.5% / loses 4.9%. Verdict unchanged. Both numbers reported.
+- Stopping backtest (exploratory): stop at group p90 saves 13.5% / 2.6% / 21.8% of est. tokens and loses 4.7% (4.9% dedup) / 5.2% / 2.1% of resolved runs. p95: 4.1/1.1/14.1% saved, 1.9/2.3/0.8% lost. Saving exceeds loss in D1 and D3, not in D2.
+- Resolve rate falls nearly monotonically with cost decile in all three (D1 62% -> 21%, D2 60% -> 23%, D3 peaks at 32% in decile 2, then falls to 3-4%).
+- Limits: estimated tokens, not billed cost; benchmark runs, not real use; difficulty confounds (association, not cause).
