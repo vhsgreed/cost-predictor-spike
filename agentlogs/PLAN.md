@@ -64,3 +64,12 @@ separately). Unpriced models excluded from dollar results and counted.
   with 90% CI (bootstrap over training repos) of the width ratio entirely below 0.8, and
   coverage 90% CI containing 80%. Also report whether clusters beat model x event groups
   (informational, no bar). Bar set before running.
+- 2026-10-06: H5 canary run (canary_h5.py; 1,725 dev sessions with prompt text, 1,157 repos,
+  k-means k=10 on nomic-embed-text). FIRST run under-implemented the bar (checked width
+  point estimate only, omitted the ratio CI) and appeared to pass 4/7 clusters. Script
+  corrected to the full pre-registered bar before reporting: 0/7 clusters pass -> H5 FAIL.
+  Best cluster ratio CI upper 0.88 (point ratio 0.67). Informational: model x event group
+  width median 10.6x vs cluster 16.1x; clusters weaker than trigger groups.
+  Interpretation: canary underpowered (n_test 36-65 per cluster); 4 clusters have point
+  ratios 0.63-0.79 but wide CIs. Final H5 verdict deferred to the full 56 GB run, same bar,
+  one look. Output: canary_h5.out.

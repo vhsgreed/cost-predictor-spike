@@ -1,0 +1,26 @@
+session prompts: 149921
+joined 1725 dev sessions with prompt + cost
+
+clusters (shortest example prompt each):
+  k0: n= 140 median $ 0.75 | @copilot rebase on main
+  k1: n=  54 median $ 0.60 | I can see nothing changed in the pull request itself!!!!
+  k2: n= 170 median $ 1.41 | Do 1 through 4
+  k3: n= 229 median $ 1.19 | Add support for inline values
+  k4: n=  24 median $ 0.49 | Es gibt immer noch Fehler
+  k5: n= 317 median $ 1.00 | Generate a new release.
+  k6: n= 244 median $ 1.10 | Fix the DCO issue
+  k7: n= 250 median $ 1.15 | ci is failing atm
+  k8: n= 227 median $ 1.15 | what can you do?
+  k9: n=  70 median $ 1.14 | 制定 openapi 协议和 SDK 版本演化方案。
+
+repos 1157: train 1377 sessions / test 348
+H5 evaluation (repo-held-out; bar: width <= 0.8 x model-only AND ratio CI < 0.8 AND cov CI has 80%)
+  k0: n_test=  40 | cluster  13.9x (ratio CI hi 2.79) cov 85% [78%,95%] | model   7.5x | fail
+  k2: n_test=  36 | cluster  15.6x (ratio CI hi 3.13) cov 78% [67%,89%] | model   7.5x | fail
+  k3: n_test=  43 | cluster  14.8x (ratio CI hi 0.88) cov 81% [72%,91%] | model  22.2x | fail
+  k5: n_test=  65 | cluster  17.5x (ratio CI hi 1.08) cov 74% [65%,83%] | model  22.2x | fail
+  k6: n_test=  40 | cluster  11.6x (ratio CI hi 0.91) cov 57% [45%,72%] | model  22.2x | fail
+  k7: n_test=  42 | cluster  16.1x (ratio CI hi 0.93) cov 69% [57%,81%] | model  22.2x | fail
+  k8: n_test=  42 | cluster  17.0x (ratio CI hi 1.26) cov 81% [71%,90%] | model  22.2x | fail
+H5: 0 clusters pass -> FAIL (need >= 2)
+informational: model x event width median 10.6x (n=13); cluster width median 16.1x (n=10)
