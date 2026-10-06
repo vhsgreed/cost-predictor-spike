@@ -73,3 +73,21 @@ separately). Unpriced models excluded from dollar results and counted.
   Interpretation: canary underpowered (n_test 36-65 per cluster); 4 clusters have point
   ratios 0.63-0.79 but wide CIs. Final H5 verdict deferred to the full 56 GB run, same bar,
   one look. Output: canary_h5.out.
+- 2026-10-06: FULL 56 GB RUN pre-registered before data. Source: risenlab/agentlogs (HF),
+  dataset sha 04013a44d3432c6654bca1dcd4a01218a9406b80; all 276 agent_session_logs shards
+  processed fresh -> full_sessions.jsonl (same row schema as dev.jsonl; parsing identical
+  to build_dataset.py). Outputs: (a) production cost tables per (model, event, prompt-length
+  bucket) group, descriptive only (n, p10/p50/p90, mean, floor = p10 = "at least X" at 90%
+  confidence), no new hypothesis tests; (b) H5 FINAL verdict, bar UNCHANGED from the canary:
+    prompt = session-table prompt, >= 4 words; sessions with >= 4 calls and priced cost;
+    embeddings: nomic-embed-text 768d via local Ollama, L2-normalized;
+    k-means k=10, k-means++ init, 40 iters, seed 20261006, centroids FIT ON TRAIN PROMPTS
+    ONLY (canary fit on all rows; final is leakage-free), test prompts assigned to nearest
+    centroid;
+    repo split: unique repos shuffled by random.Random(20261006), first 70% train, 30% test;
+    pass per cluster (>= 30 train and >= 30 test sessions): train p10-p90 $ width <= 0.8 x
+    the width of the cluster's dominant model (train sessions of that model), 90% CI of the
+    width ratio (200 bootstrap resamples over training repos; upper bound = 95th percentile)
+    entirely below 0.8, AND test coverage 90% CI (500 membership resamples) contains 80%.
+    H5 passes if >= 2 clusters pass. ONE LOOK at the verdict; no re-tuning after.
+  H1/H4 locked test untouched: no re-selection of test shards, no re-scoring.
