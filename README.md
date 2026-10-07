@@ -7,7 +7,7 @@ Code, pre-registration and outputs behind the article draft `journal/cost-predic
 - `agentlogs/*.py`: analysis scripts. `agentlogs/*.out` / `*.json`: their committed outputs.
 - `agentlogs/figures/`: figures 1 to 6 and `groups_full.csv` (175 model x trigger x prompt-length groups: n, p10, p50, p90, mean).
 
-No dataset rows are committed. All inputs are public and downloaded at pinned revisions (see `PLAN.md`).
+No raw dataset rows are committed (`agentlogs/handcheck.html` holds derived tool-call patterns for 60 AgentLogs sessions, CC BY 4.0, used for the H2 hand-check). All inputs are public and downloaded at pinned revisions (see `PLAN.md`).
 
 ## Environment
 
