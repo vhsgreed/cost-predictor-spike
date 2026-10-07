@@ -3,7 +3,7 @@
 **Status:** DRAFT v0.2, 2026-10-07. Written by the assistant from the lab record; Karl Sundström to review, rewrite and approve before anything is public. Changes from v0.1 are listed at the end.
 **Author:** Karl Sundström (Agent Recourse).
 
-**In short.** None of the inputs we tested could say reliably, before a coding-agent run started, what it would cost; most of the spread arises during the run. Two things did work: a calibrated lower bound, and, during the run, a size threshold past which runs mostly fail.
+**TL;DR:** None of the inputs we tested could say reliably, before a coding-agent run started, what it would cost; most of the spread arises during the run. Two things did work: a calibrated lower bound, and, during the run, a size threshold past which runs mostly fail.
 
 ---
 
@@ -13,7 +13,7 @@ We asked whether the cost of an AI coding-agent run can be predicted before the 
 
 ## 1. Introduction
 
-Agent harnesses show cost after the fact, if at all. Users of routing services such as OpenRouter often see $0, because the harness never receives the provider's price ([Hermes PR #128755](https://github.com/NousResearch/hermes-agent/pull/128755) proposes a fix; we tested it and reported results there). The question behind this work is simpler and harder: when someone types a task into an agent, can we tell them what it will cost?
+<!-- Agent harnesses show cost after the fact, if at all. Users of routing services such as OpenRouter often see $0, because the harness never receives the provider's price ([Hermes PR #128755](https://github.com/NousResearch/hermes-agent/pull/128755) proposes a fix; we tested it and reported results there). The question behind this work is simpler and harder: when someone types a task into an agent, can we tell them what it will cost? -->
 
 A weather forecast is a useful comparison. It is accurate for tomorrow and useless for next month, because small differences compound. An agent run is a sequence of model calls, each depending on the last: whether the first attempt works, whether a test fails, whether the agent gets stuck. If each step is uncertain, a forecast made before step one should be wide. This study measures how wide, and what, if anything, narrows it.
 
@@ -29,6 +29,8 @@ A weather forecast is a useful comparison. It is accurate for tomorrow and usele
 - *Tail*: runs above their group's p90. *Bottom half*: at or below the group median.
 
 ## 2. Hypotheses
+
+What started out as a single hypothesis (H1) quickly grew to multiple new theories that underwent testing.
 
 Bars were committed to `agentlogs/PLAN.md` before the data they were tested on (commit in brackets). IDs: H = hypotheses on AgentLogs; R = replication on external data; O = outcome question on benchmark data.
 
