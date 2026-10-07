@@ -212,3 +212,10 @@ Prompted by an LLM-generated review of draft v0.1. Outputs: `rescore_dev.out`, `
 - Metric per call: billed usage / estimated cost. Report: median, p10-p90, share within +/-5% and +/-10%, split by cache share.
 - Validation bar: median ratio in [0.95, 1.05] AND >= 90% of calls within +/-10%. Pass => "the pricing model (tokens x list price with cache split) matches billing on N generations of model X"; scope caveat stated: this validates the pricing model on one model/account, not the Claude/GPT price entries used for AgentLogs.
 - Join integrity check: logged native tokens vs generation record tokens must match exactly.
+
+### V1 results (2026-10-07)
+1,496 logged OpenRouter calls with generation ids; 1,493 joined (3 ids returned 404, excluded). Join integrity: logged native tokens matched the billing record exactly on every joined call (0 mismatches). Model: xiaomi/mimo-v2.6-pro via OpenRouter (billing record model xiaomi/mimo-v2.6-pro-20260921).
+- billed / list-price estimate: median 1.0000 | p10 0.9586 p90 1.0152 | within 5%: 98% | within 10%: 100%.
+- Cache split correct: median 1.0000 in both high-cache (>50% cached, n=1,348) and low-cache groups (n=145).
+- Totals: billed $7.0766 vs estimated $7.1827 (0.985). Bar: PASS (median in [0.95,1.05], 100% within 10%).
+- Scope: validates the pricing MODEL (tokens x list price with cached-input split) against real billing on one model and one account. Does not validate the individual Claude/GPT price entries used for AgentLogs; those were snapshot from the same OpenRouter price list (2026-10-06) and AgentLogs has no billing records to check against. Per-call rows stay local (cost-predictor-local/billing_validation.json).
