@@ -196,3 +196,12 @@ Revisions: SWE-smith @ 08e109b4a59eaeebf80e4675cd125d42e7ac99a4 (MIT), SWE-reben
 - Agreement 23/29 (79%). Of 7 runs Karl marked corrected, the labeler caught 3 (recall 43%). Of 5 runs it marked corrected, 3 were (precision 60%).
 - Among model-"accepted" runs, Karl marked 4/24 corrected (17%) -> estimated true correction rate ~20% of human-replied runs (~13/66), not the 8% the labeler reported.
 - Verdict: labeler NOT trusted for automation. Not added to cron. Sheet with message excerpts deleted; key and answers (labels only) kept locally, gitignored.
+
+## Supplementary analyses for article v0.2 (2026-10-07; POST-HOC, descriptive, no new hypothesis tests)
+Prompted by an LLM-generated review of draft v0.1. Outputs: `rescore_dev.out`, `revision_v02.out`, `alarm_runtime_r5.out/.json`.
+- H2/H3 numbers re-run from `rescore_dev.py` (dev, exploratory): flagged share top decile 40% vs rest 12%, ratio 3.3x [3.0, 3.6]; top-decile dollars after onset 26%; H3 not-completed 5.6% (n=1,206) flagged vs 5.1% (n=7,010) clean. H2 still fails on the hand-check bar (67% false positives).
+- Ceiling pairing (held-out dev, `rescore_dev.out`): true call count known -> 4.3x (tokens), 5.3x (dollars); model+event+promptlen 14.3x / 10.7x; per-model 17.8x / 13.7x. Fig. 5 is a different, in-sample computation (dollars, deciles of true call count / tokens within group): 9.7x -> 3.0x -> 1.9x.
+- Floor comparison on the locked test (15 H1 groups): pooled coverage group floor 89.5%, model-only floor 89.6%, global floor 89.5%. Per group: group floors 83-94%, model-only 54-99%, global 52-100%. Grouping buys per-group calibration and informative values ($0.07-$1.02), not pooled coverage. Floor/median 0.21-0.45.
+- H1 passing groups cover 26.7% of locked-test sessions and 18.1% of spend.
+- Excluded low end (full run): priced sessions with <= 3 calls = 15,849 (3.6%), $5,001 (0.7% of priced spend); unpriced sessions 31,110.
+- Runtime alarm (SWE data, threshold = fit-instance group p90, held-out instances): fires on 9.9/10.8/10.9% of runs and on 4.5/5.3/2.4% of resolved runs; resolve rate fired 19.5/19.9/3.3% vs not fired 44.8/43.6/16.7%; median share of tokens still ahead when it fires 27/11/29%; est. tokens per resolved run when stopping at the alarm -9.2% / +2.6% / -20.3% (SWE-smith / SWE-rebench-OH / SWE-agent).

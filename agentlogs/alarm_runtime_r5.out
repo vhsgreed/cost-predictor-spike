@@ -1,0 +1,20 @@
+
+SWE-smith: 7240 held-out runs, 3 groups
+  alarm fires on 9.9% of runs; on 4.5% of resolved runs (false alarms if stopping)
+  resolve rate: fired 19.5% vs not fired 44.8%
+  when it fires, median 16% of turns and 27% of est. tokens are still ahead
+  est. tokens per resolved run: 1,301,787 without stopping, 1,181,816 stopping at the alarm (-9.2%)
+
+SWE-rebench-OH: 5508 held-out runs, 45 groups
+  alarm fires on 10.8% of runs; on 5.3% of resolved runs (false alarms if stopping)
+  resolve rate: fired 19.9% vs not fired 43.6%
+  when it fires, median 6% of turns and 11% of est. tokens are still ahead
+  est. tokens per resolved run: 4,282,757 without stopping, 4,394,452 stopping at the alarm (+2.6%)
+
+SWE-agent: 24682 held-out runs, 3 groups
+  alarm fires on 10.9% of runs; on 2.4% of resolved runs (false alarms if stopping)
+  resolve rate: fired 3.3% vs not fired 16.7%
+  when it fires, median 16% of turns and 29% of est. tokens are still ahead
+  est. tokens per resolved run: 1,849,830 without stopping, 1,473,693 stopping at the alarm (-20.3%)
+
+wrote alarm_runtime_r5.json

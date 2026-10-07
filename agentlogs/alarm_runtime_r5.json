@@ -1,0 +1,38 @@
+{
+ "SWE-smith": {
+  "test_runs": 7240,
+  "groups": 3,
+  "fire_rate": 0.09861878453038674,
+  "fire_rate_among_resolved": 0.04535073409461664,
+  "resolve_fired": 0.19467787114845939,
+  "resolve_not_fired": 0.44836040453570336,
+  "median_turns_remaining_after_fire": 0.1578947368421053,
+  "median_tokens_remaining_after_fire": 0.26888528500587583,
+  "est_tokens_per_resolved_no_stop": 1301787.1520391516,
+  "est_tokens_per_resolved_stop_at_alarm": 1181816.236927546
+ },
+ "SWE-rebench-OH": {
+  "test_runs": 5508,
+  "groups": 45,
+  "fire_rate": 0.10838779956427015,
+  "fire_rate_among_resolved": 0.05270150575730735,
+  "resolve_fired": 0.19932998324958123,
+  "resolve_not_fired": 0.43555284056200366,
+  "median_turns_remaining_after_fire": 0.06000000000000005,
+  "median_tokens_remaining_after_fire": 0.11129062346065366,
+  "est_tokens_per_resolved_no_stop": 4282757.128653676,
+  "est_tokens_per_resolved_stop_at_alarm": 4394452.292543245
+ },
+ "SWE-agent": {
+  "test_runs": 24682,
+  "groups": 3,
+  "fire_rate": 0.10850012154606596,
+  "fire_rate_among_resolved": 0.023607427055702918,
+  "resolve_fired": 0.03323375653472741,
+  "resolve_not_fired": 0.16728776586075259,
+  "median_turns_remaining_after_fire": 0.1643835616438356,
+  "median_tokens_remaining_after_fire": 0.2911947588421864,
+  "est_tokens_per_resolved_no_stop": 1849829.6190981432,
+  "est_tokens_per_resolved_stop_at_alarm": 1473692.5670334147
+ }
+}

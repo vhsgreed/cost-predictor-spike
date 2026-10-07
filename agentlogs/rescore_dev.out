@@ -1,0 +1,43 @@
+
+== TOKENS: 8216 sessions | fit 4331 cal 1637 test 2248 (split by repo)
+  global average             n= 2248 cov 82% [80%,83%] | p10-p90 width 18.2x [18.2,18.2] | pinball 0.388 [0.379,0.397]
+  per-model baseline         n= 2248 cov 82% [81%,83%] | p10-p90 width 17.8x [17.8,17.8] | pinball 0.383 [0.374,0.392]
+  model+event+promptlen      n= 2248 cov 82% [81%,84%] | p10-p90 width 14.3x [14.3,14.3] | pinball 0.345 [0.337,0.353]
+  CEILING: true call count   n= 2248 cov 81% [79%,82%] | p10-p90 width 4.3x [4.3,4.3] | pinball 0.196 [0.191,0.203]
+  CONTROL shuffled target: features width 17.10x vs global 16.95x -> OK
+  archetype groups (>=100 train sessions):
+    ('claude-sonnet-4.5', 'pull_request_comment', 0)           test n= 272 | group cov 84% width  7.5x | model-baseline cov 93% width 17.1x
+    ('claude-sonnet-4.5', 'issues_agent_assignment', 0)        test n= 177 | group cov 79% width  6.9x | model-baseline cov 83% width 17.1x
+    ('claude-sonnet-4.5', 'review-request', 0)                 test n= 143 | group cov 81% width 14.5x | model-baseline cov 48% width 17.1x
+    ('claude-sonnet-4', 'pull_request_comment', 0)             test n= 103 | group cov 78% width 14.4x | model-baseline cov 73% width 11.9x
+    ('claude-sonnet-4.6', 'pull_request_comment', 0)           test n=  96 | group cov 82% width 17.3x | model-baseline cov 91% width 23.1x
+    ('claude-sonnet-4.5', 'pull_request_review', 0)            test n=  98 | group cov 80% width  5.9x | model-baseline cov 96% width 17.1x
+    ('claude-sonnet-4.6', 'issues_agent_assignment', 0)        test n=  83 | group cov 73% width 15.3x | model-baseline cov 80% width 23.1x
+    ('claude-sonnet-4', 'issue_assignment', 0)                 test n=  90 | group cov 87% width  6.9x | model-baseline cov 90% width 11.9x
+    ('claude-sonnet-4', 'pull_request_review', 0)              test n=  66 | group cov 79% width  8.3x | model-baseline cov 82% width 11.9x
+    ('claude-sonnet-4.6', 'api_call_received', 0)              test n=  65 | group cov 78% width 23.8x | model-baseline cov 75% width 23.1x
+    ('claude-sonnet-4.6', 'pull_request_review', 0)            test n=  45 | group cov 89% width 23.0x | model-baseline cov 82% width 23.1x
+    ('claude-sonnet-4.6', 'pull_request_comment_non_copilot_pu test n=  50 | group cov 86% width 16.3x | model-baseline cov 88% width 23.1x
+
+== DOLLARS: 7722 sessions | fit 3715 cal 1602 test 2405 (split by repo)
+  global average             n= 2405 cov 81% [80%,82%] | p10-p90 width 15.3x [15.3,15.3] | pinball 0.372 [0.362,0.383]
+  per-model baseline         n= 2405 cov 82% [81%,83%] | p10-p90 width 13.7x [13.7,13.7] | pinball 0.353 [0.344,0.363]
+  model+event+promptlen      n= 2405 cov 82% [80%,83%] | p10-p90 width 10.7x [10.7,10.7] | pinball 0.321 [0.312,0.330]
+  CEILING: true call count   n= 2405 cov 80% [79%,81%] | p10-p90 width 5.3x [5.3,5.3] | pinball 0.232 [0.226,0.238]
+  CONTROL shuffled target: features width 15.50x vs global 15.37x -> OK
+  archetype groups (>=100 train sessions):
+    ('claude-sonnet-4.5', 'pull_request_comment', 0)           test n= 285 | group cov 77% width  6.1x | model-baseline cov 83% width 12.7x
+    ('claude-sonnet-4.5', 'issues_agent_assignment', 0)        test n= 205 | group cov 81% width  6.0x | model-baseline cov 87% width 12.7x
+    ('claude-sonnet-4.5', 'review-request', 0)                 test n= 163 | group cov 79% width  7.9x | model-baseline cov 52% width 12.7x
+    ('claude-sonnet-4', 'pull_request_comment', 0)             test n= 115 | group cov 74% width 11.2x | model-baseline cov 66% width  8.8x
+    ('claude-sonnet-4.5', 'pull_request_review', 0)            test n=  96 | group cov 78% width  5.3x | model-baseline cov 90% width 12.7x
+    ('claude-sonnet-4.6', 'pull_request_comment', 0)           test n= 138 | group cov 86% width 13.4x | model-baseline cov 89% width 17.7x
+    ('claude-sonnet-4', 'issue_assignment', 0)                 test n=  87 | group cov 68% width  4.1x | model-baseline cov 82% width  8.8x
+    ('claude-sonnet-4.6', 'issues_agent_assignment', 0)        test n= 129 | group cov 85% width 14.4x | model-baseline cov 87% width 17.7x
+    ('claude-sonnet-4', 'pull_request_review', 0)              test n=  59 | group cov 78% width  7.6x | model-baseline cov 80% width  8.8x
+    ('claude-sonnet-4.6', 'api_call_received', 0)              test n=  59 | group cov 83% width 25.0x | model-baseline cov 78% width 17.7x
+    ('claude-sonnet-4.6', 'pull_request_review', 0)            test n=  51 | group cov 86% width 17.9x | model-baseline cov 84% width 17.7x
+    ('claude-sonnet-4.6', 'pull_request_comment_non_copilot_pu test n=  41 | group cov 90% width 11.1x | model-baseline cov 95% width 17.7x
+
+== LOOPS ($, n=7722): flagged top10% 40% vs rest 12% | ratio 3.3x [3.0,3.6] | top-decile $ after onset 26%
+   H3 not-completed rate: flagged 5.6% (n=1206) vs clean 5.1% (n=7010)
