@@ -178,7 +178,7 @@ Whether stopping is worth it depends on the setup. In SWE-rebench the alarm fire
 
 ## 6. Data and code
 
-Repository: (URL to add on publication; commit to cite). Python 3.14, pyarrow 25.0.1, numpy 2.5.3, matplotlib 3.11.2, huggingface_hub 2.1.1. Inputs are public and pinned by revision; the repository contains no dataset rows. See `README.md` for run order.
+Repository: <https://github.com/vhsgreed/cost-predictor-spike>. Python 3.14, pyarrow 25.0.1, numpy 2.5.3, matplotlib 3.11.2, huggingface_hub 2.1.1. Inputs are public and pinned by revision; the repository contains no dataset rows. See `README.md` for run order.
 
 ## Change log from v0.1 (response to an LLM-generated review, 2026-10-07)
 
