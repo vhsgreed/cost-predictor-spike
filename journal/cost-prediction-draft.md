@@ -1,6 +1,6 @@
 # What an AI coding-agent run will cost: what can be known before it starts, and what can only be seen while it runs
 
-**Version:** 1.1, 2026-10-07. Changes from the first draft are listed at the end.
+**Version:** 1.2, 2026-10-07. Changes from the first draft are listed at the end.
 **Author:** Karl Sundström (Agent Recourse), corresponding and accountable for all claims.
 **Contributions:** Study design, analysis code, statistics and drafting by an AI agent (Claude Opus, running in Hermes Agent) under the author's direction. The author posed the research questions, proposed the lower-bound, stopping-backtest and work-versus-success framings, rated the hand-checks, edited the text and approved every claim. Errors are the author's responsibility to correct.
 
@@ -63,7 +63,7 @@ Analyses added after a draft review are labelled **post-hoc** where they appear.
 
 **Data.** `risenlab/agentlogs` (CC BY 4.0, revision `04013a44d3432c6654bca1dcd4a01218a9406b80`): step logs of GitHub-triggered coding-agent sessions, mostly on Claude Sonnet models. All 276 log shards were parsed. Sessions with at least 4 priced calls were kept: 424,108 sessions in 30,143 repositories. The cut excludes 15,849 priced sessions with 3 or fewer calls (3.6% of priced sessions, 0.7% of priced spend) and 31,110 sessions on models without a list price. Repository metadata (1.8M repositories) joined to every kept session.
 
-**Cost.** Tokens multiplied by a snapshot of OpenRouter list prices taken on 2026-10-06 (`lab.py`), with cached input priced separately. This is a list-price equivalent: it ignores negotiated discounts, provider routing, subscription plans and failed calls, and no public dataset was available to check it against billed amounts. Dollar figures describe the logged period at those prices, not current prices.
+**Cost.** Tokens multiplied by a snapshot of OpenRouter list prices taken on 2026-10-06 (`lab.py`), with cached input priced separately. This is a list-price equivalent: it ignores negotiated discounts, provider routing, subscription plans and failed calls, and the AgentLogs population has no billing records to check against. The pricing model itself was validated against real billing (post-hoc, PLAN.md V1): on 1,493 OpenRouter-billed generations of the author's own account, tokens x list price with the cached-input split matched the billed amount with a median ratio of 1.0000 (p10 to p90: 0.96 to 1.02; every call within 10%), and the cache split held at high and low cache shares alike. This validates the pricing model on one model and one account, not the individual Claude and GPT price entries used for AgentLogs. Dollar figures describe the logged period at those prices, not current prices.
 
 **Splits.** Development shards were explored freely; five validation shards were used once per decision; ten locked-test shards, drawn with `random.Random(20261006)`, were used exactly once (H1, H4). Later rounds split by repository (or by task instance for benchmarks), so every tested range is scored on repositories it was not fitted on. For H7, a user's history counts only sessions created strictly before the predicted one; the same user may appear in fit and test data by design, since a deployed tool would know the user's own past.
 
@@ -173,7 +173,7 @@ Whether stopping is worth it depends on the setup. In SWE-rebench the alarm fire
 
 **Limits.**
 - AgentLogs is one population: GitHub-triggered agents, mostly Claude Sonnet.
-- Cost is list-price-equivalent, not billed.
+- Cost is list-price-equivalent, not billed; the pricing model was validated against real billing on one model and account (section 4), the AgentLogs price entries were not.
 - The failure results use estimated size on benchmark tasks, and they are associational.
 - The external replication was not evaluable under its registered rule.
 - The ceiling in Fig. 5 is in-sample.
@@ -184,6 +184,7 @@ Whether stopping is worth it depends on the setup. In SWE-rebench the alarm fire
 - R4 eligibility and the developer-set split were amended before cost was read, from group sizes only.
 - R4 computed its results, crashed in a summary print, and was re-run with fixed seeds; the numbers were identical.
 - One benchmark file set held 2,255 duplicate rows. Removing them changed the SWE-smith ratio from 0.38 to 0.40; the corrected figures are used throughout.
+- v1.2: the pricing model validated against 1,493 OpenRouter-billed generations (median ratio 1.0000); the earlier statement that cost "could not be checked" against billing now applies only to the AgentLogs population's price entries.
 - v1.1: Related work section added ([arXiv:2604.22750](https://arxiv.org/abs/2604.22750), TokenCast [arXiv:2609.35760](https://arxiv.org/abs/2609.35760)); version 1.0 cited neither.
 - The first draft overstated the replication and misreported several details; see the change log.
 
