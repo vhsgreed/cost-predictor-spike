@@ -235,3 +235,4 @@ Baselines: (a) unconditional group median final; (b) k-only table (same method, 
 Metrics (update points k >= 3, pooled): MAE on final size (bootstrap ratio over instances, 200 resamples, 90% CI); 80% interval coverage (fit p10-p90). Bar: MAE ratio vs best baseline <= 0.8 with CI upper < 0.8 AND pooled coverage CI contains 80%, in >= 2 of 3 datasets. One look.
 
 Descriptive (no bar): MAE and MAPE by turn bucket (when does the forecast become useful); task-start (k=1) coverage and error; per-dataset tables.
+- Round 6 process note: first execution killed before any evaluation output (quantile recomputation made it too slow). Predictions precomputed per cell (same quantiles on the same fit lists, identical math); no method, cell, threshold or bar changed.

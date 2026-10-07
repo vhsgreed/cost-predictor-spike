@@ -72,14 +72,15 @@ def analyse(ds):
     print(f"{ds}: {len(rows)} runs, fit {len(fit)} / test {len(test)}; "
           f"{sum(len(v) >= 50 for v in cells.values())} of {len(cells)} cells have >= 50 fit rows", flush=True)
 
+    tq = lambda v: (q(v, .5), q(v, .1), q(v, .9))
+    gm = {g: tq(v) for g, v in gfin.items()}
+    PRED = {("x", k1, k2): tq(v) for (k1, k2), v in cells.items() if len(v) >= 50}
+    PRED.update({("k", g, k1): tq(v) for (g, k1), v in kcells.items() if len(v) >= 50})
+    KMED = {(g, k1): q(v, .5) for (g, k1), v in kcells.items() if len(v) >= 50}
+
     def predict(g, k, c):
         x = c / med[g]
-        for key in ((kb(k), xb(x)), (kb(k),), None):
-            v = cells.get(key) if key and len(key) == 2 else kcells.get(key) if key else gfin[g]
-            if v and len(v) >= 50:
-                return q(v, .5), q(v, .1), q(v, .9)
-        v = gfin[g]
-        return q(v, .5), q(v, .1), q(v, .9)
+        return PRED.get(("x", kb(k), xb(x))) or PRED.get(("k", g, kb(k))) or gm[g]
 
     per = defaultdict(lambda: [0.0, 0.0, 0.0, 0, 0, 0.0, 0.0])  # e_ours,e_a,e_b,hit,n,ape,best_ape
     kbuck = defaultdict(lambda: [0.0, 0.0, 0])  # ours err, best-baseline err, n (k>=3)
@@ -96,8 +97,8 @@ def analyse(ds):
             p, lo, hi = predict(g, k, c)
             e_o = abs(p - fin)
             e_a = abs(ga - fin)
-            p_b = kcells.get((g, kb(k)))
-            e_b = abs(q(p_b, .5) - fin) if p_b and len(p_b) >= 50 else e_a
+            pm = KMED.get((g, kb(k)))
+            e_b = abs(pm - fin) if pm is not None else e_a
             acc[0] += e_o; acc[1] += e_a; acc[2] += e_b
             acc[3] += lo <= fin <= hi; acc[4] += 1; acc[5] += e_o / fin; acc[6] += min(e_o, e_a, e_b) / fin
             b = kbuck[min(k, 21)]
