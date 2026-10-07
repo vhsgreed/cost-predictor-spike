@@ -36,15 +36,15 @@ Bars were committed to `agentlogs/PLAN.md` before the data they were tested on (
 
 | ID | Claim | Pass bar | Registered |
 |---|---|---|---|
-| H1 | Groups (model x trigger x prompt length) give narrower ranges than the model alone | width <= 0.8x model-only, 90% CI upper of that ratio < 0.8, coverage CI contains 80%; in >= 3 of 15 groups | `fc4ec02` |
-| H2 | A loop detector flags runs over-represented in the most expensive tenth | ratio >= 2.0 (CI lower >= 1.5) AND >= 20% of top-decile spend after onset AND hand-check false-positive rate <= 30% | `fc4ec02` |
-| H3 | Flagged runs fail more often | exploratory, no bar | `fc4ec02` |
-| H4 | p10 is a calibrated lower bound | overall coverage CI contains 90% AND per-group CI contains 90% in >= 2/3 of groups | `88dfab6` |
-| H5 | Prompt-text clusters narrow ranges | >= 2 clusters pass the H1 width bar | `78fa206`; final `cff0cea` |
-| H6 | Repository language and size narrow ranges further | >= 1/3 of groups pass | `9638be8` |
-| H7 | The user's own recent runs narrow ranges further | >= 1/3 of groups pass | `9638be8` |
-| R4 | H1 and H4 replicate on other public datasets | pass in every evaluable dataset, >= 2 evaluable | `2b8c3f7` |
-| O1 | Tail runs resolve their task less often | tail/bottom-half resolve ratio <= 0.8 and CI upper < 0.8, in >= 2 datasets | `272c139` |
+| H1 | Groups (model x trigger x prompt length) give narrower ranges than the model alone | width <= 0.8x model-only, 90% CI upper of that ratio < 0.8, coverage CI contains 80%; in >= 3 of 15 groups | `fb27fea` |
+| H2 | A loop detector flags runs over-represented in the most expensive tenth | ratio >= 2.0 (CI lower >= 1.5) AND >= 20% of top-decile spend after onset AND hand-check false-positive rate <= 30% | `fb27fea` |
+| H3 | Flagged runs fail more often | exploratory, no bar | `fb27fea` |
+| H4 | p10 is a calibrated lower bound | overall coverage CI contains 90% AND per-group CI contains 90% in >= 2/3 of groups | `1ff548f` |
+| H5 | Prompt-text clusters narrow ranges | >= 2 clusters pass the H1 width bar | `d0dc38c`; final `9f586dd` |
+| H6 | Repository language and size narrow ranges further | >= 1/3 of groups pass | `8553873` |
+| H7 | The user's own recent runs narrow ranges further | >= 1/3 of groups pass | `8553873` |
+| R4 | H1 and H4 replicate on other public datasets | pass in every evaluable dataset, >= 2 evaluable | `2f66621` |
+| O1 | Tail runs resolve their task less often | tail/bottom-half resolve ratio <= 0.8 and CI upper < 0.8, in >= 2 datasets | `9c8a822` |
 
 Analyses added after a draft review are labelled **post-hoc** where they appear.
 
