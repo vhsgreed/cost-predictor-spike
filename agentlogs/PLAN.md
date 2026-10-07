@@ -205,3 +205,10 @@ Prompted by an LLM-generated review of draft v0.1. Outputs: `rescore_dev.out`, `
 - H1 passing groups cover 26.7% of locked-test sessions and 18.1% of spend.
 - Excluded low end (full run): priced sessions with <= 3 calls = 15,849 (3.6%), $5,001 (0.7% of priced spend); unpriced sessions 31,110.
 - Runtime alarm (SWE data, threshold = fit-instance group p90, held-out instances): fires on 9.9/10.8/10.9% of runs and on 4.5/5.3/2.4% of resolved runs; resolve rate fired 19.5/19.9/3.3% vs not fired 44.8/43.6/16.7%; median share of tokens still ahead when it fires 27/11/29%; est. tokens per resolved run when stopping at the alarm -9.2% / +2.6% / -20.3% (SWE-smith / SWE-rebench-OH / SWE-agent).
+
+## Validation V1: list-price-equivalent cost vs billed cost (2026-10-07, before computing ratios)
+- Data: the author's own OpenRouter-billed calls (gen ids + token counts from local agent.log*; numbers only, not published). Schema checked on one record: generation endpoint returns billed `usage` and native token counts that match the logged values.
+- Estimate model under test: uncached input x prompt price + cached input x cache-read price + output x completion price, using OpenRouter list prices for the model from /api/v1/models fetched 2026-10-07 (price date noted; drift disclosed).
+- Metric per call: billed usage / estimated cost. Report: median, p10-p90, share within +/-5% and +/-10%, split by cache share.
+- Validation bar: median ratio in [0.95, 1.05] AND >= 90% of calls within +/-10%. Pass => "the pricing model (tokens x list price with cache split) matches billing on N generations of model X"; scope caveat stated: this validates the pricing model on one model/account, not the Claude/GPT price entries used for AgentLogs.
+- Join integrity check: logged native tokens vs generation record tokens must match exactly.
