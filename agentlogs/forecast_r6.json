@@ -1,0 +1,60 @@
+{
+ "SWE-smith": {
+  "runs": 23821,
+  "test": 7256,
+  "update_points": 206102,
+  "mae_ours": 10842.027257134816,
+  "mae_baseline": 12083.674909753423,
+  "baseline": "k-only table",
+  "ratio": 0.8972458575812561,
+  "ratio_ci": [
+   0.8831479297961147,
+   0.9089679258315156
+  ],
+  "coverage": 0.8030198639508593,
+  "coverage_ci": [
+   0.7948351014164997,
+   0.8115780573929477
+  ],
+  "pass": false
+ },
+ "SWE-rebench-OH": {
+  "runs": 67074,
+  "test": 9900,
+  "update_points": 652813,
+  "mae_ours": 10711.776432531215,
+  "mae_baseline": 10652.266947425986,
+  "baseline": "k-only table",
+  "ratio": 1.0055865559320787,
+  "ratio_ci": [
+   0.9820227956407162,
+   1.0253444664590825
+  ],
+  "coverage": 0.807320013541397,
+  "coverage_ci": [
+   0.7958065021601737,
+   0.8186455486997021
+  ],
+  "pass": false
+ },
+ "SWE-agent": {
+  "runs": 80035,
+  "test": 23265,
+  "update_points": 572163,
+  "mae_ours": 5380.010753928514,
+  "mae_baseline": 5466.271725452362,
+  "baseline": "k-only table",
+  "ratio": 0.9842194139156684,
+  "ratio_ci": [
+   0.9789480557646634,
+   0.9896040668478784
+  ],
+  "coverage": 0.7983756377116311,
+  "coverage_ci": [
+   0.7905234750080999,
+   0.8065583201495757
+  ],
+  "pass": false
+ },
+ "verdict": "FAIL"
+}

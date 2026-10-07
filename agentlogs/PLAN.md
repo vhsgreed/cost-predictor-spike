@@ -237,3 +237,10 @@ Metrics (update points k >= 3, pooled): MAE on final size (bootstrap ratio over 
 Descriptive (no bar): MAE and MAPE by turn bucket (when does the forecast become useful); task-start (k=1) coverage and error; per-dataset tables.
 - Round 6 process note: first execution killed before any evaluation output (quantile recomputation made it too slow). Predictions precomputed per cell (same quantiles on the same fit lists, identical math); no method, cell, threshold or bar changed.
 - Round 6 second process note: first complete run crashed on SWE-rebench (test runs in repos with no fit rows had no group table). Fix: skip test runs whose group has < 50 fit rows (the fallback chain's own support rule). SWE-smith results had printed before the crash and are disclosed as seen; seeds fixed, so re-running all three gives identical smith numbers. No threshold or bar changed.
+
+### Round 6 results (one look; `forecast_r6.out` / `forecast_r6.json`)
+- Bar: FAIL, 0/3. MAE ratio vs best baseline (k-only table won everywhere): SWE-smith 0.897 [0.883, 0.909]; SWE-rebench-OH 1.006 [0.982, 1.025]; SWE-agent 0.984 [0.979, 0.990]. Bar <= 0.8 in >= 2 datasets not met.
+- Interval calibration (the other half of the bar) held everywhere: 80% coverage 80.3% [79.5, 81.2] / 80.7% [79.6, 81.9] / 79.8% [79.1, 80.7]. Task-start coverage 82.2% / 74.8% / 78.8%.
+- Descriptive: cumulative-size evidence helps only late (SWE-smith turns 15-20 ratio 0.91-0.98 vs 1.02-1.12 at turns 3-14). SWE-agent: k-only baseline very strong at turns 11+ (runs have step caps).
+- Practical limit: 10,415 of 20,315 SWE-rebench test runs were skipped (repositories with < 50 fit runs); repo-level tables need prior history in that repo.
+- Conclusion: a cheap table forecast gives honest calibrated intervals but little point accuracy over a turn-count-only baseline; TokenCast's learned compositional models (14.5% MAE reduction vs their comparators, different accounting) find more.
