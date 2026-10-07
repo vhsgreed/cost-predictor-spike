@@ -1,6 +1,6 @@
 # What an AI coding-agent run will cost: what can be known before it starts, and what can only be seen while it runs
 
-**Version:** 1.0, 2026-10-07. Changes from the first draft are listed at the end.
+**Version:** 1.1, 2026-10-07. Changes from the first draft are listed at the end.
 **Author:** Karl Sundström (Agent Recourse), corresponding and accountable for all claims.
 **Contributions:** Study design, analysis code, statistics and drafting by an AI agent (Claude Opus, running in Hermes Agent) under the author's direction. The author posed the research questions, proposed the lower-bound, stopping-backtest and work-versus-success framings, rated the hand-checks, edited the text and approved every claim. Errors are the author's responsibility to correct.
 
@@ -22,14 +22,24 @@ A weather forecast is a useful comparison. It is accurate for tomorrow and usele
 - *Session* or *run*: one agent invocation from trigger to finish.
 - *Trigger*: what started it (a PR comment, an issue assignment, a review request, an API call).
 - *Priced session*: a session with at least 4 model calls, all on models with a known list price.
-- *Cost*: list-price-equivalent spend, defined in §3; not a billed amount.
+- *Cost*: list-price-equivalent spend, defined in §4; not a billed amount.
 - *Group*: model x trigger x prompt-length bucket (under 200, 200 to 1,499, 1,500+ characters).
 - *Range*: p10 to p90 of training costs in a group (nominal 80% interval). *Width*: p90/p10.
 - *Lower bound* (called "floor" in v0.1): a p10 of training costs, a one-sided bound that a new run is expected to meet or exceed 90% of the time. It is a prediction bound, not a guarantee.
 - *Estimated size*: for benchmark data without cost, the sum over assistant turns of the cumulative characters read up to that turn, divided by 4.
 - *Tail*: runs above their group's p90. *Bottom half*: at or below the group median.
 
-## 2. Hypotheses
+## 2. Related work
+
+Three lines of work stand next to this study.
+
+**Pre-execution prediction.** "How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consumption in Agentic Coding Tasks" (arXiv:2604.22750, Microsoft Research and Stanford Digital Economy Lab) asks the same pre-execution question on SWE-bench Verified with eight frontier models. Agentic coding consumed about 1000x more tokens than chat or reasoning; input tokens dominated, because each call re-reads the whole growing context; and consumption on the same task varied by up to 30x across runs. Human difficulty ratings only weakly aligned with cost, and more tokens did not mean more accuracy. Asking the agent to predict its own consumption reached at most 0.39 correlation and systematically underestimated. Our findings are consistent: our replicate spread (median 1.55x across three identical runs) summarises the same stochasticity from a different angle, and our locked tests extend the negative result to prompt text, repository context and user history on 424,108 sessions of a different population (commercial GitHub-triggered agents).
+
+**During-execution forecasting.** TokenCast (arXiv:2609.35760) forecasts *remaining* consumption while the run unfolds. It decomposes each execution segment into call count, net context growth and a cost residual; an exact composition identity prices the repeated input cost of carried context; LightGBM models combine a direct forecast with a prefix-suffix forecast, refreshed from observed evidence at 2.1 ms per call and with no extra LLM calls. It reduces mean absolute error by 14.5% against the strongest comparator across 96 combinations, with calibrated intervals covering 82% at task start (52.7% for self-prediction), and saves 21.3% of tokens in offline budget replay. It is weakest at the earliest checkpoints, which matches our finding that little is knowable before execution. The two instruments are complementary: a remaining-cost forecast says how far a run will go; the size threshold of section 5.7 says when it is going wrong.
+
+**Response-level prediction.** Predicting the length of a single response (from the prompt, refined during decoding) is a different problem: the input is known and one call is at stake. Response lengths are heavy-tailed, which limits prompt-only estimates. See the works surveyed in TokenCast.
+
+## 3. Hypotheses
 
 What started out as a single hypothesis (H1) quickly grew to multiple new theories that underwent testing.
 
@@ -49,7 +59,7 @@ Bars were committed to `agentlogs/PLAN.md` before the data they were tested on (
 
 Analyses added after a draft review are labelled **post-hoc** where they appear.
 
-## 3. Method
+## 4. Method
 
 **Data.** `risenlab/agentlogs` (CC BY 4.0, revision `04013a44d3432c6654bca1dcd4a01218a9406b80`): step logs of GitHub-triggered coding-agent sessions, mostly on Claude Sonnet models. All 276 log shards were parsed. Sessions with at least 4 priced calls were kept: 424,108 sessions in 30,143 repositories. The cut excludes 15,849 priced sessions with 3 or fewer calls (3.6% of priced sessions, 0.7% of priced spend) and 31,110 sessions on models without a list price. Repository metadata (1.8M repositories) joined to every kept session.
 
@@ -63,9 +73,9 @@ Analyses added after a draft review are labelled **post-hoc** where they appear.
 
 **External data.** Replication used `Exgentic/agent-llm-traces-v2` (10,056 benchmark runs with reported agent cost; no licence listed) and `MaxDevv/real-pi-coding-agent-traces-sessions` (1,291 developer sessions; licence "other"). From these, only aggregate statistics are reported and no rows are redistributed. A third candidate, `open-agent-leaderboard/traces`, was dropped before any cost was read because 94% of its sessions duplicated Exgentic. The outcome question used `SWE-bench/SWE-smith-trajectories` (MIT), `nebius/SWE-rebench-openhands-trajectories` and `nebius/SWE-agent-trajectories` (both CC BY 4.0): 171,000 runs with a test-verified resolved label and no cost. The divisor in "characters / 4" does not affect any result: every threshold is a within-group percentile, and dividing all sizes by a constant leaves every rank unchanged.
 
-## 4. Results
+## 5. Results
 
-### 4.1 Cost is skewed and concentrated
+### 5.1 Cost is skewed and concentrated
 
 Every model's mean sits well above its median (Fig. 1). The most expensive 1% of sessions carry 17% of all spend and the most expensive 10% carry 46% (Fig. 4). Within each group, sessions above the group's p90 still carry 40% of that group's spend.
 
@@ -73,7 +83,7 @@ Every model's mean sits well above its median (Fig. 1). The most expensive 1% of
 
 ![Fig. 4. Share of spend against share of sessions, most expensive first. Top 1% = 17% of spend, top 10% = 46%.](../agentlogs/figures/fig4_spend_concentration.svg)
 
-### 4.2 Before the run: ranges
+### 5.2 Before the run: ranges
 
 | Test (registered) | Result |
 |---|---|
@@ -91,7 +101,7 @@ Fig. 3 shows what confidence costs. A range that contains the true cost half the
 
 ![Fig. 3. Range around the group median needed for a given confidence, median over 175 groups.](../agentlogs/figures/fig3_confidence_vs_range.svg)
 
-### 4.3 Before the run: the lower bound
+### 5.3 Before the run: the lower bound
 
 H4 passed on the locked test (registered). Its overall bound, the p10 of all development sessions ($0.23), was met by 90.0% of the 15,349 test sessions. Per-group bounds were consistent with 90% in 10 of 15 groups.
 
@@ -103,7 +113,7 @@ A post-hoc comparison shows what grouping adds. Pooled over the 15 groups, the g
 
 For Sonnet 4.5 review requests, the global bound of $0.23 held for only 52% of runs, while the group bound ($0.07) held for 91%. Group bounds are also informative values, from $0.07 to $1.02, at 21% to 45% of the group median. Per-group detail is in `revision_v02.out`; the full table of 175 groups is in `agentlogs/figures/groups_full.csv`.
 
-### 4.4 Why prediction stays wide
+### 5.4 Why prediction stays wide
 
 Two measurements bound what the tested predictors could achieve.
 
@@ -115,19 +125,19 @@ Two measurements bound what the tested predictors could achieve.
 
 What this shows is narrower than impossibility. None of the inputs we tested gave reliable narrowing out of sample, and a meaningful spread remains even with information no pre-run predictor could have. A predictor using inputs we did not test, such as the repository's state or the agent's planned steps, might do better.
 
-### 4.5 External validation: one evaluable dataset
+### 5.5 External validation: one evaluable dataset
 
 The registered rule (R4) needed two independent evaluable datasets. Neither candidate met the registered minimum group size (100 fit / 30 test sessions). Under a secondary minimum of 50 / 20, added before any cost was read and labelled secondary throughout, only Exgentic qualified (60 groups); the developer-session set had one eligible group. **R4 is therefore not evaluable**, for both H1 and H4.
 
 In the secondary Exgentic analysis, the lower bound held for 90.1% [89.1%, 91.4%] of held-out runs, and 48 of 60 groups were individually consistent with 90%. The range result (29 of 60 groups passing) mostly reflects model-only baselines that mix six benchmarks and are therefore very wide (up to 232x). Where a model's baseline was narrow (GPT-5.2, 6.2x), 1 of 11 groups passed and 4 were wider than baseline.
 
-### 4.6 During the run: loops (H2, H3)
+### 5.6 During the run: loops (H2, H3)
 
 A detector flagged runs with long stretches of repeated identical tool calls or no file edits. On development data, flagged runs were 3.3x [3.0, 3.6] as common in the most expensive tenth as elsewhere (40% vs 12%), and 26% of top-tenth spend came after the flag. In a blind hand-check of 60 runs by one rater, 20 of 30 flagged runs were judged not to be stuck: a 67% false-positive rate against the registered 30% maximum. **H2 fails.** The rater's answers also drifted with case order, so the reference itself is weak.
 
 H3 (exploratory): flagged runs ended as failed, cancelled or timed out 5.6% of the time (n = 1,206), against 5.1% for the rest (n = 7,010): essentially no difference. The flag marks expensive runs, not stuck or failing ones, and it was dropped as a loop detector.
 
-### 4.7 During the run: size and failure (O1)
+### 5.7 During the run: size and failure (O1)
 
 | Dataset | Runs | Resolve rate, tail | Resolve rate, bottom half | Ratio [90% CI] |
 |---|---|---|---|---|
@@ -152,13 +162,13 @@ This is an association. Harder tasks are both larger and more often failed, so O
 
 Whether stopping is worth it depends on the setup. In SWE-rebench the alarm fires late (11% of the run left), and stopping costs more resolved runs than it saves in tokens. A warning, which leaves the decision to a person, has no such cost; whether people act on it well is untested.
 
-## 5. Discussion
+## 6. Discussion
 
 **What the evidence supports.** A substantial part of agent-run cost was not predictable from any input we tested, and that part shows up during the run. Coarse lower bounds stay calibrated per group, and a run's size relative to similar runs is a strong in-run signal of trouble.
 
 **What can be built honestly from this:**
 1. *Before sending:* a calibrated lower bound and a typical value per model and trigger ("at least $0.54, usually $1.29"), with the range shown as the wide thing it is.
-2. *During the run:* a warning when the run crosses what 90% of similar runs reached. On benchmarks, failing runs collect there. Stopping automatically is a trade whose sign depends on the setup.
+2. *During the run:* a warning when the run crosses what 90% of similar runs reached. On benchmarks, failing runs collect there. Stopping automatically is a trade whose sign depends on the setup. Pairing the warning with a remaining-cost forecast of the TokenCast kind (section 2) would show both how far a run will go and when it is going wrong.
 3. *For long conversations:* separate the work an agent does from the context it carries, and show both. All public datasets used here contain task runs; agents used as long-running conversation partners re-read their growing context on every call, a cost pattern these data cannot measure.
 
 **Limits.**
@@ -174,26 +184,27 @@ Whether stopping is worth it depends on the setup. In SWE-rebench the alarm fire
 - R4 eligibility and the developer-set split were amended before cost was read, from group sizes only.
 - R4 computed its results, crashed in a summary print, and was re-run with fixed seeds; the numbers were identical.
 - One benchmark file set held 2,255 duplicate rows. Removing them changed the SWE-smith ratio from 0.38 to 0.40; the corrected figures are used throughout.
+- v1.1: Related work section added (arXiv:2604.22750, TokenCast arXiv:2609.35760); version 1.0 cited neither.
 - The first draft overstated the replication and misreported several details; see the change log.
 
-## 6. Data and code
+## 7. Data and code
 
 Repository: <https://github.com/vhsgreed/cost-predictor-spike>. Python 3.14, pyarrow 25.0.1, numpy 2.5.3, matplotlib 3.11.2, huggingface_hub 2.1.1. Inputs are public and pinned by revision; the repository contains no dataset rows. See `README.md` for run order.
 
 ## Change log from v0.1 (response to an LLM-generated review, 2026-10-07)
 
-- Abstract no longer claims a successful independent replication; §4.5 states that R4 is not evaluable.
-- H2 and H3 reported (§4.6).
+- Abstract no longer claims a successful independent replication; §5.5 states that R4 is not evaluable.
+- H2 and H3 reported (§5.6).
 - "Cost" defined as list-price-equivalent, with the price snapshot date; benchmark size called "estimated size" throughout.
 - H1 described with its registered grouping; "about a third of situations" replaced by session and spend shares.
 - Ceiling numbers paired with their conditions; in-sample vs held-out stated; nonzero spread explained.
 - "Floor" renamed to a 90% lower bound; the overall H4 figure reported as 90.0% (v0.1 printed a degenerate-looking "[90%, 90%]"); post-hoc comparison with model-only and global bounds added.
-- "The information does not exist" replaced with the narrower claim in §4.4.
+- "The information does not exist" replaced with the narrower claim in §5.4.
 - Runtime alarm analysis added (post-hoc).
-- n = 1 case study on the author's own logs removed (not reproducible from public data); the research gap it pointed to is kept as one sentence in §5.
+- n = 1 case study on the author's own logs removed (not reproducible from public data); the research gap it pointed to is kept as one sentence in §6.
 - Notes on H7's 0.88, multiplicity, H7 history construction, the excluded low end, the divisor, SWE-agent's base rate, bootstrap sidedness and licences.
 - Abstract ratio range corrected from "2.5 to 7" to "2.3 to 7".
 - Not changed:
   - The reviewer's claim that SWE-agent's overall resolve rate is 3.5%. It is 16.7%; 3.5% is the tail.
-  - The request for a chars/4 sensitivity analysis. The results are rank-invariant, so one sentence in §3 covers it.
+  - The request for a chars/4 sensitivity analysis. The results are rank-invariant, so one sentence in §4 covers it.
   - Validation against billed cost. No public data exists for it, so the claim was narrowed instead.
