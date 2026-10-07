@@ -219,3 +219,19 @@ Prompted by an LLM-generated review of draft v0.1. Outputs: `rescore_dev.out`, `
 - Cache split correct: median 1.0000 in both high-cache (>50% cached, n=1,348) and low-cache groups (n=145).
 - Totals: billed $7.0766 vs estimated $7.1827 (0.985). Bar: PASS (median in [0.95,1.05], 100% within 10%).
 - Scope: validates the pricing MODEL (tokens x list price with cached-input split) against real billing on one model and one account. Does not validate the individual Claude/GPT price entries used for AgentLogs; those were snapshot from the same OpenRouter price list (2026-10-06) and AgentLogs has no billing records to check against. Per-call rows stay local (cost-predictor-local/billing_validation.json).
+
+## Round 6 pre-registration: remaining-cost forecast during the run (2026-10-07, before any forecast is computed)
+
+Question: given evidence from a run in progress (turns elapsed, cumulative estimated size), how accurately can the remaining and final cost be forecast, and how does accuracy evolve as the run unfolds? Complements O1 (threshold alarm) and TokenCast (arXiv:2609.35760), whose absolute numbers are not comparable (different token accounting); baselines here are internal.
+
+Data: same three sets as O1 (SWE-smith train files deduped, SWE-rebench-OH, SWE-agent; revisions pinned in round 5's freeze). Estimated size = cumulative chars / 4 summed over assistant turns, as before.
+
+Split: 70% fit / 30% test by instance_id, `random.Random(20261014)`. All thresholds, medians and cells fitted on fit instances only.
+
+Method (table forecast): at each update point (after assistant turn k), x = cumulative so far / fit-group median final size. Cell = (k bucket: 1,2,3,4-5,6-10,11-20,21-40,41+; x bucket: <0.1,0.1-0.25,0.25-0.5,0.5-0.75,0.75-1,1-1.5,>=1.5). Point forecast of FINAL size = median of fit cell finals; interval = fit cell p10-p90. Fallback: cell < 50 fit rows -> k-only cell -> group table.
+
+Baselines: (a) unconditional group median final; (b) k-only table (same method, x ignored). The better of the two is the reference.
+
+Metrics (update points k >= 3, pooled): MAE on final size (bootstrap ratio over instances, 200 resamples, 90% CI); 80% interval coverage (fit p10-p90). Bar: MAE ratio vs best baseline <= 0.8 with CI upper < 0.8 AND pooled coverage CI contains 80%, in >= 2 of 3 datasets. One look.
+
+Descriptive (no bar): MAE and MAPE by turn bucket (when does the forecast become useful); task-start (k=1) coverage and error; per-dataset tables.
