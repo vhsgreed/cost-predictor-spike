@@ -190,3 +190,9 @@ Revisions: SWE-smith @ 08e109b4a59eaeebf80e4675cd125d42e7ac99a4 (MIT), SWE-reben
 - Stopping backtest (exploratory): stop at group p90 saves 13.5% / 2.6% / 21.8% of est. tokens and loses 4.7% (4.9% dedup) / 5.2% / 2.1% of resolved runs. p95: 4.1/1.1/14.1% saved, 1.9/2.3/0.8% lost. Saving exceeds loss in D1 and D3, not in D2.
 - Resolve rate falls nearly monotonically with cost decile in all three (D1 62% -> 21%, D2 60% -> 23%, D3 peaks at 32% in decile 2, then falls to 3-4%).
 - Limits: estimated tokens, not billed cost; benchmark runs, not real use; difficulty confounds (association, not cause).
+
+## Success-label check (2026-10-07, one rater, blind)
+30 runs (all 5 model-"corrected" + 25 random model-"accepted"), rater Karl, 1 unsure excluded.
+- Agreement 23/29 (79%). Of 7 runs Karl marked corrected, the labeler caught 3 (recall 43%). Of 5 runs it marked corrected, 3 were (precision 60%).
+- Among model-"accepted" runs, Karl marked 4/24 corrected (17%) -> estimated true correction rate ~20% of human-replied runs (~13/66), not the 8% the labeler reported.
+- Verdict: labeler NOT trusted for automation. Not added to cron. Sheet with message excerpts deleted; key and answers (labels only) kept locally, gitignored.
