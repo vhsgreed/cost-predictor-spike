@@ -236,3 +236,4 @@ Metrics (update points k >= 3, pooled): MAE on final size (bootstrap ratio over 
 
 Descriptive (no bar): MAE and MAPE by turn bucket (when does the forecast become useful); task-start (k=1) coverage and error; per-dataset tables.
 - Round 6 process note: first execution killed before any evaluation output (quantile recomputation made it too slow). Predictions precomputed per cell (same quantiles on the same fit lists, identical math); no method, cell, threshold or bar changed.
+- Round 6 second process note: first complete run crashed on SWE-rebench (test runs in repos with no fit rows had no group table). Fix: skip test runs whose group has < 50 fit rows (the fallback chain's own support rule). SWE-smith results had printed before the crash and are disclosed as seen; seeds fixed, so re-running all three gives identical smith numbers. No threshold or bar changed.

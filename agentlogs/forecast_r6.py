@@ -82,6 +82,9 @@ def analyse(ds):
         x = c / med[g]
         return PRED.get(("x", kb(k), xb(x))) or PRED.get(("k", g, kb(k))) or gm[g]
 
+    skip = sum(1 for g, _, _ in test if len(gfin[g]) < 50)
+    print(f"  test runs skipped, group has < 50 fit rows: {skip}")
+    test = [(g, i, s) for g, i, s in test if len(gfin[g]) >= 50]
     per = defaultdict(lambda: [0.0, 0.0, 0.0, 0, 0, 0.0, 0.0])  # e_ours,e_a,e_b,hit,n,ape,best_ape
     kbuck = defaultdict(lambda: [0.0, 0.0, 0])  # ours err, best-baseline err, n (k>=3)
     start = [0.0, 0, 0]  # error, covered, n
