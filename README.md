@@ -5,7 +5,7 @@ Code, pre-registration and outputs behind the article draft `journal/cost-predic
 
 - `agentlogs/PLAN.md`: every hypothesis and pass bar, with the date it was written; check commit history to see that each bar predates the data it was tested on. Also the change log of errors and amendments.
 - `agentlogs/*.py`: analysis scripts. `agentlogs/*.out` / `*.json`: their committed outputs.
-- `agentlogs/figures/`: figures 1 to 6 and `groups_full.csv` (175 model x trigger x prompt-length groups: n, p10, p50, p90, mean).
+- `agentlogs/figures/`: figures 1 to 5 and `groups_full.csv` (175 model x trigger x prompt-length groups: n, p10, p50, p90, mean).
 
 No raw dataset rows are committed (`agentlogs/handcheck.html` holds derived tool-call patterns for 60 AgentLogs sessions, CC BY 4.0, used for the H2 hand-check). All inputs are public and downloaded at pinned revisions (see `PLAN.md`).
 
@@ -33,9 +33,9 @@ python rescore_dev.py && python revision_v02.py && python alarm_runtime_r5.py   
 
 Seeds are fixed in each script. Bootstrap CIs may differ in the last digit across platforms.
 
-## Not reproducible from public data
+## Not included
 
-`alarm_own.py`, `conversation_tax.py`, `fig6_carry.py` and `label_runs.py` read the author's own agent logs (token counts only), which are not published. They support Box A of the article only.
+Box A of the article (one long conversation, Fig. 6) uses the author's own agent logs. Those logs and the scripts that read them are kept on local hardware and are not published; Box A is illustrative only.
 
 ## Licence
 
