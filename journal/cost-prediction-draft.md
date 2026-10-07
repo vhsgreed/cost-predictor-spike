@@ -1,6 +1,6 @@
 # What an AI coding-agent run will cost: what can be known before it starts, and what can only be seen while it runs
 
-**Status:** DRAFT v0.2, 2026-10-07. Karl Sundström to approve before anything is public. Changes from v0.1 are listed at the end.
+**Version:** 1.0, 2026-10-07. Changes from the first draft are listed at the end.
 **Author:** Karl Sundström (Agent Recourse), corresponding and accountable for all claims.
 **Contributions:** Study design, analysis code, statistics and drafting by an AI agent (Claude Opus, running in Hermes Agent) under the author's direction. The author posed the research questions, proposed the lower-bound, stopping-backtest and work-versus-success framings, rated the hand-checks, edited the text and approved every claim. Errors are the author's responsibility to correct.
 
@@ -159,7 +159,7 @@ Whether stopping is worth it depends on the setup. In SWE-rebench the alarm fire
 **What can be built honestly from this:**
 1. *Before sending:* a calibrated lower bound and a typical value per model and trigger ("at least $0.54, usually $1.29"), with the range shown as the wide thing it is.
 2. *During the run:* a warning when the run crosses what 90% of similar runs reached. On benchmarks, failing runs collect there. Stopping automatically is a trade whose sign depends on the setup.
-3. *For long conversations:* separate the work an agent does from the context it carries, and show both (Box A).
+3. *For long conversations:* separate the work an agent does from the context it carries, and show both. All public datasets used here contain task runs; agents used as long-running conversation partners re-read their growing context on every call, a cost pattern these data cannot measure.
 
 **Limits.**
 - AgentLogs is one population: GitHub-triggered agents, mostly Claude Sonnet.
@@ -174,11 +174,7 @@ Whether stopping is worth it depends on the setup. In SWE-rebench the alarm fire
 - R4 eligibility and the developer-set split were amended before cost was read, from group sizes only.
 - R4 computed its results, crashed in a summary print, and was re-run with fixed seeds; the numbers were identical.
 - One benchmark file set held 2,255 duplicate rows. Removing them changed the SWE-smith ratio from 0.38 to 0.40; the corrected figures are used throughout.
-- Draft v0.1 overstated the replication and misreported several details; see the change log.
-
-> **Box A. Illustrative case study, n = 1 (not evidence for the general claims).** The author's own agent logs (token counts only, about 2,000 calls) show a pattern absent from all the public datasets above, which contain task runs only. In one conversation of 601 calls, 93% of 76.6M tokens were the model re-reading earlier context, and context per call grew from 17k to 217k tokens (Fig. 6). A simple counterfactual treats each turn as starting a fresh session whose context is the session's opening context plus only what that turn added itself. It assumes no retrieval cost and no loss of useful memory. Under that model, the same turns would have read about 4.7x less input. Some of the carried context is memory the user wants; current tools do not show what retaining it is worth.
->
-> ![Fig. 6. One long conversation: cumulative work vs carried (re-read) tokens, and context read per call.](../agentlogs/figures/fig6_carry_vs_work.svg)
+- The first draft overstated the replication and misreported several details; see the change log.
 
 ## 6. Data and code
 
@@ -194,17 +190,10 @@ Repository: (URL to add on publication; commit to cite). Python 3.14, pyarrow 25
 - "Floor" renamed to a 90% lower bound; the overall H4 figure reported as 90.0% (v0.1 printed a degenerate-looking "[90%, 90%]"); post-hoc comparison with model-only and global bounds added.
 - "The information does not exist" replaced with the narrower claim in §4.4.
 - Runtime alarm analysis added (post-hoc).
-- n = 1 case study moved to a labelled box; counterfactual assumptions stated.
+- n = 1 case study on the author's own logs removed (not reproducible from public data); the research gap it pointed to is kept as one sentence in §5.
 - Notes on H7's 0.88, multiplicity, H7 history construction, the excluded low end, the divisor, SWE-agent's base rate, bootstrap sidedness and licences.
 - Abstract ratio range corrected from "2.5 to 7" to "2.3 to 7".
 - Not changed:
   - The reviewer's claim that SWE-agent's overall resolve rate is 3.5%. It is 16.7%; 3.5% is the tail.
   - The request for a chars/4 sensitivity analysis. The results are rank-invariant, so one sentence in §3 covers it.
   - Validation against billed cost. No public data exists for it, so the claim was narrowed instead.
-
-## Open items before publication (for Karl)
-
-- [ ] Rewrite in your own voice; this is a reconstruction.
-- [ ] Decide whether Box A stays.
-- [ ] Approve making the repository public; add URL and commit hash to §6.
-- [ ] Port into agentrecourse.org `/journal`.
