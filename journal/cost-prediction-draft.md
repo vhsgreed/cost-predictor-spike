@@ -1,7 +1,8 @@
 # What an AI coding-agent run will cost: what can be known before it starts, and what can only be seen while it runs
 
-**Status:** DRAFT v0.2, 2026-10-07. Written by the assistant from the lab record; Karl Sundström to review, rewrite and approve before anything is public. Changes from v0.1 are listed at the end.
-**Author:** Karl Sundström (Agent Recourse).
+**Status:** DRAFT v0.2, 2026-10-07. Karl Sundström to approve before anything is public. Changes from v0.1 are listed at the end.
+**Author:** Karl Sundström (Agent Recourse), corresponding and accountable for all claims.
+**Contributions:** Study design, analysis code, statistics and drafting by an AI agent (Claude Opus, running in Hermes Agent) under the author's direction. The author posed the research questions, proposed the lower-bound, stopping-backtest and work-versus-success framings, rated the hand-checks, edited the text and approved every claim. Errors are the author's responsibility to correct.
 
 **TL;DR:** None of the inputs we tested could say reliably, before a coding-agent run started, what it would cost; most of the spread arises during the run. Two things did work: a calibrated lower bound, and, during the run, a size threshold past which runs mostly fail.
 
