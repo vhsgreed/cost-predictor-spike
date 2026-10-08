@@ -1,16 +1,16 @@
 # What an AI coding-agent run will cost: what can be known before it starts, and what can only be seen while it runs
 
-**Version:** 1.3, 2026-10-07. Changes from the first draft are listed at the end.
+**Version:** 1.4, 2026-10-08. Changes from the first draft are listed at the end.
 **Author:** Karl Sundström (Agent Recourse), corresponding and accountable for all claims.
 **Contributions:** Study design, analysis code, statistics and drafting by an AI agent (Claude Opus, running in Hermes Agent) under the author's direction. The author posed the research questions, proposed the lower-bound, stopping-backtest and work-versus-success framings, rated the hand-checks, edited the text and approved every claim. Errors are the author's responsibility to correct.
 
-**TL;DR:** None of the inputs we tested could say reliably, before a coding-agent run started, what it would cost; most of the spread arises during the run. Two things did work: a calibrated lower bound, and, during the run, a size threshold past which runs mostly fail. A cheap during-run forecast of the remaining cost gave honest ranges but was barely more accurate than counting turns.
+**TL;DR:** None of the inputs we tested could say reliably, before a coding-agent run started, what it would cost; most of the spread arises during the run. Two things did work: a calibrated lower bound, and, during the run, a size threshold past which runs mostly fail. A cheap during-run forecast of the remaining cost gave honest ranges, but its point accuracy beat counting turns by at most 18%, short of the registered 20%.
 
 ---
 
 ## Abstract
 
-We asked whether the cost of an AI coding-agent run can be predicted before the run starts, and if not, what can usefully be said instead. On 424,108 sessions from the public AgentLogs dataset (list-price-equivalent spend $743,263), with every pass bar committed before the data it was tested on and with repositories held out, the tested predictors mostly failed. Grouping by model, trigger and prompt length narrowed the 80% cost range in 5 of 15 groups on a locked test (26.7% of test sessions, 18.1% of spend); 4 groups came out wider than the model alone. Prompt text, repository language and size, and the user's own past runs did not narrow it further (0 of 10, 0 of 37 and 0 of 37 groups passed). An empirical 90% lower bound was calibrated on the locked test (90.0% of runs met it; per-group bounds were consistent with 90% in 10 of 15 groups) and in a secondary analysis of one external benchmark dataset (90.1%); the registered two-dataset replication could not be evaluated. During a run, the signal is strong but associational: across 171,000 runs from three public software-engineering benchmarks, runs above their group's 90th percentile of estimated size resolved their task 2.3 to 7 times less often than runs in the bottom half. Stopping runs at that threshold lowered estimated tokens per resolved task in two of three datasets (by 9% and 20%) and raised it in the third (by 3%). A table forecast of the remaining size during the run gave calibrated 80% intervals in all three datasets, but its point accuracy beat a turns-only baseline by at most 10% and failed its registered bar in all three.
+We asked whether the cost of an AI coding-agent run can be predicted before the run starts, and if not, what can usefully be said instead. On 424,108 sessions from the public AgentLogs dataset (list-price-equivalent spend $743,263), with every pass bar committed before the data it was tested on and with repositories held out, the tested predictors mostly failed. Grouping by model, trigger and prompt length narrowed the 80% cost range in 5 of 15 groups on a locked test (26.7% of test sessions, 18.1% of spend); 4 groups came out wider than the model alone. Prompt text, repository language and size, and the user's own past runs did not narrow it further (0 of 10, 0 of 37 and 0 of 37 groups passed). An empirical 90% lower bound was calibrated on the locked test (90.0% of runs met it; per-group bounds were consistent with 90% in 10 of 15 groups) and in a secondary analysis of one external benchmark dataset (90.1%); the registered two-dataset replication could not be evaluated. During a run, the signal is strong but associational: across 171,000 runs from three public software-engineering benchmarks, runs above their group's 90th percentile of estimated size resolved their task 2.3 to 7 times less often than runs in the bottom half. Stopping runs at that threshold lowered estimated tokens per resolved task in two of three datasets (by 9% and 20%) and raised it in the third (by 3%). A table forecast of the remaining size during the run gave calibrated 80% intervals, but its point accuracy failed its registered bar in all three datasets in two pre-registered rounds; the better design, which keeps each model or repository separate, beat a turns-only baseline by 18%, 10% and 3%.
 
 ## 1. Introduction
 
@@ -57,6 +57,7 @@ Bars were committed to `agentlogs/PLAN.md` before the data they were tested on (
 | R4 | H1 and H4 replicate on other public datasets | pass in every evaluable dataset, >= 2 evaluable | `2f66621` |
 | O1 | Tail runs resolve their task less often | tail/bottom-half resolve ratio <= 0.8 and CI upper < 0.8, in >= 2 datasets | `9c8a822` |
 | R6 | Remaining cost can be forecast during the run from turns and cumulative size | MAE ratio vs best baseline <= 0.8 (CI upper < 0.8) AND 80% interval coverage consistent, in >= 2 datasets | `bb5d4dc` |
+| R7 | As R6, with the forecast's cells kept per model or repository | same bar; baseline fixed in advance (turns-only table) | `5878638` |
 
 Analyses added after a draft review are labelled **post-hoc** where they appear.
 
@@ -163,19 +164,23 @@ This is an association. Harder tasks are both larger and more often failed, so O
 
 Whether stopping is worth it depends on the setup. In SWE-rebench the alarm fires late (11% of the run left), and stopping costs more resolved runs than it saves in tokens. A warning, which leaves the decision to a person, has no such cost; whether people act on it well is untested.
 
-### 5.8 During the run: remaining-cost forecast (R6)
+### 5.8 During the run: remaining-cost forecast (R6, R7)
 
-Can the remaining cost be forecast while a run unfolds? We tested the cheapest version of the instrument: a table lookup. At each assistant turn, the cell is (turns elapsed, cumulative size relative to the group's typical final size); the point forecast is the median final size of the fit runs in that cell, and the interval is that cell's p10-p90. Baselines: the group median final size, and the same table using turns alone.
+Can the remaining cost be forecast while a run unfolds? We tested the cheapest version of the instrument: a table lookup. At each assistant turn, the run falls into a cell defined by turns elapsed and cumulative size relative to its group's typical final size; the point forecast is the median final size of the fit runs in that cell, and the interval is that cell's p10-p90. The reference baseline is the same table using turns alone, kept per group (model or repository).
 
-| Dataset | Update points | MAE, table vs best baseline | Ratio [90% CI] | 80% interval coverage |
+R6, the first registered version, pooled its cells across groups. R7, registered after we noticed that this threw away the group the baseline kept, keeps the cells per group. Both use the same split and the same bar (MAE ratio at most 0.8 with its CI, and calibrated coverage, in at least 2 of 3 datasets).
+
+| Dataset | Update points | R6 ratio [90% CI] | R7 ratio [90% CI] | R7 80% interval coverage |
 |---|---|---|---|---|
-| SWE-smith | 206,102 | 10,842 vs 12,084 tokens | **0.897** [0.883, 0.909] | 80.3% [79.5%, 81.2%] |
-| SWE-rebench OH | 652,813 | 10,712 vs 10,652 | **1.006** [0.982, 1.025] | 80.7% [79.6%, 81.9%] |
-| SWE-agent | 572,163 | 5,380 vs 5,466 | **0.984** [0.979, 0.990] | 79.8% [79.1%, 80.7%] |
+| SWE-smith | 206,102 | 0.897 [0.883, 0.909] | **0.817** [0.805, 0.828] | 80.5% [79.7%, 81.2%] |
+| SWE-rebench OH | 652,813 | 1.006 [0.982, 1.025] | **0.904** [0.898, 0.912] | 74.0% [72.9%, 74.9%] |
+| SWE-agent | 572,163 | 0.984 [0.979, 0.990] | **0.970** [0.965, 0.976] | 79.9% [79.2%, 80.7%] |
 
-**R6 fails**: no dataset reached the 0.8 bar. Knowing the cumulative size adds at most about 10% accuracy over knowing how many turns have elapsed. The gain appears late: on SWE-smith the table beats the baseline at turns 15 to 20 (ratio 0.91 to 0.98) and is slightly worse before that. Two further limits: half of the SWE-rebench test runs (10,415 of 20,315) sit in repositories with no fit history and could not be forecast at all, and SWE-agent runs have step caps that make a turns-only baseline strong near the cap.
+**R6 and R7 both fail.** Keeping the group roughly doubled the gain, and on SWE-smith R7 came within 2 points of the bar, but no dataset reached it. Cumulative size carries real but modest information beyond the turn count: 18%, 10% and 3% lower error. On SWE-smith the per-group table is ahead from turn 3 (ratio 0.95) and the lead grows with the run (0.81 at turn 20, 0.76 after). On SWE-rebench it adds nothing until turn 10, and its repository-level intervals under-cover (74%), because many cells are small. Half of the SWE-rebench test runs (10,415 of 20,315) sit in repositories with too little fit history and could not be forecast at all.
 
-The intervals, unlike the point forecasts, were well calibrated in all three datasets (about 80% coverage). A cheap table can therefore honestly say "the remaining cost is likely between X and Y" while being unable to say precisely where in that range. TokenCast's learned compositional models report larger gains against their own baselines under a different token accounting; we did not reimplement them.
+R6's intervals were calibrated in all three datasets (80.3%, 80.7%, 79.8%). A cheap table can therefore honestly say "the remaining cost is likely between X and Y", while placing the point within that range only somewhat better than counting turns. TokenCast's learned compositional models report larger gains against their own baselines under a different token accounting; we did not reimplement them.
+
+*Correction (v1.4).* Version 1.3 described R6's per-turn results from a breakdown that compared the table, at each turn, with whichever baseline happened to be closer to the true outcome: an oracle no forecaster has. That made the table look worse turn by turn than it was. The claim that SWE-agent's turns-only baseline was "very strong near the step cap" (the table about 2x worse after turn 11) was entirely this artifact; against the fixed baseline, the table is within 6% at every turn. The registered pooled verdicts were computed correctly and are unchanged. Corrected per-turn tables: `posthoc_r6.out` (post-hoc).
 
 ## 6. Discussion
 
@@ -183,7 +188,7 @@ The intervals, unlike the point forecasts, were well calibrated in all three dat
 
 **What can be built honestly from this:**
 1. *Before sending:* a calibrated lower bound and a typical value per model and trigger ("at least $0.54, usually $1.29"), with the range shown as the wide thing it is.
-2. *During the run:* a warning when the run crosses what 90% of similar runs reached. On benchmarks, failing runs collect there. Stopping automatically is a trade whose sign depends on the setup. Pairing the warning with a remaining-cost forecast of the TokenCast kind (section 2) would show both how far a run will go and when it is going wrong; our simple table version of this failed to beat a turns-only baseline (section 5.8).
+2. *During the run:* a warning when the run crosses what 90% of similar runs reached. On benchmarks, failing runs collect there. Stopping automatically is a trade whose sign depends on the setup. Pairing the warning with a remaining-cost forecast of the TokenCast kind (section 2) would show both how far a run will go and when it is going wrong; our simple table versions of this improved on a turns-only baseline by at most 18% (section 5.8).
 3. *For long conversations:* separate the work an agent does from the context it carries, and show both. All public datasets used here contain task runs; agents used as long-running conversation partners re-read their growing context on every call, a cost pattern these data cannot measure.
 
 **Limits.**
@@ -191,7 +196,7 @@ The intervals, unlike the point forecasts, were well calibrated in all three dat
 - Cost is list-price-equivalent, not billed; the pricing model was validated against real billing on one model and account (section 4), the AgentLogs price entries were not.
 - The failure results use estimated size on benchmark tasks, and they are associational.
 - The external replication was not evaluable under its registered rule.
-- The during-run forecast (R6) is a cheap table; learned compositional models such as TokenCast were not reimplemented.
+- The during-run forecasts (R6, R7) are cheap tables on one shared split, and R7's design was chosen after seeing R6's results on that split; learned compositional models such as TokenCast were not reimplemented.
 - The ceiling in Fig. 5 is in-sample.
 - The loop hand-check had one rater whose judgements drifted.
 
@@ -200,6 +205,7 @@ The intervals, unlike the point forecasts, were well calibrated in all three dat
 - R4 eligibility and the developer-set split were amended before cost was read, from group sizes only.
 - R4 computed its results, crashed in a summary print, and was re-run with fixed seeds; the numbers were identical.
 - One benchmark file set held 2,255 duplicate rows. Removing them changed the SWE-smith ratio from 0.38 to 0.40; the corrected figures are used throughout.
+- v1.4: R7 reported (section 5.8). R6's per-turn breakdown in v1.3 used an oracle baseline; corrected, with the SWE-agent "step cap" explanation retracted. Pooled R6 verdicts unchanged.
 - v1.3: R6 reported (section 5.8; pre-registered in PLAN.md, executed after publication of 1.2).
 - v1.2: the pricing model validated against 1,493 OpenRouter-billed generations (median ratio 1.0000); the earlier statement that cost "could not be checked" against billing now applies only to the AgentLogs population's price entries.
 - v1.1: Related work section added ([arXiv:2604.22750](https://arxiv.org/abs/2604.22750), TokenCast [arXiv:2609.35760](https://arxiv.org/abs/2609.35760)); version 1.0 cited neither.

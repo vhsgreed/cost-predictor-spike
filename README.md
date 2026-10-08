@@ -29,6 +29,8 @@ python explore_r3.py && python confirm_r3.py        # H6, H7
 python replicate_r4.py               # R4 (needs external/ downloads, see PLAN.md round 4)
 python outcome_r5.py                 # O1 (needs external/ downloads, see PLAN.md round 5)
 python rescore_dev.py && python revision_v02.py && python alarm_runtime_r5.py   # v0.2 supplementary analyses
+python forecast_r6.py                # R6
+python posthoc_r6.py && python forecast_r7.py   # R6 per-turn correction (post-hoc), R7
 ```
 
 Seeds are fixed in each script. Bootstrap CIs may differ in the last digit across platforms.
