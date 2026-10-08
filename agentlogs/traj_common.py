@@ -74,6 +74,7 @@ def split(rows):
     for g, _, s in fit:
         gfin[g].append(s[-1])
     med = {g: q(v, .5) for g, v in gfin.items()}
-    skipped = sum(1 for g, _, _ in test if len(gfin[g]) < 50)
-    test = [(g, i, s) for g, i, s in test if len(gfin[g]) >= 50]
+    gfin = dict(gfin)  # no default: a lookup must not create empty groups
+    skipped = sum(1 for g, _, _ in test if len(gfin.get(g, ())) < 50)
+    test = [(g, i, s) for g, i, s in test if len(gfin.get(g, ())) >= 50]
     return fit, test, gfin, med, skipped

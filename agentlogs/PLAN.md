@@ -268,4 +268,6 @@ Metrics and bar (unchanged from R6): update points k >= 3, pooled; MAE ratio vs 
 
 Descriptive (no bar): per-turn-bucket MAE vs the reference (no oracle); share of update points answered by the full cell vs a fallback; variant B = pooled (turn, x) cells predicting final / group median, rescaled by the group median (the normalised version of R6's pooling), same metrics, no verdict.
 
+Process note (2026-10-08, before R7 ran): the first execution of `posthoc_r6.py` printed SWE-smith post-hoc numbers (pooled check identical to R6: 10,842 / 12,084 / 0.897), then crashed on SWE-rebench: `traj_common.split` counted skipped runs via a defaultdict lookup that created empty groups. Fix: plain dict + `.get`. Same rows skipped as R6; no method, cell or bar changed. R7 had not started (it was chained after the post-hoc script).
+
 Disclosure: the R7 design was motivated by reading R6's per-turn output on this same test split; the split is reused rather than redrawn because every instance has already been seen in R6 as fit or test. Stated expectation before running: FAIL. R6's table sat at 0.90-1.01 of the baseline; keeping the group should improve that, but reaching 0.8 with CI would require cumulative size to carry far more information than R6 suggested.
