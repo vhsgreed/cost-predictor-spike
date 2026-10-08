@@ -1,0 +1,72 @@
+SWE-smith: 23,821 runs, fit 16,565 / test 7,256 (skipped 0); 96 of 120 full cells have >= 50 fit rows
+  R7 update points k>=3: 206,102 | MAE R7 9,869 vs k-only 12,084 | ratio 0.817 [0.805,0.828] | coverage 80.5% [79.7%,81.2%] | fail
+  variant B (descriptive): MAE 10,465 | ratio 0.866 [0.847,0.883] | coverage 80.2% [79.4%,81.0%]
+  R7 answered by: cell 99.9%, group x turn 0.1%, group 0.0%
+    turn   3: n=   7,256 | R7   10,506 | k-only   11,117 | ratio 0.95 | B ratio 0.95
+    turn   4: n=   7,255 | R7   10,361 | k-only   11,117 | ratio 0.93 | B ratio 0.94
+    turn   5: n=   7,254 | R7   10,145 | k-only   11,117 | ratio 0.91 | B ratio 0.92
+    turn   6: n=   7,252 | R7   10,036 | k-only   11,110 | ratio 0.90 | B ratio 0.92
+    turn   7: n=   7,229 | R7    9,825 | k-only   11,123 | ratio 0.88 | B ratio 0.91
+    turn   8: n=   7,162 | R7    9,737 | k-only   11,164 | ratio 0.87 | B ratio 0.90
+    turn   9: n=   7,047 | R7    9,739 | k-only   11,252 | ratio 0.87 | B ratio 0.89
+    turn  10: n=   6,877 | R7    9,809 | k-only   11,397 | ratio 0.86 | B ratio 0.88
+    turn  11: n=   6,739 | R7    9,923 | k-only   11,675 | ratio 0.85 | B ratio 0.86
+    turn  12: n=   6,561 | R7    9,932 | k-only   11,706 | ratio 0.85 | B ratio 0.86
+    turn  13: n=   6,325 | R7    9,966 | k-only   11,761 | ratio 0.85 | B ratio 0.86
+    turn  14: n=   6,110 | R7    9,902 | k-only   11,793 | ratio 0.84 | B ratio 0.85
+    turn  15: n=   5,931 | R7    9,887 | k-only   11,850 | ratio 0.83 | B ratio 0.84
+    turn  16: n=   5,734 | R7    9,892 | k-only   11,907 | ratio 0.83 | B ratio 0.84
+    turn  17: n=   5,505 | R7    9,944 | k-only   12,012 | ratio 0.83 | B ratio 0.84
+    turn  18: n=   5,274 | R7    9,990 | k-only   12,152 | ratio 0.82 | B ratio 0.83
+    turn  19: n=   5,024 | R7   10,052 | k-only   12,349 | ratio 0.81 | B ratio 0.82
+    turn  20: n=   4,797 | R7   10,132 | k-only   12,534 | ratio 0.81 | B ratio 0.81
+    turn 21+: n=  90,770 | R7    9,717 | k-only   12,747 | ratio 0.76 | B ratio 0.85
+SWE-rebench-OH: 67,074 runs, fit 46,759 / test 9,900 (skipped 10,415); 10443 of 26538 full cells have >= 50 fit rows
+  R7 update points k>=3: 652,813 | MAE R7 9,627 vs k-only 10,652 | ratio 0.904 [0.898,0.912] | coverage 74.0% [72.9%,74.9%] | fail
+  variant B (descriptive): MAE 9,561 | ratio 0.898 [0.891,0.904] | coverage 73.0% [71.9%,73.9%]
+  R7 answered by: cell 98.1%, group x turn 1.9%, group 0.0%
+    turn   3: n=   9,900 | R7   10,687 | k-only   10,680 | ratio 1.00 | B ratio 1.00
+    turn   4: n=   9,900 | R7   10,651 | k-only   10,680 | ratio 1.00 | B ratio 0.99
+    turn   5: n=   9,900 | R7   10,678 | k-only   10,680 | ratio 1.00 | B ratio 0.99
+    turn   6: n=   9,900 | R7   10,717 | k-only   10,680 | ratio 1.00 | B ratio 1.00
+    turn   7: n=   9,900 | R7   10,644 | k-only   10,680 | ratio 1.00 | B ratio 0.99
+    turn   8: n=   9,900 | R7   10,582 | k-only   10,680 | ratio 0.99 | B ratio 0.99
+    turn   9: n=   9,900 | R7   10,556 | k-only   10,680 | ratio 0.99 | B ratio 0.99
+    turn  10: n=   9,900 | R7   10,563 | k-only   10,680 | ratio 0.99 | B ratio 0.98
+    turn  11: n=   9,900 | R7   10,613 | k-only   10,680 | ratio 0.99 | B ratio 0.98
+    turn  12: n=   9,900 | R7   10,474 | k-only   10,680 | ratio 0.98 | B ratio 0.97
+    turn  13: n=   9,900 | R7   10,355 | k-only   10,680 | ratio 0.97 | B ratio 0.97
+    turn  14: n=   9,900 | R7   10,262 | k-only   10,680 | ratio 0.96 | B ratio 0.96
+    turn  15: n=   9,900 | R7   10,183 | k-only   10,680 | ratio 0.95 | B ratio 0.95
+    turn  16: n=   9,900 | R7   10,137 | k-only   10,680 | ratio 0.95 | B ratio 0.95
+    turn  17: n=   9,900 | R7   10,096 | k-only   10,680 | ratio 0.95 | B ratio 0.95
+    turn  18: n=   9,900 | R7   10,075 | k-only   10,680 | ratio 0.94 | B ratio 0.94
+    turn  19: n=   9,900 | R7   10,101 | k-only   10,680 | ratio 0.95 | B ratio 0.94
+    turn  20: n=   9,900 | R7   10,139 | k-only   10,680 | ratio 0.95 | B ratio 0.94
+    turn 21+: n= 474,613 | R7    9,330 | k-only   10,642 | ratio 0.88 | B ratio 0.87
+SWE-agent: 80,035 runs, fit 56,770 / test 23,265 (skipped 0); 89 of 121 full cells have >= 50 fit rows
+  R7 update points k>=3: 572,163 | MAE R7 5,303 vs k-only 5,466 | ratio 0.970 [0.965,0.976] | coverage 79.9% [79.2%,80.7%] | fail
+  variant B (descriptive): MAE 5,973 | ratio 1.093 [1.073,1.113] | coverage 79.9% [79.2%,80.6%]
+  R7 answered by: cell 100.0%, group x turn 0.0%, group 0.0%
+    turn   3: n=  23,166 | R7    7,912 | k-only    7,912 | ratio 1.00 | B ratio 1.00
+    turn   4: n=  23,066 | R7    7,869 | k-only    7,911 | ratio 0.99 | B ratio 1.00
+    turn   5: n=  22,596 | R7    7,888 | k-only    7,921 | ratio 1.00 | B ratio 1.00
+    turn   6: n=  22,033 | R7    7,887 | k-only    7,952 | ratio 0.99 | B ratio 0.99
+    turn   7: n=  21,283 | R7    7,914 | k-only    7,982 | ratio 0.99 | B ratio 0.99
+    turn   8: n=  20,448 | R7    7,921 | k-only    8,026 | ratio 0.99 | B ratio 0.99
+    turn   9: n=  19,378 | R7    7,950 | k-only    8,098 | ratio 0.98 | B ratio 0.98
+    turn  10: n=  18,424 | R7    7,942 | k-only    8,188 | ratio 0.97 | B ratio 0.97
+    turn  11: n=  17,309 | R7    7,947 | k-only    8,824 | ratio 0.90 | B ratio 0.90
+    turn  12: n=  16,131 | R7    7,736 | k-only    8,323 | ratio 0.93 | B ratio 0.94
+    turn  13: n=  15,145 | R7    7,519 | k-only    7,888 | ratio 0.95 | B ratio 0.97
+    turn  14: n=  14,226 | R7    7,233 | k-only    7,462 | ratio 0.97 | B ratio 0.99
+    turn  15: n=  13,397 | R7    6,917 | k-only    7,054 | ratio 0.98 | B ratio 1.01
+    turn  16: n=  12,687 | R7    6,626 | k-only    6,705 | ratio 0.99 | B ratio 1.03
+    turn  17: n=  12,009 | R7    6,290 | k-only    6,381 | ratio 0.99 | B ratio 1.03
+    turn  18: n=  11,432 | R7    5,985 | k-only    6,095 | ratio 0.98 | B ratio 1.04
+    turn  19: n=  10,905 | R7    5,679 | k-only    5,825 | ratio 0.97 | B ratio 1.04
+    turn  20: n=  10,445 | R7    5,352 | k-only    5,601 | ratio 0.96 | B ratio 1.03
+    turn 21+: n= 268,083 | R7    2,868 | k-only    3,004 | ratio 0.95 | B ratio 1.39
+
+R7: passes in 0/3 datasets -> FAIL (need >= 2)
+wrote forecast_r7.json

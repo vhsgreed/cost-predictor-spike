@@ -271,3 +271,17 @@ Descriptive (no bar): per-turn-bucket MAE vs the reference (no oracle); share of
 Process note (2026-10-08, before R7 ran): the first execution of `posthoc_r6.py` printed SWE-smith post-hoc numbers (pooled check identical to R6: 10,842 / 12,084 / 0.897), then crashed on SWE-rebench: `traj_common.split` counted skipped runs via a defaultdict lookup that created empty groups. Fix: plain dict + `.get`. Same rows skipped as R6; no method, cell or bar changed. R7 had not started (it was chained after the post-hoc script).
 
 Disclosure: the R7 design was motivated by reading R6's per-turn output on this same test split; the split is reused rather than redrawn because every instance has already been seen in R6 as fit or test. Stated expectation before running: FAIL. R6's table sat at 0.90-1.01 of the baseline; keeping the group should improve that, but reaching 0.8 with CI would require cumulative size to carry far more information than R6 suggested.
+
+### Round 6 POST-HOC re-tabulation results (`posthoc_r6.out` / `.json`; descriptive)
+- Pooled numbers reproduce R6 exactly (0.897 / 1.006 / 0.984), so the verdict and the published pooled figures stand.
+- Per-turn, against the fixed k-only baseline (no oracle): SWE-smith the table is worse at turns 3-10 (1.01-1.05), beats it from turn 11 (0.99 falling to 0.86 at turn 20, 0.81 at 21+). R6's printed "from turn 15" was the oracle artifact.
+- SWE-agent: the published "~2x worse from turn 11" (ratios 2.32 -> 1.30) was ENTIRELY the oracle artifact (per-point min with the group median). Corrected ratios 0.94-1.00 at every turn. The errata note (item 3) attributing that gap to the design limitation was wrong; retracted.
+- SWE-rebench-OH: 1.05-1.08 at turns 3-20, 0.98 at 21+.
+- Task start (k=1) table MAE: 11,110 / 11,255 / 7,986 (R6 printed the group median's error under this label).
+
+### Round 7 results (one look; `forecast_r7.out` / `forecast_r7.json`)
+- **R7 FAIL, 0/3** (as stated in advance). MAE ratio vs k-only table: SWE-smith **0.817** [0.805, 0.828] (coverage 80.5% [79.7, 81.2], fails only on ratio <= 0.8); SWE-rebench-OH **0.904** [0.898, 0.912] (coverage 74.0% [72.9, 74.9], fails both: repository cells are small and under-cover); SWE-agent **0.970** [0.965, 0.976] (coverage 79.9%).
+- Keeping the group roughly doubles the gain over R6: 18% / 10% / 3% better than turns-only (R6: 10% / -1% / 2%).
+- Per turn: SWE-smith gains from turn 3 (0.95) and grows to 0.76 at 21+. SWE-rebench 1.00 until turn 10, 0.88 at 21+. SWE-agent 0.90-1.00 throughout.
+- Variant B (pooled normalised cells, descriptive): 0.866 / 0.898 / 1.093. Pooling across groups costs accuracy where groups differ in shape (SWE-agent).
+- Conclusion: cumulative size carries real but modest information beyond turn count (up to 18%); the cheap table does not reach the registered 20% in any dataset.
