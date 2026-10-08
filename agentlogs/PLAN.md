@@ -244,3 +244,28 @@ Descriptive (no bar): MAE and MAPE by turn bucket (when does the forecast become
 - Descriptive: cumulative-size evidence helps only late (SWE-smith turns 15-20 ratio 0.91-0.98 vs 1.02-1.12 at turns 3-14). SWE-agent: k-only baseline very strong at turns 11+ (runs have step caps).
 - Practical limit: 10,415 of 20,315 SWE-rebench test runs were skipped (repositories with < 50 fit runs); repo-level tables need prior history in that repo.
 - Conclusion: a cheap table forecast gives honest calibrated intervals but little point accuracy over a turn-count-only baseline; TokenCast's learned compositional models (14.5% MAE reduction vs their comparators, different accounting) find more.
+
+### Round 6 errata and POST-HOC re-tabulation (2026-10-08, written before the re-tabulation runs)
+Found on code review of `forecast_r6.py`, after the R6 results were published (article v1.3):
+1. **Per-turn breakdown used an oracle baseline.** Line 108 accumulated `min(e_a, e_b)` per update point, i.e. the better of the two baselines chosen separately at every point with knowledge of the true final. No forecaster can do that, so the per-turn "baseline" MAE in `forecast_r6.out` is too low and the per-turn ratios are biased against the table. Article §5.8's "slightly worse before that [turn 15]" rests on these numbers. The pooled verdict is NOT affected: it uses one baseline for all points (lines 113-114) and the same one in every bootstrap resample.
+2. **Reference baseline was chosen on test data** (lines 113-114 compare the two baselines' test MAE). This can only favour the baseline (conservative for the table); it picked the k-only table in all three datasets. Verdict unaffected.
+3. **Design limitation (not a code error, matches the registration):** the table's cells `(turn bucket, size bucket)` pool all groups, and predict finals in absolute tokens, while the k-only baseline's cells are `(group, turn bucket)`. The "richer" forecast therefore discarded the group that the baseline kept. This is the likely reason it loses early and loses ~2x to the baseline on SWE-agent from turn 11. Round 7 tests the corrected design.
+4. **Task-start line:** the k=1 MAE printed is the group median's error, not the table's; the k=1 coverage is the table's. Label corrected in the re-tabulation.
+
+POST-HOC re-tabulation (`posthoc_r6.py`, descriptive, no bar, R6 verdict unchanged): same data, split (seed 20261014), cells, fallbacks and skip rule as R6. Per turn bucket, report table MAE vs (a) the fixed k-only baseline and (b) the group median, separately; and the table's k=1 MAE. Output `posthoc_r6.out/.json`.
+
+## Round 7 pre-registration: during-run forecast with the group kept (2026-10-08, before any R7 forecast is computed)
+
+Question: does cumulative size add point accuracy over the turns-only table when the forecast keeps the group (model or repository)?
+
+Data and split: identical to R6 (three SWE sets, SWE-smith deduped by traj_id, estimated size = cumulative chars / 4 at each assistant turn; 70/30 fit/test by instance_id, `random.Random(20261014)`; test runs whose group has < 50 fit runs skipped, as in R6). Same split on purpose: R7 is a paired replacement of R6's table on identical test runs.
+
+Forecaster: x = cumulative so far / fit-group median final. Cell = (group, turn bucket, x bucket), same buckets as R6. Point forecast of final size = median of fit finals in the cell; interval = cell p10-p90. Fallback when a cell has < 50 fit rows: (group, turn bucket) cell, then group.
+
+Reference baseline, FIXED IN ADVANCE: the k-only table `(group, turn bucket)` (R6's winner in all three sets). Not re-chosen on test data.
+
+Metrics and bar (unchanged from R6): update points k >= 3, pooled; MAE ratio vs the reference with 200 bootstrap resamples over test instance_ids (`random.Random(20261015)`, CI = 11th and 190th sorted values, as R6); 80% coverage CI from the same resamples. Pass in a dataset: ratio <= 0.8 AND CI upper < 0.8 AND coverage CI contains 80%. R7 passes if >= 2 of 3 datasets pass. One look.
+
+Descriptive (no bar): per-turn-bucket MAE vs the reference (no oracle); share of update points answered by the full cell vs a fallback; variant B = pooled (turn, x) cells predicting final / group median, rescaled by the group median (the normalised version of R6's pooling), same metrics, no verdict.
+
+Disclosure: the R7 design was motivated by reading R6's per-turn output on this same test split; the split is reused rather than redrawn because every instance has already been seen in R6 as fit or test. Stated expectation before running: FAIL. R6's table sat at 0.90-1.01 of the baseline; keeping the group should improve that, but reaching 0.8 with CI would require cumulative size to carry far more information than R6 suggested.

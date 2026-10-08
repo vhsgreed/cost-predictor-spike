@@ -9,3 +9,4 @@ agentlogs/repos/
 external/
 agentlogs/handcheck_runs/
 journal/outreach-drafts.md
+agentlogs/traj_cache_*.pkl
