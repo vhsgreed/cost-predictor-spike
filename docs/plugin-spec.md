@@ -1,7 +1,7 @@
 # Spec: run-cost card + p90 alarm (Hermes plugin, MIT)
 
 Status: DRAFT 2026-10-10, not approved. No build until Karl approves.
-Decision rule (STATUS.md, 2026-10-10): the learned forecast (section 5) is included only if R8 Part A passes. Otherwise this spec ships without it and the cost-predictor line closes.
+Decision rule (2026-10-10): learned forecast only if R8 Part A passed. It failed (PLAN.md round 8), so this spec is card + alarm only, and the research line closes after it.
 
 ## 1. What it does
 
@@ -15,7 +15,7 @@ Decision rule (STATUS.md, 2026-10-10): the learned forecast (section 5) is inclu
 | "at least" (p10) | H4 PASS on the locked test: 90.0% held; 10/15 groups consistent | "90% of similar runs cost more than this" |
 | typical (p50) / 90% under (p90) | Descriptive, `groups_full.csv`; H1 narrowing only in 5/15 groups | "Typical" and "range", with width shown. No accuracy claim. |
 | p90 alarm | O1 PASS 3/3 (benchmarks, estimated size): tail runs resolve 2.3-7x less often | "Runs past this point usually fail on benchmarks." Associational; no "stop now" advice. |
-| Remaining-cost forecast | R6 FAIL, R7 FAIL; R8 pending | Only if R8 Part A passes |
+| Remaining-cost forecast | R6, R7, R8 all FAIL | Not shipped |
 
 ## 3. The hard problem: group matching (push-back)
 
@@ -36,9 +36,9 @@ Caveat stated in the UI and README: H7 found that a user's own history did not n
 - Everything stays on the machine. No network calls. No telemetry.
 - Store: `~/.hermes/plugins/run-cost/runs.sqlite` (one row per finished run: group key, final cost, turns, resolved = unknown).
 
-## 5. Learned forecast (conditional on R8 Part A PASS)
+## 5. Learned forecast: excluded
 
-If R8 passes: ship the R8 LightGBM quantile model trained on public SWE data as an "estimated remaining" line ("likely ends between $A and $B"), only for groups whose shape matches (none of the Hermes groups do today), so in practice: re-fit on own history once >= 2,000 own runs exist, then re-validate on a held-out month before showing it. If R8 fails: this section is deleted.
+R8 Part A FAILED (0/3; ratios 0.702 / 0.823 / 0.919, but 80% intervals covered only 75 / 62 / 76%). Per the 2026-10-10 decision rule, no remaining-cost forecast ships. No stop policy either: R8 Part B passed only on SWE-agent (1/3).
 
 ## 6. Hermes integration
 

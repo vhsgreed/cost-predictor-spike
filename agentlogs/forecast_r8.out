@@ -1,0 +1,81 @@
+SWE-smith: fit 16,565 runs / 500,952 points; test 7,256 runs / 220,614 points (skipped 0)
+  A update points k>=3: 206,102.0 | MAE R8 8,484 vs k-only 12,084 | ratio 0.702 [0.691,0.713] | coverage 75.2% [74.2%,76.2%] | fail
+    vs R7 table (descriptive): R8 MAE / R7 MAE = 0.860
+  A secondary, summed size (descriptive): ratio 0.812 [0.801,0.822]
+    turn   3: n=   7,256 | R8   10,106 | k-only   11,117 | ratio 0.91
+    turn   4: n=   7,255 | R8    9,887 | k-only   11,117 | ratio 0.89
+    turn   5: n=   7,254 | R8    9,715 | k-only   11,117 | ratio 0.87
+    turn   6: n=   7,252 | R8    9,485 | k-only   11,110 | ratio 0.85
+    turn   7: n=   7,229 | R8    9,370 | k-only   11,123 | ratio 0.84
+    turn   8: n=   7,162 | R8    9,248 | k-only   11,164 | ratio 0.83
+    turn   9: n=   7,047 | R8    9,252 | k-only   11,252 | ratio 0.82
+    turn  10: n=   6,877 | R8    9,255 | k-only   11,397 | ratio 0.81
+    turn  11: n=   6,739 | R8    9,200 | k-only   11,675 | ratio 0.79
+    turn  12: n=   6,561 | R8    9,248 | k-only   11,706 | ratio 0.79
+    turn  13: n=   6,325 | R8    9,276 | k-only   11,761 | ratio 0.79
+    turn  14: n=   6,110 | R8    9,343 | k-only   11,793 | ratio 0.79
+    turn  15: n=   5,931 | R8    9,305 | k-only   11,850 | ratio 0.79
+    turn  16: n=   5,734 | R8    9,232 | k-only   11,907 | ratio 0.78
+    turn  17: n=   5,505 | R8    9,253 | k-only   12,012 | ratio 0.77
+    turn  18: n=   5,274 | R8    9,156 | k-only   12,152 | ratio 0.75
+    turn  19: n=   5,024 | R8    9,145 | k-only   12,349 | ratio 0.74
+    turn  20: n=   4,797 | R8    9,052 | k-only   12,534 | ratio 0.72
+    turn 21+: n=  90,770 | R8    7,339 | k-only   12,747 | ratio 0.58
+  B tau chosen on fit (out-of-fold): 0.08 (fit tokens/resolved -6.0%, lost 4.2%)
+  B classifier AUC on test update points (descriptive): 0.599
+  B tokens/resolved vs no-stop 0.953 [0.940,0.966] | lost 2.6% | vs p90 alarm 1.036 [1.023,1.048] (alarm vs no-stop 0.920, alarm lost 4.8%) | fail
+SWE-rebench-OH: fit 25,306 runs / 1,704,250 points; test 9,900 runs / 672,613 points (skipped 10,415)
+  A update points k>=3: 652,813.0 | MAE R8 8,770 vs k-only 10,652 | ratio 0.823 [0.812,0.836] | coverage 61.5% [60.1%,62.4%] | fail
+    vs R7 table (descriptive): R8 MAE / R7 MAE = 0.911
+  A secondary, summed size (descriptive): ratio 0.825 [0.815,0.838]
+    turn   3: n=   9,900 | R8   10,721 | k-only   10,680 | ratio 1.00
+    turn   4: n=   9,900 | R8   10,648 | k-only   10,680 | ratio 1.00
+    turn   5: n=   9,900 | R8   10,616 | k-only   10,680 | ratio 0.99
+    turn   6: n=   9,900 | R8   10,597 | k-only   10,680 | ratio 0.99
+    turn   7: n=   9,900 | R8   10,567 | k-only   10,680 | ratio 0.99
+    turn   8: n=   9,900 | R8   10,503 | k-only   10,680 | ratio 0.98
+    turn   9: n=   9,900 | R8   10,418 | k-only   10,680 | ratio 0.98
+    turn  10: n=   9,900 | R8   10,327 | k-only   10,680 | ratio 0.97
+    turn  11: n=   9,900 | R8   10,244 | k-only   10,680 | ratio 0.96
+    turn  12: n=   9,900 | R8   10,162 | k-only   10,680 | ratio 0.95
+    turn  13: n=   9,900 | R8   10,073 | k-only   10,680 | ratio 0.94
+    turn  14: n=   9,900 | R8    9,949 | k-only   10,680 | ratio 0.93
+    turn  15: n=   9,900 | R8    9,837 | k-only   10,680 | ratio 0.92
+    turn  16: n=   9,900 | R8    9,752 | k-only   10,680 | ratio 0.91
+    turn  17: n=   9,900 | R8    9,662 | k-only   10,680 | ratio 0.90
+    turn  18: n=   9,900 | R8    9,575 | k-only   10,680 | ratio 0.90
+    turn  19: n=   9,900 | R8    9,514 | k-only   10,680 | ratio 0.89
+    turn  20: n=   9,900 | R8    9,466 | k-only   10,680 | ratio 0.89
+    turn 21+: n= 474,613 | R8    8,253 | k-only   10,642 | ratio 0.78
+  B tau chosen on fit (out-of-fold): 0.00 (fit tokens/resolved +0.0%, lost 0.0%)
+  B classifier AUC on test update points (descriptive): 0.609
+  B tokens/resolved vs no-stop 1.000 [1.000,1.000] | lost 0.0% | vs p90 alarm 0.967 [0.955,0.979] (alarm vs no-stop 1.034, alarm lost 7.0%) | fail
+SWE-agent: fit 56,770 runs / 1,496,959 points; test 23,265 runs / 618,664 points (skipped 0)
+  A update points k>=3: 572,163.0 | MAE R8 5,024 vs k-only 5,466 | ratio 0.919 [0.914,0.925] | coverage 76.1% [75.0%,77.1%] | fail
+    vs R7 table (descriptive): R8 MAE / R7 MAE = 0.947
+  A secondary, summed size (descriptive): ratio 0.652 [0.634,0.671]
+    turn   3: n=  23,166 | R8    7,812 | k-only    7,912 | ratio 0.99
+    turn   4: n=  23,066 | R8    7,803 | k-only    7,911 | ratio 0.99
+    turn   5: n=  22,596 | R8    7,812 | k-only    7,921 | ratio 0.99
+    turn   6: n=  22,033 | R8    7,829 | k-only    7,952 | ratio 0.98
+    turn   7: n=  21,283 | R8    7,790 | k-only    7,982 | ratio 0.98
+    turn   8: n=  20,448 | R8    7,715 | k-only    8,026 | ratio 0.96
+    turn   9: n=  19,378 | R8    7,688 | k-only    8,098 | ratio 0.95
+    turn  10: n=  18,424 | R8    7,595 | k-only    8,188 | ratio 0.93
+    turn  11: n=  17,309 | R8    7,462 | k-only    8,824 | ratio 0.85
+    turn  12: n=  16,131 | R8    7,271 | k-only    8,323 | ratio 0.87
+    turn  13: n=  15,145 | R8    7,011 | k-only    7,888 | ratio 0.89
+    turn  14: n=  14,226 | R8    6,682 | k-only    7,462 | ratio 0.90
+    turn  15: n=  13,397 | R8    6,386 | k-only    7,054 | ratio 0.91
+    turn  16: n=  12,687 | R8    6,066 | k-only    6,705 | ratio 0.90
+    turn  17: n=  12,009 | R8    5,706 | k-only    6,381 | ratio 0.89
+    turn  18: n=  11,432 | R8    5,394 | k-only    6,095 | ratio 0.89
+    turn  19: n=  10,905 | R8    5,075 | k-only    5,825 | ratio 0.87
+    turn  20: n=  10,445 | R8    4,729 | k-only    5,601 | ratio 0.84
+    turn 21+: n= 268,083 | R8    2,637 | k-only    3,004 | ratio 0.88
+  B tau chosen on fit (out-of-fold): 0.01 (fit tokens/resolved -31.0%, lost 3.3%)
+  B classifier AUC on test update points (descriptive): 0.722
+  B tokens/resolved vs no-stop 0.710 [0.690,0.732] | lost 2.2% | vs p90 alarm 0.884 [0.869,0.899] (alarm vs no-stop 0.803, alarm lost 2.3%) | PASS
+R8 part A: passes in 0/3 datasets -> FAIL (need >= 2)
+R8 part B: passes in 1/3 datasets -> FAIL (need >= 2)
+wrote forecast_r8.json
