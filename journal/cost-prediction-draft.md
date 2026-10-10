@@ -1,16 +1,16 @@
 # What an AI coding-agent run will cost: what can be known before it starts, and what can only be seen while it runs
 
-**Version:** 1.4, 2026-10-08. Changes from the first draft are listed at the end.
+**Version:** 1.5, 2026-10-10. Changes from the first draft are listed at the end.
 **Author:** Karl Sundström (Agent Recourse), corresponding and accountable for all claims.
 **Contributions:** Study design, analysis code, statistics and drafting by an AI agent (Claude Opus, running in Hermes Agent) under the author's direction. The author posed the research questions, proposed the lower-bound, stopping-backtest and work-versus-success framings, rated the hand-checks, edited the text and approved every claim. Errors are the author's responsibility to correct.
 
-**TL;DR:** None of the inputs we tested could say reliably, before a coding-agent run started, what it would cost; most of the spread arises during the run. Two things did work: a calibrated lower bound, and, during the run, a size threshold past which runs mostly fail. A cheap during-run forecast of the remaining cost gave honest ranges, but its point accuracy beat counting turns by at most 18%, short of the registered 20%.
+**TL;DR:** None of the inputs we tested could say reliably, before a coding-agent run started, what it would cost; most of the spread arises during the run. Two things did work: a calibrated lower bound, and, during the run, a size threshold past which runs mostly fail. A cheap during-run forecast of the remaining cost gave honest ranges and beat counting turns by at most 18%; a learned model cut the error further but its 80% ranges covered only 62 to 76% of runs. No during-run forecast passed its registered bar in three rounds, and a learned stopping rule helped in one dataset of three.
 
 ---
 
 ## Abstract
 
-We asked whether the cost of an AI coding-agent run can be predicted before the run starts, and if not, what can usefully be said instead. On 424,108 sessions from the public AgentLogs dataset (list-price-equivalent spend $743,263), with every pass bar committed before the data it was tested on and with repositories held out, the tested predictors mostly failed. Grouping by model, trigger and prompt length narrowed the 80% cost range in 5 of 15 groups on a locked test (26.7% of test sessions, 18.1% of spend); 4 groups came out wider than the model alone. Prompt text, repository language and size, and the user's own past runs did not narrow it further (0 of 10, 0 of 37 and 0 of 37 groups passed). An empirical 90% lower bound was calibrated on the locked test (90.0% of runs met it; per-group bounds were consistent with 90% in 10 of 15 groups) and in a secondary analysis of one external benchmark dataset (90.1%); the registered two-dataset replication could not be evaluated. During a run, the signal is strong but associational: across 171,000 runs from three public software-engineering benchmarks, runs above their group's 90th percentile of estimated size resolved their task 2.3 to 7 times less often than runs in the bottom half. Stopping runs at that threshold lowered estimated tokens per resolved task in two of three datasets (by 9% and 20%) and raised it in the third (by 3%). A table forecast of the remaining size during the run gave calibrated 80% intervals, but its point accuracy failed its registered bar in all three datasets in two pre-registered rounds; the better design, which keeps each model or repository separate, beat a turns-only baseline by 18%, 10% and 3%.
+We asked whether the cost of an AI coding-agent run can be predicted before the run starts, and if not, what can usefully be said instead. On 424,108 sessions from the public AgentLogs dataset (list-price-equivalent spend $743,263), with every pass bar committed before the data it was tested on and with repositories held out, the tested predictors mostly failed. Grouping by model, trigger and prompt length narrowed the 80% cost range in 5 of 15 groups on a locked test (26.7% of test sessions, 18.1% of spend); 4 groups came out wider than the model alone. Prompt text, repository language and size, and the user's own past runs did not narrow it further (0 of 10, 0 of 37 and 0 of 37 groups passed). An empirical 90% lower bound was calibrated on the locked test (90.0% of runs met it; per-group bounds were consistent with 90% in 10 of 15 groups) and in a secondary analysis of one external benchmark dataset (90.1%); the registered two-dataset replication could not be evaluated. During a run, the signal is strong but associational: across 171,000 runs from three public software-engineering benchmarks, runs above their group's 90th percentile of estimated size resolved their task 2.3 to 7 times less often than runs in the bottom half. Stopping runs at that threshold lowered estimated tokens per resolved task in two of three datasets (by 9% and 20%) and raised it in the third (by 3%). A table forecast of the remaining size during the run gave calibrated 80% intervals, but its point accuracy failed its registered bar in all three datasets in two pre-registered rounds; the better design, which keeps each model or repository separate, beat a turns-only baseline by 18%, 10% and 3%. A learned gradient-boosted forecast was more accurate again (30%, 18% and 8% below the turns-only baseline) but its 80% intervals covered only 75%, 62% and 76% of runs, so no during-run forecast passed its registered bar in three rounds. A learned stopping rule cut estimated tokens per resolved task by 29% in one dataset of three and lost to a plain size threshold in another.
 
 ## 1. Introduction
 
@@ -58,6 +58,7 @@ Bars were committed to `agentlogs/PLAN.md` before the data they were tested on (
 | O1 | Tail runs resolve their task less often | tail/bottom-half resolve ratio <= 0.8 and CI upper < 0.8, in >= 2 datasets | `9c8a822` |
 | R6 | Remaining cost can be forecast during the run from turns and cumulative size | MAE ratio vs best baseline <= 0.8 (CI upper < 0.8) AND 80% interval coverage consistent, in >= 2 datasets | `bb5d4dc` |
 | R7 | As R6, with the forecast's cells kept per model or repository | same bar; baseline fixed in advance (turns-only table) | `5878638` |
+| R8 | As R7 with a learned quantile model (LightGBM); and: a learned stopping rule cuts tokens per resolved task | forecast as R6; stopping rule: tokens per resolved task <= 0.9x never stopping with <= 5% of resolved runs lost, in >= 2 datasets | `a5255e6` |
 
 Analyses added after a draft review are labelled **post-hoc** where they appear.
 
@@ -178,9 +179,33 @@ R6, the first registered version, pooled its cells across groups. R7, registered
 
 **R6 and R7 both fail.** Keeping the group roughly doubled the gain, and on SWE-smith R7 came within 2 points of the bar, but no dataset reached it. Cumulative size carries real but modest information beyond the turn count: 18%, 10% and 3% lower error. On SWE-smith the per-group table is ahead from turn 3 (ratio 0.95) and the lead grows with the run (0.81 at turn 20, 0.76 after). On SWE-rebench it adds nothing until turn 10, and its repository-level intervals under-cover (74%), because many cells are small. Half of the SWE-rebench test runs (10,415 of 20,315) sit in repositories with too little fit history and could not be forecast at all.
 
-R6's intervals were calibrated in all three datasets (80.3%, 80.7%, 79.8%). A cheap table can therefore honestly say "the remaining cost is likely between X and Y", while placing the point within that range only somewhat better than counting turns. TokenCast's learned compositional models report larger gains against their own baselines under a different token accounting; we did not reimplement them.
+R6's intervals were calibrated in all three datasets (80.3%, 80.7%, 79.8%). A cheap table can therefore honestly say "the remaining cost is likely between X and Y", while placing the point within that range only somewhat better than counting turns. TokenCast's learned compositional models report larger gains against their own baselines under a different token accounting; we did not reimplement them, but section 5.9 reports our own simpler learned model.
 
 *Correction (v1.4).* Version 1.3 described R6's per-turn results from a breakdown that compared the table, at each turn, with whichever baseline happened to be closer to the true outcome: an oracle no forecaster has. That made the table look worse turn by turn than it was. The claim that SWE-agent's turns-only baseline was "very strong near the step cap" (the table about 2x worse after turn 11) was entirely this artifact; against the fixed baseline, the table is within 6% at every turn. The registered pooled verdicts were computed correctly and are unchanged. Corrected per-turn tables: `posthoc_r6.out` (post-hoc).
+
+### 5.9 During the run: a learned forecast and a stopping rule (R8)
+
+R8 replaced the table with a learned model: gradient-boosted quantile regression (LightGBM) on log final size, with the group, the turns elapsed and the cumulative size as features, refreshed at the same update points. The reference baseline and the split are R7's, so every number pairs directly with section 5.8. This reuse is disclosed below: R8's design was chosen after R6 and R7 had been scored on this split.
+
+| Dataset | R8 ratio vs turns-only [90% CI] | R8 80% interval coverage | R8 / R7 table MAE |
+|---|---|---|---|
+| SWE-smith | **0.702** [0.691, 0.713] | 75.2% [74.2, 76.2] | 0.86 |
+| SWE-rebench OH | **0.823** [0.812, 0.836] | 61.5% [60.1, 62.4] | 0.91 |
+| SWE-agent | **0.919** [0.914, 0.925] | 76.1% [75.0, 77.1] | 0.95 |
+
+The learned model is more accurate than the table everywhere and clears the error bar on SWE-smith (0.702, interval entirely below 0.8), but its 80% intervals under-cover in all three datasets (75%, 62%, 76% against the registered 80%): quantile regression on log size produced ranges that are too narrow. **R8 fails, 0 of 3**, because the registered bar asks for error and calibrated coverage together. The failure is calibration, not point accuracy: against R7's table the learned model's error is 14%, 9% and 5% lower again. On the summed quantity (estimated tokens processed over the run instead of the size at its end), descriptive only, its ratios are 0.812, 0.825 and 0.652. Across three registered rounds, no during-run forecast has passed its bar.
+
+A second claim tested a learned stopping rule. A gradient-boosted classifier estimated the probability that the run resolves from here, from turns elapsed, size and the resolved rate observed so far; a threshold chosen on fit data (under a registered cap of 5% of resolved runs lost) was applied turn by turn to held-out runs.
+
+| | SWE-smith | SWE-rebench OH | SWE-agent |
+|---|---|---|---|
+| Stop when P(resolve) below | 0.08 | no threshold met the loss cap; never stops | 0.01 |
+| Classifier AUC | 0.60 | 0.61 | 0.72 |
+| Estimated tokens per resolved task, vs never stopping | 0.953 [0.940, 0.966] | 1.000 | **0.710** [0.690, 0.732] |
+| Resolved runs lost | 2.6% | 0% | 2.2% |
+| Same, vs the p90 size alarm of section 5.7 | 1.036 [1.023, 1.048] (worse) | 0.967 [0.955, 0.979] | **0.884** [0.869, 0.899] |
+
+**The stopping rule passes in one dataset of three.** On SWE-agent it cuts estimated tokens per resolved task by 29% while losing 2.2% of resolved runs, and it beats the simple p90 size alarm by 12%. On SWE-smith it saves 5% against never stopping but is worse than the size alarm. On SWE-rebench no threshold met the registered loss cap on fit data, so the rule never fired; there the size alarm itself is 3.4% worse than never stopping, which matches section 5.7's finding that in this setup stopping costs more resolved runs than it saves. The classifiers are weak (AUC 0.60 to 0.72) and most of the rule's value is the same size signal section 5.7 already measures.
 
 ## 6. Discussion
 
@@ -188,7 +213,7 @@ R6's intervals were calibrated in all three datasets (80.3%, 80.7%, 79.8%). A ch
 
 **What can be built honestly from this:**
 1. *Before sending:* a calibrated lower bound and a typical value per model and trigger ("at least $0.54, usually $1.29"), with the range shown as the wide thing it is.
-2. *During the run:* a warning when the run crosses what 90% of similar runs reached. On benchmarks, failing runs collect there. Stopping automatically is a trade whose sign depends on the setup. Pairing the warning with a remaining-cost forecast of the TokenCast kind (section 2) would show both how far a run will go and when it is going wrong; our simple table versions of this improved on a turns-only baseline by at most 18% (section 5.8).
+2. *During the run:* a warning when the run crosses what 90% of similar runs reached. On benchmarks, failing runs collect there. Stopping automatically is a trade whose sign depends on the setup. Pairing the warning with a remaining-cost forecast of the TokenCast kind (section 2) would show both how far a run will go and when it is going wrong; our simple table versions of this improved on a turns-only baseline by at most 18% (section 5.8), and a learned version by up to 30% while losing the calibrated ranges the same bar demands (section 5.9). A learned stopping rule beat never stopping in one dataset of three. A prototype of items 1 and 2 (lower-bound card and a warn-only spend alarm, no forecast) now runs on the author's own run history; it is untested with users.
 3. *For long conversations:* separate the work an agent does from the context it carries, and show both. All public datasets used here contain task runs; agents used as long-running conversation partners re-read their growing context on every call, a cost pattern these data cannot measure.
 
 **Limits.**
@@ -197,6 +222,7 @@ R6's intervals were calibrated in all three datasets (80.3%, 80.7%, 79.8%). A ch
 - The failure results use estimated size on benchmark tasks, and they are associational.
 - The external replication was not evaluable under its registered rule.
 - The during-run forecasts (R6, R7) are cheap tables on one shared split, and R7's design was chosen after seeing R6's results on that split; learned compositional models such as TokenCast were not reimplemented.
+- R8 (learned forecast and stopping rule) runs on that same split, designed after R6 and R7 were known; its intervals failed calibration, and its stopping rule passed one dataset of three.
 - The ceiling in Fig. 5 is in-sample.
 - The loop hand-check had one rater whose judgements drifted.
 
@@ -205,6 +231,7 @@ R6's intervals were calibrated in all three datasets (80.3%, 80.7%, 79.8%). A ch
 - R4 eligibility and the developer-set split were amended before cost was read, from group sizes only.
 - R4 computed its results, crashed in a summary print, and was re-run with fixed seeds; the numbers were identical.
 - One benchmark file set held 2,255 duplicate rows. Removing them changed the SWE-smith ratio from 0.38 to 0.40; the corrected figures are used throughout.
+- v1.5: R8 reported (section 5.9): the learned forecast's error beats the table but its 80% intervals under-cover, 0 of 3; the stopping rule passes 1 of 3. R8's fit-internal smoke on SWE-smith was seen before the registered run; no bar, parameter or feature was changed after it. Pre-registered at `a5255e6`, run at `b23a6a6`.
 - v1.4: R7 reported (section 5.8). R6's per-turn breakdown in v1.3 used an oracle baseline; corrected, with the SWE-agent "step cap" explanation retracted. Pooled R6 verdicts unchanged.
 - v1.3: R6 reported (section 5.8; pre-registered in PLAN.md, executed after publication of 1.2).
 - v1.2: the pricing model validated against 1,493 OpenRouter-billed generations (median ratio 1.0000); the earlier statement that cost "could not be checked" against billing now applies only to the AgentLogs population's price entries.
@@ -216,6 +243,8 @@ R6's intervals were calibrated in all three datasets (80.3%, 80.7%, 79.8%). A ch
 Repository: <https://github.com/vhsgreed/cost-predictor-spike>. Python 3.14, pyarrow 25.0.1, numpy 2.5.3, matplotlib 3.11.2, huggingface_hub 2.1.1. Inputs are public and pinned by revision; the repository contains no dataset rows. See `README.md` for run order.
 
 ## Change log from v0.1 (response to an LLM-generated review, 2026-10-07)
+
+- v1.5: section 5.9 added (R8, learned forecast and stopping rule); abstract, TL;DR, hypothesis table and section 6 updated.
 
 - Abstract no longer claims a successful independent replication; §5.5 states that R4 is not evaluable.
 - H2 and H3 reported (§5.6).
