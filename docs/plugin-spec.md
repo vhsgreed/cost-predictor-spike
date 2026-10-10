@@ -1,6 +1,6 @@
 # Spec: run-cost card + p90 alarm (Hermes plugin, MIT)
 
-Status: DRAFT 2026-10-10, not approved. No build until Karl approves.
+Status: APPROVED and BUILT 2026-10-10 (Karl approved the build the same day). Implementation: plugin/run-cost/ (MIT), 14/14 offline tests, `hermes plugins doctor` passes, enabled on geekom.
 Decision rule (2026-10-10): learned forecast only if R8 Part A passed. It failed (PLAN.md round 8), so this spec is card + alarm only, and the research line closes after it.
 
 ## 1. What it does
@@ -43,20 +43,20 @@ R8 Part A FAILED (0/3; ratios 0.702 / 0.823 / 0.919, but 80% intervals covered o
 ## 6. Hermes integration
 
 - Hook points: start of a user turn / task (card), after each LLM call (alarm check). Uses existing plugin middleware: `llm_request` (read-only) and post-call usage events. Never mutates requests.
-- Card surfaces: desktop as a one-line notice above the run; CLI as one stderr line; cron/delegated runs log only.
-- Alarm: one notice per run when cumulative cost > group p90; second notice at 2x p90. Config: `run_cost.alarm: warn | off` (default warn), `run_cost.min_group_n: 30`.
+- Card surfaces AS BUILT: one stderr line at a session's first turn, `/cost` in any chat surface, `hermes run-cost card` in a terminal. The desktop one-line notice needs the Desktop Plugin SDK and was NOT built (v0.2 if ever). Cron/delegated runs: `/cost` or the CLI only.
+- Alarm AS BUILT: one warning line appended to the first assistant response after cumulative spend crosses group p90 (via the transform_llm_output hook, the only user-visible in-chat surface a plugin has), second at 2x p90, then silence. Config: env `RUN_COST_ALARM=warn|off`, `RUN_COST_MIN_N` (default 30).
 - Cold start: with < 30 own runs in total, no card; log only. Says "collecting (n/30)".
 
 ## 7. How we will know it works (numbers)
 
 - Floor calibration on own runs: share of runs costing more than the shown "at least" value, target 90% (CI from bootstrap over days), checked after 100 cards.
 - Alarm: share of alarmed runs Karl would have stopped (blind check of 30), reported as-is. No bar; this is product feedback, not a registered test.
-- Overhead: card + alarm add < 5 ms per LLM call (measured in tests).
+- Overhead: card + alarm check under 5 ms (test_overhead_under_5ms_per_check: 2,000 checks measured).
 
 ## 8. Out of scope
 
 Auto-stop, budgets, cross-machine sync, any upload, Copilot integration, TokenCast code (AGPL; not used).
 
-## 9. Build estimate
+## 9. Build record
 
-~1 day: table builder from local logs, two hooks, sqlite store, tests (group fallback, bucket edges, alarm fires once, no network). Plus a README with section 2's table.
+Built 2026-10-10 in plugin/run-cost/ (cost_core.py logic, __init__.py wiring, 14 offline tests). No separate sqlite store: the card reads state.db directly and the event log is logs/run-cost.jsonl. Known v0.1 limits: no card for sessions that started before the plugin loaded in that process; in-run spend read from the store may lag one call.

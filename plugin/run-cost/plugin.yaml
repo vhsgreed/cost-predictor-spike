@@ -1,0 +1,19 @@
+name: run-cost
+label: Run Cost Card + p90 Alarm
+version: 0.1.0
+author: Karl Sundström + Hermes
+description: >
+  Pre-run cost card ("at least / typical / 90% under") from your own past runs in
+  the local session store, plus a warn-only in-run alarm when the current run
+  crosses its group's p90 spend. Groups fall back model+entry+prompt ->
+  model+entry -> model -> all runs; below 30 past runs the card says "collecting".
+  Reads ~/.hermes/state.db only; stores no prompt text; makes no network calls;
+  never stops or alters a run. MIT; spec and evidence table in the
+  cost-predictor-spike repo (docs/plugin-spec.md).
+requires_hermes: ">=0.21.5"
+provides_hooks:
+  - pre_llm_call
+  - post_api_request
+  - transform_llm_output
+provides_tools: []
+provides_middleware: []
